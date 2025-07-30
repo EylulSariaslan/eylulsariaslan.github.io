@@ -1,0 +1,393 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Inconsolata:wdth,wght@50,200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.container{
+    background: url("images/portfolio.png");
+    height: 170vh; /*sayfanın uzunluğu*/
+    background-size: 100% 100%;
+}
+.container .navbar{
+    width: 100%;
+    height: 80px;
+    background: rgb(249, 145, 122);
+}
+.navbar .logo{
+    /*position: fixed; /* Sabit pozisyon */
+    top: 20px;       /* Üstten boşluk */
+    left: 5px;      /* Soldan boşluk */
+    z-index: 1000;   /* Diğer öğelerin üzerinde görünmesi için */
+}
+.logo img{
+    
+    width: 95px;     /* Genişlik */
+    height: auto;    /* Orantılı yükseklik */
+
+}
+.navbar ul{
+    float: right;
+    margin-right: 20px;
+    margin-top: -80px;
+}
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 8px;
+    line-height: 40px;
+}
+.navbar ul li a{
+    color: bisque;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 6px 13px;
+    font-family: Bitcount Prop Single;
+    transition: 0,5s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover{
+    background: #fc6767;
+    border-radius: 5px;
+    box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.75 );
+}
+.container .center{  
+    position:absolute;
+    top: 70%; /*yazılar ne kadar aşağıda olsun*/
+    left: 4%;
+   font-family: Inconsolata;
+   user-select: none;
+  
+
+}
+ .center h1{
+    
+    font-size: calc(1.5vw + 16px); /* Viewport genişliğine göre otomatik ayar */
+    line-height: 1.3; /* Satır aralığı */
+    margin-bottom: 1.5vh; /* Viewport yüksekliğine göre boşluk */
+
+    color: rgb(98, 79, 79);
+   
+}
+.center .buttons{
+    margin: 80px 90px;
+
+}
+.buttons button{  /*burası butonlar*/
+    height: 60px;
+    width: 250px;
+    font-size: 30px;
+    font-family: Bitcount Prop Single;
+    color:#fc6767;
+    background-color: bisque;
+    border: solid 1px; /*kenar çerçeve*/
+    cursor: pointer;
+    outline: none; /*tıklayınca rengi değişmesin*/
+    border-radius: 25px;
+    transition: 1s; /*tıklayınca ne kadar süre sonra algılasın*/
+}
+.buttons button:hover{
+    background: #3b3b3b;
+}
+
+
+/* HAKKIMDA SAYFASI ÖZEL STİLLERİ */
+body.hakkimda-sayfasi .container {
+    background-image: url('images/hakkimda.png');
+}
+
+/* Navbar'ın arkaplan rengini de değiştirebilirsiniz */
+body.hakkimda-sayfasi .navbar {
+    width: 100%;
+    height: 80px;
+    background: rgba(249, 145, 122, 0.8); /* Yarı saydam pembe */
+}
+
+/* İçerik kutusu için stil */
+.hakkimda-content {
+    background: rgba(255, 255, 255, 0.8); /* Yarı saydam beyaz */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.hakkimda-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: -400px; /* Yukarıdan boşluk azalt */
+    position: relative; /* Pozisyon kontrolü */
+    top: -50px; /* Yukarı çek */
+    padding: 30px;
+    background-color: rgba(249, 145, 122, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+.hakkimda-metin {
+    column-count: 1; /* İki sütunlu düzen */
+    column-gap: 40px;
+}
+
+.hakkimda-paragraf {
+    /*margin-bottom: 150px;*/
+    line-height: 1.7; /*satır aralığı*/
+    text-align: justify;
+    break-inside: avoid; /* Paragrafların bölünmesini engeller */
+    font-size: 2.1rem;
+    margin-bottom: 0.5em; /* Yazı boyutuna göre orantılı boşluk */
+}
+
+.hakkimda-foto {
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+    margin: 0 1100px;
+    margin-top: 200px;
+}
+.hakkimda-foto img {
+    border: 5px solid bisque;
+    border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+    .hakkimda-metin {
+        column-count: 1; /* Mobilde tek sütun */
+    }
+}
+
+.buttons{
+    margin: 0 1025px; /*butonların sağa sola konumunu ayarlar*/
+    display: flex;          /* Butonları yan yana yerleştirir */
+    gap: 15px;             /* Butonlar arası boşluk */
+    /*justify-content: center; /* Ortalar (isteğe göre değiştirilebilir) */
+    margin-top: 100px;      /* butonlar yukarı aşağı */
+
+}
+
+
+.buttons button{  /*burası butonlar*/
+    height: 60px;
+    width: 250px;
+    font-size: 30px;
+    font-family: Bitcount Prop Single;
+    color:#fc6767;
+    background-color: bisque;
+    border: solid 1px; /*kenar çerçeve*/
+    cursor: pointer;
+    outline: none; /*tıklayınca rengi değişmesin*/
+    border-radius: 25px;
+    transition: 1s; /*tıklayınca ne kadar süre sonra algılasın*/
+}
+.buttons button:hover{
+    background: #3b3b3b;
+}
+    
+/* PROJELER SAYFASI ÖZEL STİLLERİ */
+body.projeler-sayfa {
+    background: #ffb2a1; /* Sayfanın tamamına renk */
+    margin: 0;
+    min-height: 100vh;
+}
+body.projeler-sayfa .container {
+    background: transparent; /* Container'ın arkaplanını şeffaf yap */
+    min-height: 100vh; /* Viewport yüksekliği kadar */
+}
+
+.projeler-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 242, 242, 0.85);
+    border-radius: 15px;
+}
+
+.projeler-container h1 {
+    text-align: center;
+    color: #624F4F;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.proje-kart {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px; /*alt alta iki kartın birbiri arası mesafesi*/
+    transition: transform 0.3s;
+}
+
+.proje-kart:hover {
+    transform: translateY(-5px);
+}
+
+.proje-gorsel {
+    flex: 1;
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.proje-gorsel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.proje-gorsel img:hover {
+    transform: scale(1.05);
+}
+
+.proje-detay {
+    flex: 1;
+    padding: 25px;
+}
+
+.proje-detay h2 {
+    color: #F9917A;
+    margin-top: 0;
+}
+
+.proje-tarih {
+    color: #777;
+    font-style: italic;
+}
+
+.proje-aciklama {
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .proje-kart {
+        flex-direction: column;
+    }
+    
+    .proje-gorsel {
+        min-height: 200px;
+    }
+}
+
+/* İLETİŞİM SAYFASI ÖZEL STİLLERİ */
+body.iletisim-sayfa .container {
+    background: #f9f3f0;
+}
+
+.iletisim-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.iletisim-container h1 {
+    text-align: center;
+    color: #624F4F;
+    margin-bottom: 40px;
+    font-family: 'Montserrat';
+}
+
+/* SOSYAL MEDYA İKONLARI */
+.sosyal-medya {
+    display: flex;
+    justify-content: space-around; /* Eşit aralıklarla dağıt */
+    margin: 50px auto 70px; /* Üst-Sağ-Alt boşluk */
+    flex-wrap: wrap;
+    max-width: 900px; /* Maksimum genişlik */
+    /*
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    */
+}
+
+.sosyal-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #624F4F;
+    transition: all 0.3s;
+    width: 100px;
+}
+
+.sosyal-icon i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.sosyal-icon:hover {
+    transform: translateY(-5px);
+    color: #F9917A;
+}
+
+/* Instagram özel rengi */
+.fa-instagram { color: #E1306C; }
+.fa-linkedin { color: #0077B5; }
+.fa-envelope { color: #D44638; }
+
+/* FORM STİLLERİ */
+.iletisim-formu {
+    background: rgba(249, 145, 122, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.iletisim-formu h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #624F4F;
+}
+
+.iletisim-formu input,
+.iletisim-formu textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+}
+
+.iletisim-formu textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.iletisim-formu button {
+    background: #F9917A;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+
+.iletisim-formu button:hover {
+    background: #fc6767;
+    transform: translateY(-2px);
+}
+
+/* MOBİL UYUMLULUK */
+@media (max-width: 768px) {
+    .sosyal-medya {
+        gap: 20px;
+    }
+    
+    .iletisim-formu {
+        padding: 20px;
+    }
+
+}
