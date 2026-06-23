@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--anahtar kelimeler-->
+    <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3D Modelleme, mekanik tasarım ve inovatif projeler üzerine profesyonel portfolyo.">
+    <meta name="keywords" content="Eylül Sarıaslan, Industrial Design, Endüstriyel Tasarım, 3D Modeling, Portfolyo">
+    <title>Oyun Kütüphanesi</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* TEMEL AYARLAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden; /* Kaydırma çubuklarını gizler */
+        }
+
+        /* burası gorunmuyor ama dursun*/
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('arkaplan-gorseli.png'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* SOL KARANLIK PANEL */
+        .menu-panel {
+            position: relative;
+            width: 350px;
+            height: 100%;
+            background-color: rgba(32, 32, 36, 0.95); /* Koyu, hafif saydam gri */
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+        }
+
+        /* sag ust */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #888;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff4757; /* Üzerine gelince kırmızı olur */
+        }
+
+        /* baslik */
+        .menu-title {
+            color: #d8a8ff; /* Açık lila/mor */
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #5a3e85;
+            padding-bottom: 15px;
+        }
+
+        /* butonlar */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Butonlar arası boşluk */
+        }
+
+        /* buton tasarim */
+        .game-btn {
+            background-color: #35353d; /* Koyu buton arkaplanı */
+            color: #ffffff;
+            border: 2px solid transparent;
+            padding: 18px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* buton isiklandirma (hover) */
+        .game-btn:hover {
+            background-color: #c97aff; /* Görseldeki gibi parlak lila/mor */
+            color: #1a1a1d;
+            border-color: #c97aff;
+            transform: scale(1.02); /* Çok hafif büyür */
+        }
+
+        /* buton aktif */
+        .game-btn.active {
+            background-color: #d18bff;
+            color: #121212;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="menu-panel">
+        <div class="close-btn" onclick="kapatMenu()">×</div>
+
+        <div class="menu-title">
+            Oyun<br>Kütüphanesi
+        </div>
+
+       <div class="button-group">
+            <button class="game-btn active" onclick="oyunuGonder('buyucu.html')">1. Büyücü Serüveni</button>
+            <button class="game-btn" onclick="oyunuGonder('satranc.html')">2. Satranç</button>
+        </div>
+    </div> <script>
+        // sinyal gonder komutu
+        function oyunuGonder(oyunUrl) {
+            console.log("Ana sayfaya oyun açma sinyali gönderiliyor: " + oyunUrl);
+            
+            // window.parent komutu, iframe'in içinden çıkıp ana sayfadaki komutu çalıştırır
+            if(window.parent && window.parent.oyunuDevEkrandaAc) {
+                window.parent.oyunuDevEkrandaAc(oyunUrl);
+            } else {
+                alert("Oyun sadece portfolyo içinden başlatılabilir!");
+            }
+        }
+    </script>
+
+</body>
+</html>

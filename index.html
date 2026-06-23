@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eylül Sarıaslan | Industrial Design Engineer</title>
+    <title>Portfolyo | Ana Sayfa</title>
+    <!--anahtar kelimeler-->
+    <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3D Modelleme, mekanik tasarım ve inovatif projeler üzerine profesyonel portfolyo.">
+    <meta name="keywords" content="Eylül Sarıaslan, Industrial Design, Endüstriyel Tasarım, 3D Modeling, Portfolyo">
+    <!--gorunum, CSS'e baglanti-->
+    <link rel="stylesheet" href="css-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png ">
+    <style>
+        /* tek sayfa olsun: */
+        body.home-page {
+            overflow: hidden !important; /* Sayfanın kaymasını engeller */
+            height: 100vh !important;    /* Ekranın tamamını kaplar */
+        }
+        .home-page .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 150px); /* Navbar ve footer'ı çıkarıp tam orta alanı bırakır */
+            margin: 0 auto;
+        }
+    </style>    
+</head>
+
+    
+<body class="home-page">
+
+    <nav class="navbar">
+        <div class="logo">Portfolyom<span class="highlight">.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Ana Sayfa</a></li>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="projelerim.html">Projelerim</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            
+            <div class="hero-content"> 
+                <span class="hero-subtitle">ENDÜSTRİYEL TASARIM MÜHENDİSİ </span>
+                
+                <h1>Merhaba,<br>Ben <span id="typing-text" class="highlight"></span><span class="typing-cursor">|</span></h1>
+                
+                <p>Eğitim hayatım boyunca mekanik tasarım ve ürün geliştirme alanlarında kendimi geliştirebilmek adına staj ve aday mühendislik programlarına katıldım ve freelance işler yaptım. Bu portfolyoda; estetik vizyonu, mühendislik disiplini ve üretilebilirliği bir araya getirerek hayata geçirdiğim dijital ve fiziksel projelerimi bulabilirsiniz.</p>
+                
+                <div class="hero-tags">
+                    <span class="tag-item"><i class="fa-solid fa-gear"></i> Mekanik Tasarım</span>
+                    <span class="tag-item"><i class="fa-solid fa-compass"></i> Ürün Geliştirme</span>
+                    <span class="tag-item"><i class="fa-solid fa-screwdriver-wrench"></i> Üretilebilirlik</span>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="projelerim.html" class="btn btn-primary">Projelerimi Gör</a>
+                    <a href="Eylul_Sariaslan_CV.pdf" target="_blank" class="btn btn-secondary">Özgeçmişimi İncele</a>
+                </div>
+            </div>
+
+            <div class="hero-photo-wrapper">
+                <img src="anasayfa_fotograf.jpeg" alt="Eylül Sarıaslan - Profil Fotoğrafı - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer" class="hero-photo">
+            </div>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Eylül Sarıaslan. Tüm Hakları Saklıdır.</p>
+    </footer>
+<script>
+        const textElement = document.getElementById("typing-text");
+        //Yeni unvanlar eklenebilir.
+        const phrases = ["Eylül Sarıaslan."]; 
+        
+        let phraseIndex = 0;
+        let characterIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                // Silme hizi: Her adimda bir karakter eksiltir
+                textElement.textContent = currentPhrase.substring(0, characterIndex - 1);
+                characterIndex--;
+            } else {
+                // Yazma hizi: Her adimda bir karakter ekler
+                textElement.textContent = currentPhrase.substring(0, characterIndex + 1);
+                characterIndex++;
+            }
+
+            // Normal yazma ve silme hzlari (milisaniye)
+            let typeSpeed = isDeleting ? 60 : 120;
+
+            // Kelime tamamen yazildiysa
+            if (!isDeleting && characterIndex === currentPhrase.length) {
+                typeSpeed = 2000; // Kelime bittiğinde ekranda 2 saniye durup beklesin
+                isDeleting = true;
+            } 
+            // Kelime tamamen silindiyse
+            else if (isDeleting && characterIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 500; // Yeni kelimeye gecmeden once yarim saniye beklesin
+                
+                // Birden fazla kelime eklenince sirayla donmesi icin indeks ayari
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        // Sayfa yuklendiginde efekt baslayacak
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(typeEffect, 500); // Site acildiktan yarim saniye sonra yazmaya baslar
+        });
+    </script>
+</body>
+</html>

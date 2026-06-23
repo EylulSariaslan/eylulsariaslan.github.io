@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3D Modelleme, mekanik tasarım ve inovatif projeler üzerine profesyonel portfolyo.">
+    <meta name="keywords" content="Eylül Sarıaslan, Industrial Design, Endüstriyel Tasarım, 3D Modeling, Portfolyo">
+    <title>Sertifikalarım | Portfolyo</title>
+    <link rel="stylesheet" href="css-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <link rel="icon" type="image/png" href="favicon.png">
+
+
+</head>
+<body class="cert-page">
+
+    <nav class="navbar">
+        <div class="logo">Sertifikalar<span class="highlight">.</span></div>
+        <a href="hakkimda.html" class="back-to-projects">&larr; Hakkımda'ya Geri Dön</a>
+    </nav>
+
+    <main class="container cert-container">
+        <div class="cert-grid">
+            <!-- SERTİFİKALAR -->
+            <div class="cert-item">
+                <img src="sertifika1.jpg" alt="Sertifika 1 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer ">
+                <p class="cert-desc">Google Coursera - Proje Yönetimi (2023 - Şubat)</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika2.png" alt="Sertifika 2 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">Google Oyun ve Uygulama Akademisi - Unity (2024 - Eylül)</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika3.jpg" alt="Sertifika 3 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">E Danışman - Proje Yönetimi (Mart 2023)</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika4.jpg" alt="Sertifika 4 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">ICMPD - E Ticaret</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika5.jpg" alt="Sertifika 5 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">ICMPD - Ürün Tasarımı</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika6.jpeg" alt="Sertifika 6 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">Beltek Kursu - 3DS Max</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika7.jpeg" alt="Sertifika 7 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">Beltek Kursu - Teknik Resim</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika8.jpeg" alt="Sertifika 8 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">Beltek Kurtsu - Python Programlama</p>
+            </div>
+            <div class="cert-item">
+                <img src="sertifika9.jpeg" alt="Sertifika 9 - Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer">
+                <p class="cert-desc">Beltek Kursu - ANSYS ile Temel Mekanik Analiz</p>
+            </div>
+            
+            <!-- yenileri buraya ekle. -->
+        </div>
+    </main>
+
+    <!-- Görsel Büyütme Kutusu -->
+    <div id="imageModal" class="img-modal">
+        <span class="close-modal" onclick="closeCert()">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <script>
+        function openCert(src) {
+            document.getElementById("fullImage").src = src;
+            document.getElementById("imageModal").style.display = "flex";
+        }
+        function closeCert() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        // Sertifikalara tıklama olayı
+        document.querySelectorAll('.cert-item img').forEach(img => {
+            img.onclick = () => openCert(img.src);
+        });
+    </script>
+</body>
+</html>

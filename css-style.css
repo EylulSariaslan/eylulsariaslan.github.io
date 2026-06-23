@@ -1,0 +1,2259 @@
+/* ==========================================
+   1. GENEL AYARLAR VE DEĞİŞKENLER
+   ========================================== */
+:root {
+    --bg-mat-black: #1e1e1f;     /* Mat (Soluk) Siyah */
+    --bg-darker: #161617;        /* Kartlar ve Menü için daha koyu siyah */
+    --text-cream: #f4edd2;       /* Krem Rengi Yazı */
+    --text-muted: #bcbaa6;       /* Soluk Krem (İkincil yazılar için) */
+    --primary-purple: #8b5cf6;   /* Canlı Mor (Butonlar ve vurgular) */
+    --accent-lilac: #d8b4fe;     /* Açık Lila (Ana Başlık ve Hoverlar) */
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-mat-black);
+    color: var(--text-cream);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    padding-bottom: 60px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   2. NAVİGASYON (MENÜ) VE FOOTER
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: var(--bg-darker);
+    border-bottom: 2px solid var(--primary-purple);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-lilac);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-purple);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--bg-darker);
+    color: var(--text-muted);
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #2d2d30;
+    z-index: 10;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   3. ORTAK BİLEŞENLER (LAYOUT VE GENEL BUTONLAR)
+   ========================================== */
+.container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+h1, h2, h3 {
+    color: var(--text-cream);
+}
+
+.highlight {
+    color: var(--accent-lilac);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   4. YENİ ANA SAYFA (HERO) TASARIMI (GÖRSELDEKİ GİBİ)
+   ========================================== */
+/* Ana sayfanın taşmasını önlemek ve tam ekran oturmasını sağlamak için */
+body.home-page {
+    overflow-x: hidden;
+}
+
+.home-page .hero {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    min-height: 75vh;
+}
+
+.home-page .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* En üstteki küçük mor başlık */
+.hero-subtitle {
+    color: var(--primary-purple);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Devasa sert köşeli modern başlık */
+.home-page .hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+/* Açıklama paragrafı */
+.home-page .hero p {
+    font-size: 16px;
+    color: #bcbaa6;
+    margin-bottom: 30px;
+    max-width: 680px;
+    line-height: 1.7;
+}
+
+/* Görseldeki yuvarlak köşeli disiplin etiketleri */
+.hero-tags {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tag-item {
+    background-color: #161617;
+    color: #f4edd2;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #2d2d30;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-item i {
+    color: var(--accent-lilac); /* İkonların hafif lila parlaması için */
+}
+
+/* Buton grubu düzeni */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Görseldeki sol taraftaki dolgulu Mor Buton */
+.btn-primary {
+    display: inline-block;
+    background-color: #8b5cf6;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s, background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+}
+
+/* Görseldeki sağ taraftaki ince çizgili şeffaf buton */
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #433a54 !important;
+    color: #ffffff !important;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-purple) !important;
+    background-color: rgba(139, 92, 246, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+/* Görseldeki dikey uzun, şık, yumuşatılmış profil fotoğraf çerçevesi */
+.home-page .hero-photo-wrapper {
+    flex: 0 0 420px;
+    width: 420px;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 24px; /* Görseldeki yumuşak dikdörtgen köşe */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.home-page .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ana Sayfa Mobil Ekran Düzenlemeleri */
+@media (max-width: 1024px) {
+    .home-page .hero {
+        flex-direction: column-reverse; /* Mobilde görsel üste içerik alta gelir */
+        text-align: center;
+        gap: 40px;
+    }
+    .home-page .hero-content {
+        align-items: center;
+    }
+    .hero-tags {
+        justify-content: center;
+    }
+    .home-page .hero h1 {
+        font-size: 40px;
+    }
+    .home-page .hero-photo-wrapper {
+        flex: 0 0 300px;
+        width: 100%;
+        max-width: 340px;
+        height: 420px;
+    }
+}
+
+/* ==========================================
+   DAKTİLO EFEKTİ İMLEÇ ANİMASYONU
+   ========================================== */
+.typing-cursor {
+    color: var(--accent-lilac);
+    font-weight: 400;
+    margin-left: 2px;
+    animation: blink-cursor 0.7s infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------------------------HAKKIMDA----------------------------------------------------------------*/
+/* ==========================================
+   5. HAKKIMDA (TIMELINE) ALANI - PROJELERİM GİBİ İÇTEN SCROLL
+   ========================================== */
+
+/* Sayfa arka planını ve ana scroll'u tamamen çiviler */
+body.about-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Tıpkı projelerimdeki gibi içeriği hapseden ve sadece dikey kaydıran ana pencere */
+.about-page .timeline-scroll-wrapper {
+    max-width: 100%;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+    
+    /* Ekran yüksekliğine göre kutuyu tam kilitler (Projelerim sayfasıyla birebir simetrik) */
+    height: calc(100vh - 230px) !important; 
+    overflow-y: auto !important; 
+    overflow-x: hidden !important; 
+    scroll-behavior: smooth;
+    
+    /* İnce mor kaydırma çubuğu */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple) rgba(22, 22, 23, 0.3);
+}
+
+/* Görseldeki o şık mor ince Scrollbar tasarımının "Hakkımda" versiyonu */
+.about-page .timeline-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+.about-page .timeline-scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(22, 22, 23, 0.5);
+    border-radius: 10px;
+}
+.about-page .timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-purple);
+    border-radius: 10px;
+}
+.about-page .timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-lilac);
+}
+
+/* Footer'ın çakılı kalma ayarı */
+.about-page footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+/* Zaman Tüneli Yapısı */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px 0;
+}
+
+/* Ortadaki kılavuz çizgi */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #333;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px; /* Büyüme efektinde kartlar birbirine çok yanaşmasın diye mesafeyi açtık */
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Zaman tüneli düğümleri */
+.timeline-dot {
+    position: absolute;
+    top: 25px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--primary-purple);
+    border: 4px solid var(--bg-mat-black);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.timeline-dot.flag-icon {
+    background: none !important;
+    border: none !important;
+    top: 15px;
+    font-size: 24px;
+    box-shadow: none !important;
+}
+
+/* Kartların Projelerim Sayfasıyla Uyumlu Yeni Koyu Teması */
+.timeline-content {
+    background-color: #2a2635; /* Görseldeki o asil koyu mor-siyah ton */
+    border: 1px solid #433a54;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    will-change: transform, opacity; /* Animasyon performansını artırır */
+}
+
+/* Kartların üzerine fareyle gelindiğinde ekstra büyüme */
+.timeline-content:hover {
+    border-color: var(--accent-lilac) !important;
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.25) !important;
+    transform: scale(1.03) !important; /* Odaktayken üzerine gelirsen tatlı bir tık daha büyür */
+}
+
+.timeline-content .date {
+    display: block;
+    font-weight: 700;
+    color: var(--accent-lilac);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.timeline-content h3 {
+    margin: 0 0 10px 0;
+    color: #ffffff;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.timeline-content p {
+    margin: 0;
+    color: #bcbaa6;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Masaüstü Çapraz Yerleşim Detayları */
+.timeline-item:nth-child(even) {
+    margin-left: auto;
+    padding-left: 50px;
+}
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -9px;
+}
+.timeline-item:nth-child(even) .timeline-dot.flag-icon {
+    left: -15px;
+}
+
+.timeline-item:nth-child(odd) {
+    margin-right: auto;
+    padding-right: 50px;
+    text-align: right;
+}
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -9px;
+}
+.timeline-item:nth-child(odd) .timeline-dot.flag-icon {
+    right: -15px;
+}
+/* ==========================================
+   HAKKIMDA SAYFASI / ANA EKRAN KİLİTLEME AYARI
+   ========================================== */
+/* Sadece ve sadece hakkında sayfasındaki taşmayı bitiren, ekranı çivileyen kural */
+body.about-page .container {
+    margin: 0 auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+    max-height: calc(100vh - 100px) !important;
+    overflow: hidden !important; /* Dış kutudan herhangi bir taşmayı tamamen engeller */
+}
+
+
+/* ==========================================
+   MOBİL VE TABLET UYUMU (Dikey Tek Sıra)
+   ========================================== */
+@media (max-width: 767px) {
+    .about-page .timeline-scroll-wrapper {
+        height: calc(100vh - 200px) !important;
+    }
+    .timeline-line {
+        left: 20px;
+        transform: none;
+    }
+    .timeline-item {
+        width: 100% !important;
+        padding-left: 40px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+    .timeline-item:nth-child(even) .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot {
+        left: 11px !important;
+        right: auto !important;
+    }
+    .timeline-item:nth-child(even) .timeline-dot.flag-icon,
+    .timeline-item:nth-child(odd) .timeline-dot.flag-icon {
+        left: 5px !important;
+        right: auto !important;
+    }
+}
+
+/* ==========================================
+   5.1 HAKKIMDA SAYFASI SAĞ ALT GIF AYARLARI
+   ========================================== */
+.about-gif-container {
+    position: fixed;
+    bottom: 80px;  /* Footer'ın hemen üzerinde durması için ideal boşluk */
+    right: 40px;   /* Sağ kenardan bırakılacak estetik hizalama payı */
+    width: 140px;  /* Figürün genişliği */
+    height: 140px; /* Figürün yüksekliği */
+    
+    /* Kullanmak istediğin GIF dosyasının adını buraya yazıyorsun */
+    background-image: url('muhendis.gif'); 
+    
+    background-size: contain; /* GIF'in oranları bozulmadan kutuya sığmasını sağlar */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Zaman tüneli kartlarının altında, sayfa arka planının önünde kalması için */
+    z-index: 1; 
+    background-color: transparent; 
+    
+    /* Sitenin mor-lila tonlarıyla kusursuz entegre olması için hafif bir parlama gölgesi */
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.35));
+    
+    /* Sayfa ilk açıldığında aşağıdan yukarıya doğru tatlı bir süzülme animasyonu */
+    animation: aboutGifFadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none; /* Fareyle üzerine gelindiğinde tıklamayı veya scroll engellemeyi önler */
+}
+
+@keyframes aboutGifFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.9); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.about-wrapper { display: flex; gap: 40px; height: calc(100vh - 150px); }
+.about-sidebar { flex: 0 0 280px; display: flex; flex-direction: column; gap: 20px; }
+.sidebar-card { background-color: #2a2635; border: 1px solid #433a54; padding: 30px; border-radius: 16px; text-align: center; position: sticky; top: 0; }
+.sidebar-photo { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px; border: 3px solid var(--primary-purple); object-fit: cover; }
+.sidebar-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
+.btn-sidebar { background: rgba(139, 92, 246, 0.1); border: 1px solid var(--primary-purple); color: var(--text-cream); padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+.btn-sidebar:hover { background: var(--primary-purple); color: #fff; transform: translateY(-2px); }
+.timeline-scroll-wrapper { flex: 1; overflow-y: auto; }
+
+/* Modal Arka Plan */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+
+/* Modal İçerik Kutusu */
+.modal-content {
+    background-color: #2a2635;
+    border: 1px solid var(--primary-purple);
+    margin: 5% auto; /* Sayfanın ortasına daha iyi oturması için üstten boşluğu azalttık */
+    padding: 40px; /* İçerideki yazının kenarlardan rahatlaması için boşluğu artırdık */
+    width: 80%; /* Sabit genişlik yerine ekranın %80'ini kaplamasını sağladık */
+    max-width: 800px; /* Çok geniş ekranlarda aşırı yayılmaması için sınırladık */
+    max-height: 80vh; /* Yazının sığması için dikeyde ekranın %80'ini kullanmasına izin verdik */
+    overflow-y: auto; /* Yazı çok uzunsa kutu içinde kaydırılabilir olacak */
+    border-radius: 16px;
+    color: var(--text-cream);
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    animation: modalFadeIn 0.3s;
+}
+
+/* Yazının okunabilirliğini artırmak için ek ayar */
+.modal-content p {
+    font-size: 1.1rem; /* Yazıyı biraz daha büyüttük */
+    line-height: 1.8; /* Satır aralarını açarak daha profesyonel bir görünüm verdik */
+    text-align: justify; /* Yazının iki yana yaslanmasını sağlayarak hizalı görünmesini sağladık */
+}
+
+@keyframes modalFadeIn { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+
+/* Kapatma Butonu (X) */
+.close-modal {
+    position: absolute;
+    right: 20px; top: 15px;
+    font-size: 24px; cursor: pointer; color: var(--text-muted);
+}
+.close-modal:hover { color: var(--accent-lilac); }
+
+
+/* ==========================================
+   YENİ: YAN PANEL YETENEKLER (SKILLS) ALANI
+   ========================================== */
+.skills-card {
+    padding: 22px !important;
+    text-align: left !important; /* Çubuk hizalaması için sola yasladık */
+}
+
+.skills-title {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #433a54;
+    padding-bottom: 10px;
+}
+
+.skills-title i {
+    color: var(--accent-lilac); /* Simgeye tatlı bir lila tonu */
+}
+
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--text-cream);
+    font-weight: 500;
+}
+
+/* Düzey Çubuğunun Arka Planı (Boş Kısım) */
+.skill-bar {
+    width: 100%;
+    height: 7px;
+    background-color: #1e1b26; /* Koyu mat arka plan */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(67, 58, 84, 0.4);
+}
+
+/* İlerleme Çubuğu (Dolu Kısım) */
+.skill-progress {
+    height: 100%;
+    /* Soldan sağa ana mordan lila rengine şık bir geçiş */
+    background: linear-gradient(90deg, var(--primary-purple), var(--accent-lilac));
+    border-radius: 4px;
+    width: 0; 
+    /* Sayfa yüklendiğinde göz yormayan, akıcı bir dolma animasyonu */
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+/* ==========================================
+   SOL PANEL SIKIŞTIRMA VE SIĞDIRMA AYARLARI
+   ========================================== */
+
+/* İki ana kart arasındaki boşluğu düşürdük */
+.about-sidebar {
+    gap: 12px !important; 
+}
+
+/* Üstteki Profil Kartının Boşluklarını Azaltma */
+.about-sidebar .sidebar-card:not(.skills-card) {
+    padding: 18px 20px !important; /* İç boşluğu 30px'ten düşürdük */
+}
+
+/* Fotoğrafı orantılı olarak küçülttük */
+.sidebar-photo {
+    width: 90px !important; 
+    height: 90px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Yazı boyutlarını ve satır arası boşluklarını optimize ettik */
+.sidebar-card h3 {
+    font-size: 1.15rem !important;
+    margin: 0 0 4px 0 !important;
+}
+
+.sidebar-card p {
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+}
+
+/* Buton grubunun üst boşluğunu ve kendi aralarındaki mesafeyi daralttık */
+.sidebar-actions {
+    margin-top: 15px !important; 
+    gap: 8px !important; 
+}
+
+/* Özgeçmiş, Sertifikalar ve Detay butonlarını incelttik */
+.btn-sidebar {
+    padding: 8px 12px !important; 
+    font-size: 0.85rem !important;
+}
+
+/* ==========================================
+   SOL PANEL: MİLİMETRİK HAFİF KÜÇÜLTME AYARLARI
+   ========================================== */
+
+/* 1. Tüm sol sütun genişliğini ideal denge noktası olan 328px'e çekiyoruz */
+.about-sidebar {
+    flex: 0 0 328px !important; 
+    gap: 14px !important; 
+}
+
+/* 2. Üstteki Profil Kartı Ayarları */
+.about-sidebar .sidebar-card:not(.skills-card) {
+    padding: 22px 20px !important; /* Çok hafif daraltılarak taşma riski önlendi */
+}
+
+/* Profil fotoğrafı ideal 100px boyutunda sabitlendi */
+.sidebar-photo {
+    width: 100px !important; 
+    height: 100px !important;
+    margin-bottom: 14px !important;
+}
+
+/* İsim ve unvan yazı boyutları */
+.sidebar-card h3 {
+    font-size: 1.23rem !important;
+    margin: 0 0 5px 0 !important;
+}
+
+.sidebar-card p {
+    font-size: 0.9rem !important;
+}
+
+/* Buton grubu ve mesafeleri */
+.sidebar-actions {
+    margin-top: 18px !important; 
+    gap: 9px !important; 
+}
+
+.btn-sidebar {
+    padding: 10px 14px !important; 
+    font-size: 0.89rem !important;
+}
+
+/* ==========================================
+   3. ALTTAKİ YETENEKLER KARTINI DÜZENLEME (GRID)
+   ========================================== */
+.skills-card {
+    padding: 20px !important; 
+}
+
+.skills-title {
+    margin-bottom: 16px !important;
+    padding-bottom: 9px !important;
+    font-size: 1.02rem !important;
+}
+
+/* 2 Sütunlu (Grid) yapı aynen korunarak aradaki boşluklar milimetrik daraltıldı */
+.skills-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 11px 16px !important; 
+}
+
+/* Program isimleri ve yüzdelikleri */
+.skill-info {
+    font-size: 0.86rem !important;
+}
+
+/* İlerleme çubuklarının kalınlığı */
+.skill-bar {
+    height: 5px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------------------------------------------PROJELERİM SÜRÜMÜ--------------------------------------------------------------------*/
+/* ==========================================
+   6. PROJELERİM ALANI (Dikey Kilitli Kaydırma Düzeni)
+   ========================================== */
+body.projects-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+.projects-page .projects-container, 
+.projects-page .projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    max-width: 95% !important;
+    width: 95% !important;
+    margin: 20px auto !important;
+    padding: 15px !important;
+    box-sizing: border-box;
+    height: calc(100vh - 230px) !important; 
+    overflow-y: auto !important; 
+    overflow-x: hidden !important; 
+    scroll-behavior: smooth; 
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple) rgba(22, 22, 23, 0.3);
+}
+
+.projects-page .projects-grid::-webkit-scrollbar { width: 6px; }
+.projects-page .projects-grid::-webkit-scrollbar-track { background: rgba(22, 22, 23, 0.5); border-radius: 10px; }
+.projects-page .projects-grid::-webkit-scrollbar-thumb { background: var(--primary-purple); border-radius: 10px; }
+.projects-page .projects-grid::-webkit-scrollbar-thumb:hover { background: var(--accent-lilac); }
+
+.projects-page footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+.project-card {
+    display: flex !important;
+    flex-direction: row !important; 
+    background-color: #2a2635;
+    border: 1px solid #433a54;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    min-height: 420px; 
+    height: auto !important;
+}
+
+.project-card:hover {
+    border-color: var(--accent-lilac) !important;
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2) !important;
+}
+
+.project-image-wrapper {
+    flex: 0 0 35% !important; 
+    width: 35% !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 10px; 
+    border: 1px solid rgba(216, 180, 254, 0.25); 
+    box-shadow: 0 0 12px rgba(216, 180, 254, 0.15); 
+    background-color: rgba(22, 22, 23, 0.5); 
+}
+
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 15px;
+}
+
+.project-info-wrapper {
+    padding: 30px;
+    flex: 1;
+    width: 65% !important; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.project-info-wrapper h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.35rem;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.project-details-list {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-left: 20px; 
+}
+
+.project-details-list li {
+    color: #bcbaa6;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    list-style-type: disc;
+}
+
+.project-link {
+    color: #a78bfa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto; 
+}
+
+.project-link:hover { color: #c084fc; }
+
+@media (max-width: 950px) {
+    .projects-page .projects-container, 
+    .projects-page .projects-grid { 
+        grid-template-columns: 1fr !important; 
+        height: calc(100vh - 200px) !important;
+    }
+    .project-card { flex-direction: column !important; height: auto !important; }
+    .project-image-wrapper { width: 100% !important; height: 230px !important; }
+    .project-info-wrapper { width: 100% !important; }
+}
+
+/* Poster görseli ve video için ortak düzenleme */
+.pure-project-poster img, 
+.pure-project-poster video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Videonun kutudan taşmaması ve kenarlarının yuvarlanması için ekstra destek */
+.pure-project-poster video {
+    object-fit: cover;
+    background-color: #000; /* Video yüklenirken arka plan rengi */
+}
+
+/* Ana kapsayıcıyı ikiye bölüyoruz */
+.project-page-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+/* Proje kartlarının olduğu ana kısım */
+.projects-content {
+    flex: 1;
+}
+
+/* Sağdaki buton paneli */
+.sidebar-nav {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.tab-link {
+    background: #2a2635;
+    border: 1px solid #433a54;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.tab-link.active, .tab-link:hover {
+    background: var(--primary-purple);
+    border-color: var(--primary-purple);
+    color: white;
+}
+
+/* ----------------------------------------------Hobi projeleri sayfası için daha yumuşak ve uyumlu lila teması --------------------------------*/
+
+/* Hobi projeleri için CSS önceliğini artırıyoruz */
+body.hobi-page-theme .project-card {
+    background-color: #3e3442 !important;
+    border: 1px solid var(--accent-lilac) !important;
+}
+
+body.hobi-page-theme .project-card:hover {
+    border-color: #a78bfa !important;
+    box-shadow: 0 15px 30px rgba(167, 139, 250, 0.2) !important;
+}
+
+body.hobi-page-theme .project-link {
+    color: #c4b5fd !important;
+}
+
+body.hobi-page-theme .tab-link.active {
+    background: #544f5e !important;
+    border-color: #75678e !important;
+    color: #ffffff !important;
+}
+
+/* Hobi kartının boyunu akademik projelerle aynı seviyeye çeker */
+body.hobi-page-theme .project-card {
+    min-height: 200px !important; /* Kartın yüksekliğini akademik projelerle aynı hizaya getirir */
+    max-height: 250px !important; /* Kartın çok uzamasını engeller */
+}
+
+/* İçerik wrapper'ını düzenleyelim */
+body.hobi-page-theme .project-info-wrapper {
+    padding: 20px !important; /* İç boşluğu biraz kıstık */
+}
+
+/* Görselin de kartın içinde orantılı kalmasını sağlar */
+body.hobi-page-theme .project-image-wrapper {
+    flex: 0 0 30% !important; /* Görsel kısmını biraz daha daraltıp içeriği ferahlatır */
+}
+
+/* ==========================================
+   NAVBAR İÇİ FİGÜR GIF AYARLARI (KESİN ÇÖZÜM)
+   ========================================== */
+.navbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 70px !important; /* Navbar yüksekliğini sabitledik */
+    box-sizing: border-box;
+}
+
+/* GIF'i logodan uzaklaştırıp menünün soluna kusursuz hizalar */
+.navbar-gif-container {
+    margin-left: auto !important; 
+    margin-right: 20px !important; 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
+
+.nav-gif {
+    /* ÇÖZÜM: Genişlik ve yüksekliği küçülterek kibar bir boyuta çektik */
+    width: 80px !important; 
+    height: 80px !important;
+    
+    /* ÇÖZÜM: GIF'in hareketinin donmasını engellemek için tarayıcıyı zorlayan transformları temizledik */
+    object-fit: contain !important;
+    display: block !important;
+    
+    /* Hafif mor ışıltı efekti */
+    filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.4)) !important;
+}
+
+/* Mobil ekranlarda menü daralınca GIF'in yapıyı bozmaması için gizleme */
+@media (max-width: 768px) {
+    .navbar-gif-container {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================
+   9. PROJE DETAY SAYFASI TASARIMI (İKİ GÖRSELLİ SÜRÜM)
+   ========================================== */
+
+/* Sayfa arka planını kilitler, taşmayı önler */
+body.project-detail-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Sayfa içi genel düzenleme */
+.project-detail-page .container {
+    margin: 10px auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+    max-height: calc(100vh - 120px);
+}
+
+/* Geri dön butonu */
+.back-to-projects {
+    display: inline-block;
+    color: var(--accent-lilac);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 15px;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.back-to-projects:hover {
+    color: var(--primary-purple);
+    transform: translateX(-3px);
+}
+
+/* Ana Bölücü Düzen (Sol Görsel, Sağ İçerik) */
+.detail-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    height: calc(100vh - 210px);
+    align-items: flex-start;
+}
+
+/* SOL PANEL: Sabit İki Görsel İçin Dikey Flex Yapısı */
+.detail-media-panel {
+    flex: 0 0 45%; /* Ekranın %45'ini kaplar */
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* İki görsel kutusu arasındaki mesafe */
+}
+
+/* Görsel kutularının yüksekliği alt alta esit bölünsün diye flex: 1 yaptık */
+.main-image-box {
+    flex: 1; 
+    width: 100%;
+    background-color: #161617;
+    border: 1px solid #433a54;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.main-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* SAĞ PANEL: Kendi içinde dikey kayan bilgi alanı */
+.detail-info-panel {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    padding-right: 20px;
+    scroll-behavior: smooth;
+    
+    /* İnce mor scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple) rgba(22, 22, 23, 0.3);
+}
+
+/* Sağ panel scrollbar tasarımı (Chrome, Safari, Edge) */
+.detail-info-panel::-webkit-scrollbar {
+    width: 6px;
+}
+.detail-info-panel::-webkit-scrollbar-track {
+    background: rgba(22, 22, 23, 0.5);
+    border-radius: 10px;
+}
+.detail-info-panel::-webkit-scrollbar-thumb {
+    background: var(--primary-purple);
+    border-radius: 10px;
+}
+.detail-info-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-lilac);
+}
+
+/* Başlık Grubu */
+.detail-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #2d2d30;
+    padding-bottom: 15px;
+}
+
+.project-category {
+    color: var(--primary-purple);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.detail-header h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+/* Mühendislik / Yazılım Özet Kartları */
+.project-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.meta-card {
+    background-color: #2a2635; 
+    border: 1px solid #433a54;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.meta-card i {
+    color: var(--accent-lilac);
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.meta-card span {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.meta-card strong {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Detaylı Metin İçerikleri */
+.detail-text-content h3 {
+    font-size: 1.3rem;
+    color: var(--accent-lilac);
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+.detail-text-content p {
+    color: #bcbaa6;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Teknik Özellikler Listesi */
+.detail-specs-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.detail-specs-list li {
+    color: #bcbaa6;
+    font-size: 0.95rem;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-specs-list li strong {
+    color: #ffffff;
+    display: inline-block;
+    width: 160px; 
+}
+
+/* Detay Sayfası Footer Sabitlemesi */
+.project-detail-page footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+/* ==========================================
+   MOBİL VE TABLET UYUMU (Alt Alta Düzen)
+   ========================================== */
+@media (max-width: 950px) {
+    body.project-detail-page {
+        overflow-y: auto !important; 
+        height: auto !important;
+    }
+    .project-detail-page .container {
+        max-height: none !important;
+    }
+    .detail-wrapper {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 25px;
+    }
+    .detail-media-panel, .detail-info-panel {
+        width: 100% !important;
+        flex: none !important;
+        height: auto !important;
+    }
+    .main-image-box {
+        height: 250px !important; /* Mobilde alt alta iki görsel çok uzamasın diye yüksekliği ideal boyuta çektik */
+    }
+    .project-meta-grid {
+        grid-template-columns: 1fr !important; 
+    }
+    .detail-specs-list li strong {
+        display: block; 
+        margin-bottom: 2px;
+    }
+    .project-detail-page footer {
+        position: relative !important; 
+        margin-top: 40px;
+    }
+}
+
+/* ==========================================
+   9.1 ÜÇ GÖRSELLİ DETAY SAYFASI ÖZELLEŞTİRMESİ
+   ========================================== */
+.detail-media-panel.multi-3-images {
+    gap: 10px !important; /* 3 görselin sığması için aralarındaki boşluğu hafifçe daralttık */
+}
+
+.detail-media-panel.multi-3-images .main-image-box {
+    flex: 1 !important; /* Ekran yüksekliğini 3 kutu arasında eşit böler */
+    padding: 10px !important; /* Resimlerin kutu içinde maksimum boyuta ulaşması için */
+    border-radius: 12px; /* 3'lü düzende daha zarif dursun diye radyusu hafifçe kıstık */
+}
+
+/* Telefon ekranlarında resimlerin üst üste çok yığılmaması için mobil ayar */
+@media (max-width: 950px) {
+    .detail-media-panel.multi-3-images .main-image-box {
+        height: 200px !important; /* Mobilde dikeyde çok uzamasınlar diye ideal sınır */
+    }
+}
+
+/* ==========================================
+   9.2 SADECE PROJE 1'E ÖZEL: SAF GÖRSEL DÜZENİ
+   ========================================== */
+
+/* Sol panelde tek görselin tam ekran kilitli kalması */
+.detail-media-panel.single-image-layout {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.detail-media-panel.single-image-layout .main-image-box {
+    height: 100% !important;
+}
+
+/* Tüm kutulardan, çerçevelerden ve dolgulardan arındırılmış saf poster alanı */
+.pure-project-poster {
+    width: 100% !important;
+    margin-top: 40px !important; /* Yazıların bittiği yerden bırakılacak net boşluk */
+    padding: 0 !important; /* İç boşlukları sıfırlayarak kutu hissini yok eder */
+    background: transparent !important; /* Arka plandaki tüm renkleri siler */
+    border: none !important; /* Kenarlıkları kaldırır */
+    box-shadow: none !important; /* Gölgeleri yok eder */
+    overflow: hidden;
+}
+
+/* Posterin hiçbir sıkışmaya uğramadan kendi orijinal oranında akması */
+.pure-project-poster img {
+    width: 100% !important;
+    height: auto !important; /* Dikey yüksekliği tamamen serbest bırakır, görsel ne kadar uzunsa o kadar açılır */
+    display: block !important;
+    border-radius: 12px !important; /* Sadece posterin keskin köşelerini yumuşatır, kutu yapmaz */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important; /* Görselin mat siyah zeminde derinlik kazanması için hafif gölge */
+}
+
+/* Mobil cihazlarda alt alta düzgün hizalanma garantisi */
+@media (max-width: 950px) {
+    .pure-project-poster {
+        margin-top: 25px !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   10. İLETİŞİM SAYFASI TASARIMI
+   ========================================== */
+
+/* Sayfa arka planını kilitler, ana scroll'u kapatır */
+body.contact-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Sayfa içi genel container yerleşimi */
+.contact-page .container {
+    margin: 30px auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+    max-height: calc(100vh - 120px);
+}
+
+/* Ana Bölücü Düzen (Sol Form, Sağ Butonlar) */
+.contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    height: calc(100vh - 220px);
+    align-items: flex-start;
+}
+
+/* SOL PANEL: Google Form Kutusu */
+.contact-form-panel {
+    flex: 0 0 55%; /* Ekranın %55'ini kaplar */
+    width: 55%;
+    height: 100%;
+    background-color: #161617;
+    border: 1px solid #433a54;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #ffffff; /* Formun arkasının temiz kalması için */
+}
+
+/* SAĞ PANEL: İletişim Butonları Alanı */
+.contact-info-panel {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Butonları dikeyde ortalar */
+}
+
+.contact-subtitle {
+    color: var(--primary-purple);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-header h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    line-height: 1.4;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* Butonların Sıralama Düzeni */
+.contact-buttons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Büyük, Modern İletişim Kartı/Butonu Şablonu */
+.social-contact-btn {
+    display: flex;
+    align-items: center;
+    background-color: #2a2635; /* Temandaki o şık mor-siyah ton */
+    border: 1px solid #433a54;
+    padding: 20px;
+    border-radius: 14px;
+    gap: 20px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+/* Sol taraftaki yuvarlak ikon kutusu */
+.social-contact-btn .icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-lilac);
+    font-size: 22px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Sağ taraftaki metin düzeni */
+.social-contact-btn .btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-contact-btn .btn-text span {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-contact-btn .btn-text strong {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+/* Butonların Üzerine Gelindiğinde (Hover Efektleri) */
+.social-contact-btn:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--accent-lilac);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+}
+
+.social-contact-btn:hover .icon-box {
+    background-color: var(--primary-purple);
+    color: #ffffff;
+}
+
+.social-contact-btn:hover .btn-text strong {
+    color: var(--accent-lilac);
+}
+
+/* İletişim Sayfası Footer Sabitlemesi */
+.contact-page footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+/* ==========================================
+   MOBİL VE TABLET UYUMU (Alt Alta Düzen)
+   ========================================== */
+@media (max-width: 950px) {
+    body.contact-page {
+        overflow-y: auto !important; /* Mobilde rahat kullanım için normal akış */
+        height: auto !important;
+    }
+    .contact-page .container {
+        max-height: none !important;
+        margin-top: 10px !important;
+    }
+    .contact-wrapper {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 30px;
+    }
+    .contact-form-panel {
+        width: 100% !important;
+        flex: none !important;
+        height: 450px !important; /* Mobilde form yüksekliği */
+    }
+    .contact-info-panel {
+        width: 100% !important;
+        flex: none !important;
+    }
+    .contact-header h2 {
+        margin-bottom: 25px;
+    }
+    .contact-page footer {
+        position: relative !important;
+        margin-top: 40px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------------------------------------------------RENDER PROJE SAYFASI----------------------------------------------------*/
+
+/* ==========================================
+   10. RENDER PROJE SAYFASI (ÖZEL TASARIM)
+   ========================================== */
+
+/* Sayfa arka planını sabitle */
+.project-detail-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+    background-color: #0d0d0e; /* Arka plan rengini projenle uyumlu seçebilirsin */
+}
+
+/* Konteyner yapısı */
+.project-detail-page .container {
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+/* Kaydırılabilir ana panel */
+.detail-info-panel {
+    flex: 1;
+    overflow-y: auto !important; /* Scroll aktif */
+    overflow-x: hidden;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple) #161617;
+}
+
+/* Render akışını yöneten kapsayıcı */
+.render-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Görsel blokları arası boşluk */
+    align-items: center;
+    padding: 40px 0;
+}
+
+/* Tekil görsel + açıklama bloğu */
+.render-item {
+    width: 70%; /* Sayfa genişliğinin %70'i */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Görsel stil ayarları */
+.render-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #433a54;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+/* Hover etkisi (İstersen kaldırabilirsin) */
+.render-item img:hover {
+    transform: scale(1.01);
+}
+
+/* Görsel altı açıklama yazısı */
+.render-caption {
+    margin-top: 18px;
+    color: #bcbaa6;
+    font-size: 0.95rem;
+    font-style: italic;
+    text-align: center;
+    width: 90%;
+}
+
+/* Scrollbar özelleştirme (Chrome/Safari için) */
+.detail-info-panel::-webkit-scrollbar {
+    width: 8px;
+}
+.detail-info-panel::-webkit-scrollbar-track {
+    background: #161617;
+}
+.detail-info-panel::-webkit-scrollbar-thumb {
+    background: var(--primary-purple);
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   10. İLETİŞİM SAYFASI TASARIMI (YENİ TRANSPARAN SÜRÜM)
+   ========================================== */
+
+/* Sayfa arka planını kilitler, ana scroll'u kapatır */
+body.contact-page {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Sayfa içi genel container yerleşimi */
+.contact-page .container {
+    margin: 30px auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+    max-height: calc(100vh - 120px);
+}
+
+/* Ana Bölücü Düzen (Sol Form, Sağ Butonlar) */
+.contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    height: calc(100vh - 220px);
+    align-items: flex-start;
+}
+
+/* SOL PANEL: Tam Uyumlu Yeni İletişim Formu Kutusu */
+.contact-form-panel {
+    flex: 0 0 55%; /* Ekranın %55'ini kaplar */
+    width: 55%;
+    height: 100%;
+    background-color: #161617 !important; 
+    border: 1px solid #433a54;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.native-form-box {
+    padding: 30px !important;
+    overflow-y: auto !important; /* Form içeride çok uzarsa kendi içinde pürüzsüzce kaysın diye */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 25px;
+}
+
+/* Kedi GIF'inin duracağı şık üst panel */
+.form-gif-header {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a2635; /* Kartların o tatlı koyu mor tonu */
+    border: 1px solid #433a54;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-gif-header img {
+    height: 90%; /* GIF'in dikeyde kutuya tatlıca sığması için */
+    object-fit: contain;
+}
+
+/* Form girdilerinin yerleşimi */
+.custom-portfolio-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-cream); /* Krem rengi yazı uyumu */
+}
+
+.input-group .required {
+    color: var(--accent-lilac); /* Zorunlu yıldız işaretini lila yapıyoruz */
+}
+
+/* Yazı yazılan kutuların senin temana tamamen uyarlanması */
+.input-group input, 
+.input-group textarea {
+    background-color: #2a2635 !important; /* Tam uyumlu koyu arka plan */
+    border: 1px solid #433a54 !important;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #ffffff;
+    font-family: var(--font-main);
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Giriş kutularına tıklandığında mor ışık saçma efekti (Focus) */
+.input-group input:focus, 
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-lilac) !important;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Formun gönderme butonu */
+.form-submit-btn {
+    width: 100%;
+    padding: 14px !important;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+/* SAĞ PANEL: İletişim Butonları Alanı */
+.contact-info-panel {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Butonları dikeyde ortalar */
+}
+
+.contact-subtitle {
+    color: var(--primary-purple);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-header h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    line-height: 1.4;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* Butonların Sıralama Düzeni */
+.contact-buttons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Büyük, Modern İletişim Kartı/Butonu Şablonu */
+.social-contact-btn {
+    display: flex;
+    align-items: center;
+    background-color: #2a2635; /* Temandaki o şık mor-siyah ton */
+    border: 1px solid #433a54;
+    padding: 20px;
+    border-radius: 14px;
+    gap: 20px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+/* Sol taraftaki yuvarlak ikon kutusu */
+.social-contact-btn .icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-lilac);
+    font-size: 22px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Sağ taraftaki metin düzeni */
+.social-contact-btn .btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-contact-btn .btn-text span {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-contact-btn .btn-text strong {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+/* Butonların Üzerine Gelindiğinde (Hover Efektleri) */
+.social-contact-btn:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--accent-lilac);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+}
+
+.social-contact-btn:hover .icon-box {
+    background-color: var(--primary-purple);
+    color: #ffffff;
+}
+
+.social-contact-btn:hover .btn-text strong {
+    color: var(--accent-lilac);
+}
+
+/* İletişim Sayfası Footer Sabitlemesi */
+.contact-page footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+/* ==========================================
+   MOBİL VE TABLET UYUMU (Alt Alta Düzen)
+   ========================================== */
+@media (max-width: 950px) {
+    body.contact-page {
+        overflow-y: auto !important; /* Mobilde rahat kullanım için normal akış */}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------------SERTİFİKALARIM-------------------------------------------------------*/
+    /* Sertifika Sayfası Özel Tasarımı */
+.cert-page { background-color: var(--bg-mat-black); color: var(--text-cream); }
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.cert-item {
+    background: #2a2635;
+    border: 1px solid #433a54;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.cert-item:hover {
+    border-color: var(--accent-lilac);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+}
+
+.cert-item img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Görsel Büyütme (Modal) Tasarımı */
+.img-modal {
+    display: none; position: fixed; z-index: 100; left: 0; top: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+    align-items: center; justify-content: center;
+}
+
+.modal-content {
+    max-width: 80%; max-height: 80%; border-radius: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sertifika Altı Açıklama Yazısı Tasarımı */
+.cert-desc {
+    color: var(--text-muted); /* Sitenin soluk krem rengi */
+    font-size: 0.92rem; /* Kartın içinde kibar durması için ideal boyut */
+    text-align: center; /* Yazıyı tam ortalıyoruz */
+    margin-top: 12px; /* Görsel ile yazı arasında estetik bir boşluk */
+    margin-bottom: 5px; /* Kartın alt sınırından biraz pay bırakıyoruz */
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.3s ease; /* Hover durumunda yumuşak renk geçişi için */
+}
+
+/* Kartın üzerine fareyle gelindiğinde yazının rengi lila tonuna dönsün (İsteğe bağlı, şık durur) */
+.cert-item:hover .cert-desc {
+    color: var(--accent-lilac);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

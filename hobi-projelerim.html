@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobi Projelerim | Portfolyo</title>
+    <link rel="stylesheet" href="css-style.css">
+
+
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo | Ana Sayfa</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="stylesheet" href="css-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body class="projects-page hobi-page-theme">
+
+    <nav class="navbar">
+        <div class="logo">Portfolyom<span class="highlight">.</span></div>
+        <div class="navbar-gif-container">
+            <img src="arka-plan.gif" alt="Figür" class="nav-gif">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="projelerim.html" class="active">Projelerim</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+    </nav>
+    
+    <main class="container project-page-wrapper">
+        
+        <div class="sidebar-nav">
+            <a href="projelerim.html" class="tab-link">Akademik & İş</a>
+            <a href="hobi-projelerim.html" class="tab-link active">Hobi Projeleri</a>
+        </div>
+
+        <div class="projects-content">
+            <h2>Kişisel <span class="highlight">Hobi Projelerim</span></h2>
+          <div class="projects-grid">
+    <div class="project-card">
+        <div class="project-image-wrapper"><img src="hobi1.png" alt="Hobi 1" class="project-img"></div>
+        <div class="project-info-wrapper">
+            <h3>Akvaryum TV</h3>
+            <ul class="project-details-list">
+                <li>200x200x200 mm ölçülerinde akvaryuma özel tasarım</li>
+                <li>3D baskı ile gövde üretimi</li>
+            </ul>
+            <a href="hobi-detay-1.html" class="project-link">Detayları İncele &rarr;</a>
+        </div>
+    </div> <div class="project-card">
+        <div class="project-image-wrapper"><img src="hobi2.png" alt="Hobi 1" class="project-img"></div>
+        <div class="project-info-wrapper">
+            <h3>Dijital Oyunlar</h3>
+            <ul class="project-details-list">
+                <li>Python temelli algoritmaları tarayıcı tabanlı ve etkileşimli bir arayüzde birleştirme deneyimi</li>
+                
+            </ul>
+            <a href="hobi-detay-2.html" class="project-link">Detayları İncele &rarr;</a>
+        </div>
+    </div> 
+
+    
+
+
+
+
+
+
+    </div>
+</div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Eylül Sarıaslan. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        // Animasyon scriptini burada da kullanıyoruz
+        const cards = document.querySelectorAll('.project-card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                } else {
+                    entry.target.style.opacity = '0.3';
+                    entry.target.style.transform = 'translateY(40px) scale(0.96)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0.3';
+            card.style.transform = 'translateY(40px) scale(0.96)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
