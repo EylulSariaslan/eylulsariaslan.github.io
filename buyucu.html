@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3D Modelleme, mekanik tasarım ve inovatif projeler üzerine profesyonel portfolyo.">
     <meta name="keywords" content="Eylül Sarıaslan, Industrial Design, Endüstriyel Tasarım, 3D Modeling, Portfolyo">
     <title>Büyücü Serüveni</title>
@@ -24,11 +24,20 @@
             height: 100vh;
             overflow: hidden;
             color: white;
+            /* Mobilde çift tıklamada seçmeyi engeller */
+            user-select: none; 
+            -webkit-user-select: none;
         }
 
         canvas {
             box-shadow: 0 0 30px rgba(201, 122, 255, 0.2);
             border-bottom: 5px solid #c97aff;
+            /* ÇÖZÜM: Canvas'ın oyun oranını bozmadan küçük ekranlara sığmasını sağlar */
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+            /* Mobilde parmak kaydırmalarıyla sayfanın hareket etmesini engeller */
+            touch-action: none; 
         }
 
         #gameOverScreen {
@@ -43,6 +52,9 @@
             border: 2px solid #c97aff;
             display: none;
             box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            /* Mobilde oyun sonu ekranının ekrandan taşmaması için */
+            width: 80%;
+            max-width: 400px;
         }
 
         h1 { color: #d8a8ff; margin-bottom: 10px; font-size: 36px; text-transform: uppercase; letter-spacing: 2px;}
@@ -60,11 +72,18 @@
             border-radius: 8px;
             transition: all 0.3s;
             text-transform: uppercase;
+            width: 100%; /* Mobilde butona rahat basılması için genişletildi */
         }
 
         button:hover {
             background-color: #e0b0ff;
             transform: scale(1.05);
+        }
+        
+        /* Ekstra küçük ekranlar için yazı boyutları */
+        @media (max-width: 480px) {
+            h1 { font-size: 28px; }
+            p { font-size: 18px; }
         }
     </style>
 </head>
@@ -115,6 +134,7 @@
         }
     }
 
+    // Masaüstü için Fare Tıklaması
     document.addEventListener("mousedown", (e) => {
         if (e.button === 0 && e.target.tagName !== "BUTTON") {
             window.focus(); 
@@ -122,6 +142,16 @@
         }
     });
 
+    // Mobil için Ekrana Dokunma (Touchstart)
+    document.addEventListener("touchstart", (e) => {
+        if (e.target.tagName !== "BUTTON") {
+            e.preventDefault(); // Ekranda çift tıklama ile zoom yapılmasını veya kaydırılmasını önler
+            window.focus();
+            zipla();
+        }
+    }, { passive: false });
+
+    // Masaüstü için Klavye Kontrolü
     document.addEventListener("keydown", (e) => {
         if (e.code === "Space" || e.key === " " || e.code === "Enter") {
             e.preventDefault(); 
@@ -193,7 +223,6 @@
             let secilenGorsel;
             let secilenRenk;
 
-            // 🔥 Renge özel ışık tanımlamaları
             if (isLarge) {
                 if (Math.random() > 0.5) {
                     secilenGorsel = maviYaratikGorseli;
@@ -215,7 +244,6 @@
             let e = engeller[i];
             e.x -= engelHizi; 
 
-            // 🔥 IŞIK EFEKTİ ARTIK YARATIĞIN KENDİ RENGİNDE
             ctx.shadowBlur = 20; 
             ctx.shadowColor = e.color;
             ctx.drawImage(e.img, e.x, e.y, e.w, e.h);
