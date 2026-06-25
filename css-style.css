@@ -1425,6 +1425,150 @@ body.hobi-page-theme .project-image-wrapper {
 }
 
 
+/* ==========================================
+   10. PROJE 11 (RENDER GALERİSİ) ÖZEL TASARIMI
+   ========================================== */
+
+.render-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Her render bloğu arası mesafe */
+    width: 100%;
+    max-width: 1000px; /* Dev ekranlarda fotoğraflar aşırı yayılıp bozulmasın */
+    margin: 0 auto; /* Sayfanın tam ortasına imzalar */
+    padding-top: 10px;
+}
+
+.render-item {
+    background-color: #2a2635;
+    border: 1px solid #433a54;
+    border-radius: 16px;
+    overflow: hidden; /* Fotoğraf köşelerden taşmasın */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s;
+}
+
+.render-item:hover {
+    border-color: var(--accent-lilac);
+}
+
+/* Hayat kurtaran kod: Görseli taşıyıcı kutunun genişliğine zorla */
+.render-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.render-caption {
+    padding: 16px 20px;
+    margin: 0;
+    color: #bcbaa6;
+    font-size: 0.95rem;
+    background-color: #221f2b; /* Fotoğrafın altındaki bant bir tık daha koyu dursun */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+
+/* ==========================================
+   PROJE 11 - MOBİL EKRAN RÖTUŞU
+   ========================================== */
+@media (max-width: 950px) {
+    .render-page-wrapper {
+        gap: 24px; /* Mobilde 40px boşluk çok sırıtır, daralttık */
+        max-width: 100%;
+    }
+
+    .render-caption {
+        font-size: 0.85rem;
+        padding: 12px 14px;
+    }
+}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
