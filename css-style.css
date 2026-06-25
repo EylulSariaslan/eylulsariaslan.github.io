@@ -668,7 +668,18 @@ html.intro-gec #splash-ekrani {
   }
 }
 
+/* --- SADECE TELEFON EKRANLARI İÇİN KURTARICI BLOK --- */
+@media (max-width: 768px) {
+  
+  .splash-gorsel {
+    width: 130px !important; /* Telefonda logo kibarlaştı */
+  }
 
+  #splash-ekrani::after {
+    width: 240px !important; /* Çember telefonda 240px oldu */
+  }
+  
+}
 
 
 
