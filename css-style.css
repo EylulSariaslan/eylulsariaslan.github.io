@@ -215,6 +215,35 @@ h1, h2, h3 {
     color: var(--text-cream);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================
    4. YENİ ANA SAYFA (HERO) TASARIMI
    ========================================== */
@@ -223,7 +252,8 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     gap: 60px;
-    min-height: calc(100vh - 200px); /* Navbar ve container boşluklarını düşüyoruz */
+    min-height: calc(100vh - 200px); 
+    padding: 40px 0; /* İçeriklerin üstten/alttan rahatlaması için */
 }
 
 .hero-content {
@@ -232,7 +262,7 @@ h1, h2, h3 {
     flex-direction: column;
     align-items: flex-start;
 }
-/* En üstteki küçük mor başlık */
+
 .hero-subtitle {
     color: var(--primary-purple);
     font-size: 14px;
@@ -241,7 +271,7 @@ h1, h2, h3 {
     margin-bottom: 15px;
     text-transform: uppercase;
 }
-/* büyük başlık */
+
 .hero-content h1 {
     font-size: 56px;
     font-weight: 800;
@@ -251,7 +281,6 @@ h1, h2, h3 {
     color: var(--text-cream);
 }
 
-/* Açıklama paragrafı */
 .hero-content p {
     font-size: 16px;
     color: var(--text-muted);
@@ -259,7 +288,7 @@ h1, h2, h3 {
     max-width: 680px;
     line-height: 1.7;
 }
-/* Görseldeki yuvarlak köşeli disiplin etiketleri */
+
 .hero-tags {
     display: flex;
     gap: 12px;
@@ -279,19 +308,17 @@ h1, h2, h3 {
     align-items: center;
     gap: 8px;
 }
-/* İkonların hafif lila parlaması için */
+
 .tag-item i {
     color: var(--accent-lilac);
 }
 
-/*------------------------------------buton grubu düzeni----------------------------*/
 .hero-buttons {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
-/* Görseldeki sol taraftaki dolgulu Mor Buton ve sağ taraftaki ince çizgili şeffaf buton */
 .btn-primary, .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -303,11 +330,13 @@ h1, h2, h3 {
     transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
     cursor: pointer;
 }
+
 .btn-primary {
     background-color: var(--primary-purple);
     color: #ffffff;
     border: none;
 }
+
 .btn-primary:hover {
     background-color: #7c3aed;
     transform: translateY(-2px);
@@ -324,8 +353,10 @@ h1, h2, h3 {
     background-color: rgba(139, 92, 246, 0.1);
     transform: translateY(-2px);
 }
-/*--------------------------------fotoğraf---------------------------------------*/
-/*dikey uzun, şık, yumuşatılmış profil fotoğraf çerçevesi */
+
+/* ==========================================
+   FOTOĞRAF VE DAKTİLO EFEKTİ
+   ========================================== */
 .hero-photo-wrapper {
     width: 420px;
     height: 540px;
@@ -333,17 +364,17 @@ h1, h2, h3 {
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     overflow: hidden;
-    flex-shrink: 0; /* Masaüstünde görselin ezilmesini engeller */
+    flex-shrink: 0; 
 }
 
 .hero-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top; /* ÇÖZÜM 1: Fotoğrafın her zaman üstten (kafadan) hizalanmasını sağlar, kesilmeyi bitirir */
     display: block;
 }
 
-/* Daktilo Efekti */
 .typing-cursor {
     color: var(--accent-lilac);
     font-weight: 400;
@@ -356,57 +387,16 @@ h1, h2, h3 {
     50% { opacity: 0; }
 }
 
-/* ==========================================
-   4. YENİ ANA SAYFA (HERO) TASARIMI (GÖRSELDEKİ GİBİ)
-   ========================================== */
-
-
-/* Ana Sayfa Mobil Ekran Düzenlemeleri */
-@media (max-width: 1024px) {
-    .home-page .hero {
-        flex-direction: column-reverse; /* Mobilde görsel üste içerik alta gelir */
-        text-align: center;
-        gap: 40px;
-    }
-    .home-page .hero-content {
-        align-items: center;
-    }
-    .hero-tags {
-        justify-content: center;
-    }
-    .home-page .hero h1 {
-        font-size: 40px;
-    }
-    .home-page .hero-photo-wrapper {
-        flex: 0 0 300px;
-        width: 100%;
-        max-width: 340px;
-        height: 420px;
-    }
-}
-
-/* ==========================================
-   DAKTİLO EFEKTİ İMLEÇ ANİMASYONU
-   ========================================== */
-.typing-cursor {
-    color: var(--accent-lilac);
-    font-weight: 400;
-    margin-left: 2px;
-    animation: blink-cursor 0.7s infinite;
-}
-
-@keyframes blink-cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-
-/* ---------------------------- ANA SAYFA MOBİL UYUM (MEDIA QUERIES) ------------------------------------------*/
+/* ==========================================================================
+   TÜM SİTE İÇİN MOBİL UYUM (MEDIA QUERIES) - TEK VE TEMİZ SÜRÜM
+   ========================================================================== */
 @media (max-width: 1024px) {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
         gap: 40px;
+        min-height: auto; /* ÇÖZÜM 2: Mobilde zorunlu yüksekliği kaldırır, sıkışmayı önler */
+        padding-top: 30px; /* ÇÖZÜM 3: Fotoğrafı mor navbar çizgisinden 30px aşağı iter */
     }
 
     .hero-content {
@@ -423,8 +413,9 @@ h1, h2, h3 {
 
     .hero-photo-wrapper {
         width: 100%;
-        max-width: 340px;
-        height: 420px;
+        max-width: 320px;
+        height: 400px;
+        margin: 0 auto; /* Kusursuz ortalama */
     }
 }
 
@@ -434,23 +425,23 @@ h1, h2, h3 {
         flex-direction: column;
         justify-content: center;
         gap: 15px;
-        height: auto; /* Sabit yüksekliği kaldırıp formuna uymasını sağlıyoruz */
+        height: auto; 
         padding: 15px 5%;
     }
     
     .nav-links {
         margin-left: 0;
         gap: 20px;
-        flex-wrap: wrap; /* Mobilde ekran çok daralırsa linklerin tatlıca alt satıra geçmesine izin verir */
+        flex-wrap: wrap; 
         justify-content: center;
     }
     
     .nav-links a {
-        font-size: 14px; /* Telefondaki okunabilirliği dengelemek için hafif küçültme */
+        font-size: 14px; 
     }
     
     .navbar-gif-container {
-        display: none; /* Mobilde gif kalabalığını temizliyoruz */
+        display: none; 
     }
 
     .container {
@@ -464,16 +455,28 @@ h1, h2, h3 {
 
     .btn-primary, .btn-secondary {
         width: 100%;
-        justify-content: center; /* Buton içi yazıları tam ortalar */
+        justify-content: center; 
     }
 }
 
+@media (max-width: 1024px) {
+    /* 1. KUTUYU ZORLA AŞAĞI İTİYORUZ */
+    .hero-photo-wrapper {
+        margin-top: 60px !important; /* Mor çizgiyle arasına kesin ve net 60px boşluk atar */
+        height: auto !important;
+        max-height: 450px !important;
+        border-radius: 10px !important; /* Köşeleri daha az yuvarlıyoruz ki saçları makaslamasın */
+        background-color: transparent !important;
+    }
 
-
-
-
-
-
+    /* 2. FOTOĞRAFIN KIRPILMASINI TAMAMEN YASAKLIYORUZ */
+    .hero-photo {
+        object-fit: contain !important; /* 'cover' yerine 'contain' yaptık. Artık fotoğrafın hiçbir pikseli kesilmez, kutunun içine tam olarak sığar. */
+        object-position: center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
 
 
 
