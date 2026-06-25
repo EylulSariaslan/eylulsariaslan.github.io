@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="css-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script>
+        if (sessionStorage.getItem('siteGirisYapildi')) {
+        document.documentElement.classList.add('intro-gec');
+        }
+    </script>
     <style>
         /* ÇÖZÜM: Buradaki katı kilitleri SADECE geniş ekranlara (masaüstüne) özel yapıyoruz.
            Böylece mobilde sayfa kilitlenmez ve profil fotoğrafı yukarı itilmez. */
@@ -30,6 +35,11 @@
     </style>    
 </head>
 <body class="home-page">
+
+
+    <div id="splash-ekrani">
+        <img src="Eylul_Sariaslan_imza.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisi / ES / Logo" class="splash-gorsel">
+    </div>
 
     <nav class="navbar">
         <div class="logo">Portfolyom<span class="highlight">.</span></div>
@@ -112,5 +122,19 @@
             setTimeout(typeEffect, 500); 
         });
     </script>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const splash = document.getElementById('splash-ekrani');
+    
+    if (!sessionStorage.getItem('siteGirisYapildi')) {
+      sessionStorage.setItem('siteGirisYapildi', 'true');
+      
+      setTimeout(() => {
+        if (splash) splash.remove();
+      }, 2000);
+    }
+  });
+</script>
 </body>
 </html>
