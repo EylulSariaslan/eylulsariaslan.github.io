@@ -214,7 +214,46 @@ footer {
 h1, h2, h3 {
     color: var(--text-cream);
 }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* --- EKLENEN 3 ZIRH KODU --- */
+    width: 100%;             /* 1: Tarayıcıya "ekranın sonuna kadar uzan" emri */
+    box-sizing: border-box;  /* 2: %5 padding'i bu 100%'ün içine sakla, dışarı taşırma */
+    flex-shrink: 0;          /* 3: Sayfa daralsa bile "beni büzüştürme" emri */
+    /* --------------------------- */
 
+    padding: 0 5%; 
+    height: 80px; 
+    background-color: var(--bg-darker);
+    border-bottom: 2px solid var(--primary-purple);
+}
+/* ==========================================
+   NAVBAR MOBİL KORUMA BLOĞU
+   ========================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 15px; /* Mobilde sağ-sol boşluğunu daralttık */
+    }
+    
+    .logo {
+        font-size: 20px; /* Logo telefonda biraz kibarlaştı */
+    }
+
+    .nav-links {
+        gap: 12px; /* 35px devasa boşluğu telefona sığacak kadar daralttık */
+    }
+
+    .nav-links a {
+        font-size: 13px; /* Yazı fontunu telefonda okunacak ama taşmayacak boyuta çektik */
+    }
+
+    .navbar-gif-container {
+        display: none; /* Telefonda kalabalık yapmasın diye sağdaki küçük GIF'i gizledik */
+    }
+}
 
 
 
@@ -1983,7 +2022,6 @@ body.contact-page {
         justify-content: center;
     }
 }
-
 
 
 
