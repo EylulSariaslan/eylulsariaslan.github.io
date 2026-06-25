@@ -506,7 +506,6 @@ h1, h2, h3 {
 
 
 
-
 /* ==========================================
    5. HAKKIMDA (TIMELINE) ALANI - PROJELERİM GİBİ İÇTEN SCROLL
    ========================================== */
@@ -652,11 +651,29 @@ h1, h2, h3 {
     transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* SAĞ PANEL: Zaman Tüneli Ana Akışı */
+/* SAĞ PANEL: Zaman Tüneli Ana Akışı (İÇTEN SCROLL EKLENDİ) */
 .timeline-scroll-wrapper {
     flex: 1;
     width: 100%;
-    /* İçten scroll mantığını iptal ettik, sayfanın kendi doğal scroll'u çalışacak */
+    max-height: calc(100vh - 120px); /* Ekranın boyuna göre ayarlama, menü payı bırakıldı */
+    overflow-y: auto; /* Dikeyde kaydırmayı aktifleştirir */
+    padding-right: 15px; /* Scrollbar içeriğe yapışmasın diye boşluk */
+}
+
+/* Zaman Tüneli Scrollbar Özelleştirmesi (Karanlık temaya uygun) */
+.timeline-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+.timeline-scroll-wrapper::-webkit-scrollbar-track {
+    background: #1e1b26; 
+    border-radius: 4px;
+}
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-purple); 
+    border-radius: 4px;
+}
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-lilac); 
 }
 
 .timeline-container {
@@ -830,6 +847,25 @@ h1, h2, h3 {
 
 
 /* ==========================================
+   Masaüstünde Ana Scroll'u Kapatıp Sadece İç Scroll'u Bırakma
+   ========================================== */
+@media (min-width: 951px) {
+    /* Tüm sayfanın kaymasını engelliyoruz */
+    body.about-page {
+        overflow: hidden; 
+        height: 100vh;
+    }
+
+    /* Sağ tarafın yüksekliğini tam ekrana göre (menü ve footer payı bırakarak) ayarlıyoruz */
+    .timeline-scroll-wrapper {
+        height: calc(100vh - 160px); /* Menü ve üst boşluk payı. Gerekirse bu değeri değiştirebilirsin (örn: 140px, 180px) */
+        max-height: none;
+        overflow-y: auto;
+        padding-bottom: 60px; /* En alttaki hedefler kartı kesilmesin diye alt boşluk */
+    }
+}
+
+/* ==========================================
    MOBİL VE TABLET UYUMU (HAKKIMDA SAYFASI)
    ========================================== */
 @media (max-width: 950px) {
@@ -850,6 +886,13 @@ h1, h2, h3 {
     /* 3. İki sütunlu yetenekler kartını telefon ekranı için tek sütuna indiriyoruz */
     .skills-container {
         grid-template-columns: 1fr;
+    }
+
+    /* 4. MOBİLDE İÇTEN SCROLL İPTALİ (Sayfanın doğal kaydırmasına geri dönüyoruz) */
+    .timeline-scroll-wrapper {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
     }
 
     /* Mobilde GIF kalabalık yapıp ekranı tıkamasın diye gizliyoruz */
@@ -902,7 +945,44 @@ h1, h2, h3 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*------------------------------------------------------------------PROJELERİM SÜRÜMÜ--------------------------------------------------------------------*/
+/* ==========================================
+   Masaüstü Genel Scroll Kapatma (Projeler & Detay Sayfaları)
+   ========================================== */
+@media (min-width: 951px) {
+    body.projects-page,
+    body.project-detail-page {
+        overflow: hidden; 
+        height: 100vh;
+    }
+}
+
 /* ==========================================
    6. PROJELERİM ALANI
    ========================================== */
@@ -943,10 +1023,20 @@ h1, h2, h3 {
     color: white;
 }
 
-/* SAĞ PANEL: Proje kartlarının olduğu ana kısım */
+/* SAĞ PANEL: Proje kartlarının olduğu ana kısım (İÇTEN SCROLL EKLENDİ) */
 .projects-content {
     flex: 1;
+    height: calc(100vh - 160px); /* Menü payı bırakıldı */
+    overflow-y: auto; /* Dikey kaydırma aktif */
+    padding-right: 15px; /* Scrollbar içeriğe yapışmasın diye boşluk */
+    padding-bottom: 40px; /* En alt kart kesilmesin diye */
 }
+
+/* Projeler Scrollbar Özelleştirmesi */
+.projects-content::-webkit-scrollbar { width: 6px; }
+.projects-content::-webkit-scrollbar-track { background: #1e1b26; border-radius: 4px; }
+.projects-content::-webkit-scrollbar-thumb { background: var(--primary-purple); border-radius: 4px; }
+.projects-content::-webkit-scrollbar-thumb:hover { background: var(--accent-lilac); }
 
 .projects-grid {
     display: grid;
@@ -1102,7 +1192,6 @@ body.hobi-page-theme .project-image-wrapper {
     gap: 15px;
     position: sticky;
     top: 20px;
-    /* Maksimum yüksekliği ekran kadarına sınırlarız */
     max-height: calc(100vh - 40px);
 }
 
@@ -1127,11 +1216,20 @@ body.hobi-page-theme .project-image-wrapper {
     border-radius: 8px;
 }
 
-/* SAĞ PANEL: İçerik Bilgileri */
+/* SAĞ PANEL: İçerik Bilgileri (İÇTEN SCROLL EKLENDİ) */
 .detail-info-panel {
     flex: 1;
-    /* Eski dondurmalı scrollbar yerine doğal akış */
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-right: 15px;
+    padding-bottom: 40px;
 }
+
+/* Detay Sayfası Scrollbar Özelleştirmesi */
+.detail-info-panel::-webkit-scrollbar { width: 6px; }
+.detail-info-panel::-webkit-scrollbar-track { background: #1e1b26; border-radius: 4px; }
+.detail-info-panel::-webkit-scrollbar-thumb { background: var(--primary-purple); border-radius: 4px; }
+.detail-info-panel::-webkit-scrollbar-thumb:hover { background: var(--accent-lilac); }
 
 .detail-header {
     margin-bottom: 25px;
@@ -1265,6 +1363,15 @@ body.hobi-page-theme .project-image-wrapper {
    MOBİL VE TABLET UYUMU (Projeler & Detay Sayfası)
    ========================================== */
 @media (max-width: 950px) {
+    /* İÇTEN SCROLL İPTALİ: Mobilde doğal kaydırmaya dönüyoruz */
+    .projects-content,
+    .detail-info-panel {
+        height: auto;
+        overflow-y: visible;
+        padding-right: 0;
+        padding-bottom: 0;
+    }
+
     /* Projelerim Sayfası Mobil Yapısı */
     .project-page-wrapper {
         flex-direction: column;
@@ -1316,7 +1423,6 @@ body.hobi-page-theme .project-image-wrapper {
         margin-top: 25px;
     }
 }
-
 
 
 
