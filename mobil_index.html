@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- GSAP 3D animasyon kütüphaneleri -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Eylül Sarıaslan | Mobil Portfolyo</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="mobil-style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        if (sessionStorage.getItem('introIzlendi')) {
+            document.documentElement.classList.add('intro-gec');
+        } else {
+            sessionStorage.setItem('introIzlendi', 'true');
+        }
+    </script>
+</head>
+<body>
+
+    <div id="splash-ekrani">
+        <img src="Eylul_Sariaslan_imza.png" alt="Eylül Logo" class="splash-gorsel">
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">Portfolyom<span class="highlight">.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Ana Sayfa</a></li>
+            <li><a href="#about" class="nav-link">Hakkımda</a></li>
+            <li><a href="#mobil-3d-projeler" class="nav-link">Projeler</a></li>
+            <li><a href="#contact" class="nav-link">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <main class="mobile-container" id="main-content">
+        
+        <!-- 1. BÖLÜM: ANA SAYFA -->
+        <section class="section" id="home">
+            <div class="hero-photo-wrapper">
+                <img src="anasayfa_fotograf.jpeg" alt="Eylül Sarıaslan Profil" class="hero-photo">
+            </div>
+
+            <div class="hero-content"> 
+                <span class="hero-subtitle">ENDÜSTRİYEL TASARIM MÜHENDİSİ</span>
+                
+                <h1>Merhaba,<br>Ben <span id="typing-text" class="highlight"></span><span class="typing-cursor">|</span></h1>
+                
+                <p>Eğitim hayatım boyunca mekanik tasarım ve ürün geliştirme alanlarında kendimi geliştirebilmek adına staj ve aday mühendislik programlarına katıldım ve freelance işler yaptım. Bu portfolyoda; estetik vizyonu, mühendislik disiplini ve üretilebilirliği bir araya getirerek hayata geçirdiğim projelerimi bulabilirsiniz.</p>
+                
+                <div class="hero-tags">
+                    <span class="tag-item"><i class="fa-solid fa-gear"></i> Mekanik Tasarım</span>
+                    <span class="tag-item"><i class="fa-solid fa-compass"></i> Ürün Geliştirme</span>
+                    <span class="tag-item"><i class="fa-solid fa-screwdriver-wrench"></i> Üretilebilirlik</span>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- 2. BÖLÜM: HAKKIMDA -->
+        <section class="section" id="about">
+            <div class="about-card scroll-fade">
+                <img src="projelerim-gorsel.png" alt="Eylül Sarıaslan" class="sidebar-photo">
+                <h3>Eylül Sarıaslan</h3>
+                <p>Endüstriyel Tasarım Mühendisi</p>
+                
+                <div class="sidebar-actions">
+                    <a href="Eylul_Sariaslan_CV.pdf" target="_blank" class="btn-sidebar">
+                        <i class="fa-solid fa-file-pdf"></i> Özgeçmiş
+                    </a>
+                    <a href="sertifikalarim.html" class="btn-sidebar">
+                        <i class="fa-solid fa-certificate"></i> Sertifikalar
+                    </a>
+                    <button class="btn-sidebar btn-detay" onclick="openModal()">
+                        <i class="fa-solid fa-circle-info"></i> Hakkımda Detaylı Bilgi
+                    </button>
+                </div>
+            </div>
+
+            <div class="about-card scroll-fade">
+                <h4 class="skills-title"><i class="fa-solid fa-layer-group"></i> Program Bilgisi</h4>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>SolidWorks</span><span>%70</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>KeyShot</span><span>%70</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>AutoCAD</span><span>%60</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="60%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>3ds Max</span><span>%50</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Arduino</span><span>%40</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="40%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Catia V5</span><span>%30</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Python</span><span>%30</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>HTML / CSS</span><span>%30</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2019 Eylül - 2026 Şubat</span>
+                        <h3>Gazi Üniversitesi - Endüstriyel Tasarım Mühendisliği</h3>
+                        <p>Küçüklüğümden beri tasarım ve teknolojiye olan ilgim nedeniyle lisans eğitimim adına Endüstriyel Tasarım Mühendisliği bölümünü tercih ettim.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2022 Temmuz - 2022 Ağustos</span>
+                        <h3>İmalat Stajı</h3>
+                        <p>Staj yaptığım firmada Saha Mühendisliği Stajyeri pozisyonunda görev alarak üretim tezgahlarında görev alma fırsatım oldu.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2024 Temmuz - 2024 Ağustos</span>
+                        <h3>Tasarım Stajı</h3>
+                        <p>Bu stajım SolidWorks ile parça tasarımı yaparak kendimi geliştirmemi, medikal sektörünü yakından tanımamı sağladı.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2025 Şubat - 2025 Mayıs</span>
+                        <h3>İşyeri Eğitimi</h3>
+                        <p>Stajım boyunca AutoCAD ile teknik resim hazırlama, SolidWorks ile 3B parça modelleme, KeyShot ile ürün görselleştirme ve Excel tabanlı dokümantasyon çalışmalarını yürüttüm.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2025 Haziran - 2025 Eylül</span>
+                        <h3>Aday Mühendis</h3>
+                        <p>Aday mühendislik sürecim boyunca ilgili standartlar doğrultusunda konsept ürün tasarımları geliştirdim; mobilya sektörünün tasarım süreçleri hakkında deneyim kazandım.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2025 Eylül - 2025 Kasım</span>
+                        <h3>Aday Mühendis</h3>
+                        <p>Aday mühendislik sürecim boyunca AS9100 standartları doğrultusunda KYS dokümantasyonu hazırlayarak kalite yönetim süreçlerine destek oldum.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">2025 Aralık - 2026 Haziran</span>
+                        <h3>Yarı Zamanlı Çalışan</h3>
+                        <p>Alanında saygın bir teknoloji firmasında Tasarım Mühendisi olarak görev aldım. SolidWorks ile imalata uygun mekanik parçalar tasarladım ve firmanın ürün geliştirme projesinde aktif rol aldım.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item future-goal">
+                    <div class="timeline-dot flag-icon">🚩</div>
+                    <div class="timeline-content">
+                        <span class="date">Gelecek</span>
+                        <h3>Yeni Serüvenler</h3>
+                        <p>Kariyer hedefim, ürün geliştirme ve mekanik tasarım alanında uzmanlaşarak savunma sanayi ve ileri üretim sektörlerinde kompleks sistemlerin tasarım süreçlerinde görev almaktır.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. BÖLÜM: PROJELERİM (3D TEKERLEK) -->
+        <div id="mobil-3d-projeler">
+            <div class="scroll-track">
+                <div class="viewport-3d">
+                    <h2 class="projeler-baslik">Projelerim</h2>
+                    <div class="card-stage">
+                        
+                        <div class="project-card" id="proje-1">
+                            <div class="project-image-wrapper"><img src="proje1-gorsel1.png" alt="Proje 1" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>ECO - 0 Spire / Filament Üretim Makinesi</h3>
+                                <ul class="project-details-list">
+                                    <li>Atık PET şişeden filament üretme cihazı</li>
+                                    <li>Solidworks ile modelleme</li>
+                                </ul>
+                                <a href="proje-detay-1.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-2">
+                            <div class="project-image-wrapper"><img src="proje2-gorsel1.png" alt="Proje 2" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Granül Kurutma Makinesi</h3>
+                                <ul class="project-details-list">
+                                    <li>Sac metal dolap + Granül kurutucu tasarımı</li>
+                                    <li>Solidworks sheet metal araçları ile modelleme</li>
+                                    <li>Solidworks ile DXF sac kesim dosyaları</li>
+                                    <li>Autocad ile teknik resim dosyaları</li>
+                                </ul>
+                                <a href="proje-detay-2.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-3">
+                            <div class="project-image-wrapper"><img src="proje3-gorsel1.png" alt="Proje 3" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Deprepoly / Eğitici Deprem Simülasyonu Oyunu</h3>
+                                <ul class="project-details-list">
+                                    <li>Sarsıntı mekanizması ile realistic deprem simülasyonu</li>
+                                    <li>Joystick ile kontrol edilebilen karakter</li>
+                                    <li>Deprem anı için çocukları bilinçlendirmeyi hedefleyen görev Kartları</li>
+                                    <li>Arduino ile devre yazılımı</li>
+                                </ul>
+                                <a href="proje-detay-3.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-4">
+                            <div class="project-image-wrapper"><img src="proje4-gorsel1.png" alt="Proje 4" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Helixarm / Ev Tipi Spor İstasyonu</h3>
+                                <ul class="project-details-list">
+                                    <li>Ev kullanımına uygun hafif tasarım</li>
+                                    <li>Kişiselleştirilebilir kullanım senaryosu</li>
+                                    <li>Solidworks ile 3D modelleme</li>
+                                    <li>3D baskı ile çalışan prototip tasarımı</li>
+                                </ul>
+                                <a href="proje-detay-4.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-5">
+                            <div class="project-image-wrapper"><img src="proje5-gorsel1.png" alt="Proje 5" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Pellet Extruder</h3>
+                                <ul class="project-details-list">
+                                    <li>0,6- 9mm nozzle ile uyumlu granul extruder</li>
+                                    <li>Solidworks ile modelleme</li>
+                                    <li>Vida ve debi hesaplamaları ve hesaplara uygun tasarım</li>
+                                    <li>Talaşlı üretime uygun tasarım</li>
+                                    <li>3D baskı ile prototip üretimi</li>
+                                </ul>
+                                <a href="proje-detay-5.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-6">
+                            <div class="project-image-wrapper"><img src="proje6-gorsel1.png" alt="Proje 6" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Sevimli Canavar Bank</h3>
+                                <ul class="project-details-list">
+                                    <li>TS EN 1176-1 standardına uygun üretilebilir tasarım</li>
+                                    <li>Çocuklara uygun HDPE malzeme seçimi ve ergonomik tasarım</li>
+                                    <li>Solid Edge ile 3D modelleme</li>
+                                    <li>Keyshot ile render ve renklendirme çalışması</li>
+                                </ul>
+                                <a href="proje-detay-6.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-7">
+                            <div class="project-image-wrapper"><img src="proje7-gorsel1.png" alt="Proje 7" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Sevimli Canavar - Salıncak</h3>
+                                <ul class="project-details-list">
+                                    <li>TS EN 1176-2 standardına uygun üretilebilir tasarım</li>
+                                    <li>Solid Edge ile modelleme</li>
+                                    <li>Ürünün temasına uygun renk paleti ve malzeme seçimi</li>
+                                    <li>Keyshot ile render çalışması</li>
+                                </ul>
+                                <a href="proje-detay-7.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-8">
+                            <div class="project-image-wrapper"><img src="proje8-gorsel1.png" alt="Proje 8" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Hidrolik Asansör Tasarımı</h3>
+                                <ul class="project-details-list">
+                                    <li>Hidrolik sistemle çalışan kaldıraç yapısı</li>
+                                    <li>Asansör inmeden açılmayı engelleyen kapı mekanizması</li>
+                                    <li>Solid Edge ile modelleme</li>
+                                    <li>Keyshot ile malzeme ve render çalışması</li>
+                                    <li>Çalışma prensibini çocuklara gösterme hedefi ile yapılmış şeffaf tasarım</li>
+                                </ul>
+                                <a href="proje-detay-8.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-9">
+                            <div class="project-image-wrapper"><img src="proje9-gorsel1.png" alt="Proje 9" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Otonom Ripper - Mahsül Sonrası Aracı</h3>
+                                <ul class="project-details-list">
+                                    <li>Küçük boyutları ile ergonomik tasarım</li>
+                                    <li>EV (Electric Vehicle) tipi şarj</li>
+                                    <li>Solidworks sheet metal komutları ile modelleme</li>
+                                    <li>Modüler tasarım ile bakım kolaylığı</li>
+                                </ul>
+                                <a href="proje-detay-9.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-10">
+                            <div class="project-image-wrapper"><img src="proje10-gorsel1.png" alt="Proje 10" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Simurg - Tehlike Tespit Drone'u</h3>
+                                <ul class="project-details-list">
+                                    <li>Atık PET şişeden filament üretme cihazı</li>
+                                    <li>Solidworks ile modelleme</li>
+                                    <li>PEEK, CFRP ve 7075-T6 malzemeler ile maksimum verimlilik</li>
+                                    <li>Sök-tak batarya mekanizması sayesinde uzun süreli kullanım</li>
+                                    <li>MIL-STD uyumlu tasarım</li>
+                                </ul>
+                                <a href="proje-detay-10.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-11">
+                            <div class="project-image-wrapper"><img src="proje11-gorsel1.png" alt="Proje 11" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Render Çalışmalarım</h3>
+                                <ul class="project-details-list">
+                                    <li>Bu bölüm, zorunlu uzun dönem stajım esnasında hazırlamış olduğum render çalışmalarımın görsel sunumlarını içermektedir.</li>
+                                    <li>Render çalışmaları Keyshot programı ile oluşturulmuştur.</li>
+                                </ul>
+                                <a href="proje-detay-11.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-12">
+                            <div class="project-image-wrapper"><img src="proje12-gorsel1.png" alt="Proje 12" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Hexa-Flex Robotik El Sistemi</h3>
+                                <ul class="project-details-list">
+                                    <li>Küçük boyutları ile ergonomik tasarım</li>
+                                    <li>EV (Electric Vehicle) tipi şarj</li>
+                                    <li>Solidworks sheet metal komutları ile modelleme</li>
+                                    <li>Modüler tasarım ile bakım kolaylığı</li>
+                                </ul>
+                                <a href="proje-detay-12.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-13">
+                            <div class="project-image-wrapper"><img src="proje13-gorsel1.png" alt="Proje 13" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Mobil Su Isıtıcı</h3>
+                                <ul class="project-details-list">
+                                    <li>İşlevsel ve üretime yönelik tasarım</li>
+                                    <li>100 litre su kapasitesi</li>
+                                    <li>Solidworks sheet metal komutları ile modelleme</li>
+                                    <li>BOM Listesi</li>
+                                </ul>
+                                <a href="proje-detay-13.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card" id="proje-14">
+                            <div class="project-image-wrapper"><img src="proje14-gorsel1.png" alt="Proje 14" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Endüstriyel Katkı Maddesi Dozajlama Ünitesi</h3>
+                                <ul class="project-details-list">
+                                    <li>Solidworks sheet metal komutları ile modelleme</li>
+                                    <li>Lazer kesim için DXF dosyaları</li>
+                                    <li>Autocad ile düzenlenmiş teknik resimler</li>
+                                </ul>
+                                <a href="proje-detay-14.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. BÖLÜM: HOBİ PROJELERİ -->
+        <div class="section" id="mobil-hobi-projeler">
+            <div class="hobi-baslik-alani">
+                <span class="hobi-kategori">KİŞİSEL</span>
+                <h2>Hobi Projelerim</h2>
+            </div>
+
+            <div class="hobi-kart-konteyner">
+                <div class="hobi-kart">
+                    <div class="hobi-resim"><img src="hobi1.png" alt="Akvaryum TV"></div>
+                    <div class="hobi-bilgi">
+                        <h3>Akvaryum TV</h3>
+                        <ul class="hobi-liste">
+                            <li>200x200x200 mm ölçülerinde akvaryuma özel tasarım</li>
+                            <li>3D baskı ile gövde üretimi</li>
+                        </ul>
+                        <a href="hobi-detay-1.html" class="hobi-link">Detayları İncele &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="hobi-kart">
+                    <div class="hobi-resim"><img src="hobi2.png" alt="Dijital Oyunlar"></div>
+                    <div class="hobi-bilgi">
+                        <h3>Dijital Oyunlar</h3>
+                        <ul class="hobi-liste">
+                            <li>Python temelli algoritmaları tarayıcı tabanlı ve etkileşimli bir arayüzde birleştirme deneyimi</li>
+                        </ul>
+                        <a href="hobi-detay-2.html" class="hobi-link">Detayları İncele &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GİZLİ OYUN KAYBETME EKRANI (JS ile Açılacak) -->
+        <div class="oyun-bitis-ekrani" id="gameOverScreen">
+            <div class="bitis-kutu">
+                <h2>Oyun Bitti!</h2>
+                <p>Skorun: <span id="sonSkor">1450</span></p>
+                <button class="yeniden-oyna-btn" onclick="restartGame()">Yeniden Oyna</button>
+                <a href="index.html" class="ana-menuye-don">Ana Menüye Dön</a>
+            </div>
+        </div>
+
+        <!-- 5. BÖLÜM: İLETİŞİM -->
+        <section class="section" id="contact">
+            <div class="contact-wrapper">
+                <div class="contact-form-panel native-form-box">
+                    <div class="form-gif-header">
+                        <img src="iletisim.gif" alt="İletişim Maskotu">
+                    </div>
+                    
+                    <form action="https://formsubmit.co/eyllsrsln@gmail.com" method="POST" class="custom-portfolio-form">
+                        <input type="hidden" name="_captcha" value="false"> 
+                        <input type="hidden" name="_next" value="https://eylulsariaslan.github.io/iletisim.html"> 
+                        
+                        <div class="input-group">
+                            <label for="name">İsim - Soyisim <span class="required">*</span></label>
+                            <input type="text" id="name" name="İsim Soyisim" required placeholder="Adınız Soyadınız">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email">E-Posta Adresiniz <span class="required">*</span></label>
+                            <input type="email" id="email" name="E-Posta" required placeholder="ornek@mail.com">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="message">Mesajınız <span class="required">*</span></label>
+                            <textarea id="message" name="Mesaj" rows="5" required placeholder="Mesajınızı buraya yazabilirsiniz..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit-btn">Gönder</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-panel">
+                    <div class="contact-header">
+                        <span class="contact-subtitle">Benimle İletişime Geçin</span>
+                        <h2>Sorularınız veya iş birlikleri için form doldurabilir ya da aşağıdaki kanallardan ulaşabilirsiniz.</h2>
+                    </div>
+
+                    <div class="contact-buttons-grid">
+                        <a href="mailto:eyllsrsln@gmail.com" class="social-contact-btn mail-btn">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="btn-text">
+                                <span>E-Posta Gönder</span>
+                                <strong>eyllsrsln@gmail.com</strong>
+                            </div>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/eylulsariaslan-08856321a/" target="_blank" class="social-contact-btn linkedin-btn">
+                            <div class="icon-box">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+                            <div class="btn-text">
+                                <span>Bağlantı Kur</span>
+                                <strong>LinkedIn Profilim</strong>
+                            </div>
+                        </a>
+                        
+                        <a href="https://bionluk.com/eyllsrsln" target="_blank" class="social-contact-btn bionluk-btn">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <div class="btn-text">
+                                <span>Freelance Teklif Al</span>
+                                <strong>Bionluk Profilim</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sağ Taraf Proje İzleyicisi (Tek ve geçerli kopya) -->
+        <div id="projectTracker" class="right-project-tracker"></div>
+        
+    </main>
+    
+  <script>
+    // --- 1. DAKTİLO (TYPING) EFEKTİ ---
+    const textElement = document.getElementById("typing-text");
+    const phrases = ["Eylül Sarıaslan."]; 
+    let phraseIndex = 0;
+    let characterIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        if (!textElement) return;
+        const currentPhrase = phrases[phraseIndex];
+        if (isDeleting) {
+            textElement.textContent = currentPhrase.substring(0, characterIndex - 1);
+            characterIndex--;
+        } else {
+            textElement.textContent = currentPhrase.substring(0, characterIndex + 1);
+            characterIndex++;
+        }
+        let typeSpeed = isDeleting ? 60 : 120;
+        if (!isDeleting && characterIndex === currentPhrase.length) {
+            typeSpeed = 2000; 
+            isDeleting = true;
+        } else if (isDeleting && characterIndex === 0) {
+            isDeleting = false;
+            typeSpeed = 500; 
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+        setTimeout(typeEffect, typeSpeed);
+    }
+
+    // --- 2. SCROLL ANİMASYONLARI (GÖZLEMCİ) ---
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('scroll-fade')) {
+                    entry.target.classList.add('visible');
+                }
+                if (entry.target.classList.contains('timeline-item')) {
+                    entry.target.classList.add('active');
+                }
+                if (entry.target.classList.contains('skills-container')) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                }
+            }
+        });
+    }, { root: null, threshold: 0.2 });
+
+    // --- 3. ANA YÜKLEME VE ACİL DURUM KONTROLÜ ---
+    window.addEventListener('load', () => {
+        setTimeout(typeEffect, 2500); 
+        document.querySelectorAll('.scroll-fade, .timeline-item, .skills-container').forEach(el => {
+            scrollObserver.observe(el);
+        });
+        setTimeout(() => {
+            document.querySelectorAll('.about-card').forEach(card => {
+                card.classList.add('visible');
+            });
+        }, 500);
+    });
+
+    // ==========================================
+    // 4. SİNEMATİK YALANCI DERİNLİK MOTORU
+    // ==========================================
+    gsap.registerPlugin(ScrollTrigger);
+    const sections = gsap.utils.toArray('.section');
+
+    sections.forEach((sec, i) => {
+        if (i !== sections.length - 1) {
+            const nextSection = sections[i + 1];
+            gsap.to(sec, {
+                scale: 0.90,            
+                opacity: 0.2,           
+                filter: "blur(10px)",   
+                ease: "none",
+                scrollTrigger: {
+                    trigger: nextSection,   
+                    start: "top 85%",       
+                    end: "top 15%",         
+                    scrub: true             
+                }
+            });
+        }
+        if (i !== 0) {
+            gsap.from(sec, {
+                y: 70,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: sec,
+                    start: "top 82%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        }
+    });
+
+    // ==========================================
+    // 5. PROJE KARTLARI: MİNİ 3D ÇEMBER
+    // ==========================================
+    const projectCards = gsap.utils.toArray('.project-card');
+    const scrollTrack = document.querySelector('.scroll-track');
+    const trackerContainer = document.getElementById('projectTracker');
+    const total = projectCards.length;
+    let trackerItems = [];
+
+    if (total > 0 && scrollTrack) {
+        scrollTrack.style.height = (total * 55) + "vh";
+
+        if(trackerContainer) {
+            trackerContainer.innerHTML = ''; 
+            projectCards.forEach((card, i) => {
+                const imgEl = card.querySelector('img');
+                const imgSrc = imgEl ? imgEl.src : '';
+
+                const item = document.createElement('div');
+                item.className = 'tracker-item';
+                item.innerHTML = `
+                    <span class="tracker-number">${i + 1}</span>
+                    <div class="tracker-thumb"><img src="${imgSrc}" onerror="this.style.display='none'"></div>
+                `;
+
+                item.addEventListener('click', () => {
+                    let st = ScrollTrigger.getAll().find(t => t.trigger === scrollTrack);
+                    if(st) {
+                        const targetY = st.start + ((st.end - st.start) * (i / (total - 1)));
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    }
+                });
+
+                trackerContainer.appendChild(item);
+                trackerItems.push(item);
+            });
+        }
+
+        function miniWheel(progress) {
+            const currentScroll = progress * (total - 1);
+            const activeIdx = Math.round(currentScroll);
+
+            projectCards.forEach((card, i) => {
+                const dist = i - currentScroll;
+                const absDist = Math.abs(dist);
+                const isVisible = (absDist <= 0.45);
+
+                const angle = dist * 0.85;
+                const yPos = Math.sin(angle) * 250;       
+                const zPos = (Math.cos(angle) - 1) * 360; 
+                const scale = Math.max(0.45, 1 - absDist * 0.35);
+                const opacity = Math.max(0, 1 - absDist * 1.6);
+
+                gsap.set(card, {
+                    y: yPos, z: zPos, scale: scale, opacity: opacity,
+                    zIndex: isVisible ? 999 : Math.round(opacity * 50)
+                });
+            });
+
+            if (trackerItems.length > 0) {
+                trackerItems.forEach((item, idx) => {
+                    if(idx === activeIdx) {
+                        item.classList.add('active');
+                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else { item.classList.remove('active'); }
+                });
+            }
+        }
+
+        miniWheel(0); 
+
+        gsap.to(scrollTrack, {
+            scrollTrigger: {
+                trigger: scrollTrack,
+                start: "top 70px",
+                end: "bottom bottom",
+                scrub: true,
+                onEnter: () => trackerContainer.classList.add('show-tracker'),
+                onLeave: () => trackerContainer.classList.remove('show-tracker'),
+                onEnterBack: () => trackerContainer.classList.add('show-tracker'),
+                onLeaveBack: () => trackerContainer.classList.remove('show-tracker'),
+                onUpdate: (self) => miniWheel(self.progress)
+            }
+        });
+    }
+
+    // --- 6. MODAL KONTROLLERİ ---
+    function openModal() { document.getElementById("infoModal").style.display = "block"; }
+    function closeModal() { document.getElementById("infoModal").style.display = "none"; }
+    window.onclick = function(event) { if (event.target == document.getElementById("infoModal")) { closeModal(); } }
+
+    function gameOver() {
+        document.querySelector('.oyun-bitis-ekrani').style.display = 'flex';
+    }
+
+    // =========================================================================
+    // 7. YENİ EKLENEN: NAVBAR KAYDIRMA TAKİBİ VE YUMUŞAK GEÇİŞ MOTORU
+    // =========================================================================
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Tıklayınca kayarak gitme
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                window.scrollTo({
+                    top: targetEl.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Aşağı kaydırdıkça mor ışığı taşıma
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset + 120; // Algılama payı
+        let currentSectionId = '';
+
+        const trackingList = [
+            { id: 'home', el: document.getElementById('home') },
+            { id: 'about', el: document.getElementById('about') },
+            { id: 'mobil-3d-projeler', el: document.getElementById('mobil-3d-projeler') },
+            { id: 'mobil-hobi-projeler', el: document.getElementById('mobil-hobi-projeler') },
+            { id: 'contact', el: document.getElementById('contact') }
+        ];
+
+        trackingList.forEach(item => {
+            if (item.el) {
+                const top = item.el.offsetTop;
+                const height = item.el.offsetHeight;
+                if (scrollPosition >= top && scrollPosition < top + height) {
+                    currentSectionId = item.id;
+                }
+            }
+        });
+
+        // Kullanıcı "Hobi Projeleri"ndeyken de yukarıdaki "Projeler" ışığı yansın
+        if (currentSectionId === 'mobil-hobi-projeler') {
+            currentSectionId = 'mobil-3d-projeler';
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>

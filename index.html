@@ -35,6 +35,42 @@
         }
     </style>    
 </head>
+<head>
+    <script>
+        // Ekran genişliği 950px'den küçükse VEYA cihaz bir mobil cihazsa
+        if (window.innerWidth <= 950 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location.replace("mobil_index.html");
+        }
+    </script>
+    
+    <meta charset="UTF-8">
+    <title>Eylül Sarıaslan | Portfolyo</title>
+    ```
+
+### 2. Mobil Sayfa İçin Yönlendirme Kodu (`mobil_index.html`)
+Eğer birisi bilgisayardan yanlışlıkla mobil linkine (`mobil_index.html`) tıklarsa, sistem bunu fark edip geniş ekranlı PC versiyonuna geri gönderecek.
+
+Daha demin düzenlediğimiz `mobil_index.html` dosyanı aç ve `<head>` etiketinin hemen altına şu kodu yapıştır:
+
+```html
+<head>
+    <script>
+        // Ekran genişliği 950px'den büyükse VE cihaz bir mobil cihaz değilse
+        if (window.innerWidth > 950 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location.replace("index.html");
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    ```
+
+### 💡 Bu Kod Nasıl Çalışıyor?
+* **`window.innerWidth`:** Ekranın piksel genişliğine bakar. (Örneğin birisi bilgisayarda pencereyi küçültüp telefon boyutuna getirirse sitenin mobil hali açılır, bu test yaparken senin için çok faydalı olur). 950px sınırı tablet ve telefonları kapsar.
+* **`navigator.userAgent`:** Ziyaretçinin tarayıcısının kimliğine bakar. Gerçekten bir iPhone veya Android kullanıp kullanmadığını teyit eder.
+* **`window.location.replace()`:** Bu komut, kullanıcıyı diğer sayfaya geçirir ama tarayıcı geçmişine (Geri butonuna) bunu kaydetmez. Böylece kullanıcı "Geri" tuşuna bastığında iki sayfa arasında sonsuz bir yönlendirme döngüsüne girip sıkışmaz.
+
+Bu iki kodu dosyalarına eklediğin an portfolyon cihazları akıllıca tanımaya başlayacak!
 <body class="home-page">
 
 

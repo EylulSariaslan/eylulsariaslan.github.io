@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. Hobi Portfolyosu.">
     <title>Hobi Projelerim | Portfolyo</title>
-    <link rel="stylesheet" href="css-style.css">
-
-
-
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolyo | Ana Sayfa</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link rel="stylesheet" href="css-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
+    <style>
+        /* Hobi Sayfasına Özel Mobil Ekran Sabitleme Yaması */
+        @media (max-width: 950px) {
+            .projects-content {
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+                height: calc(100vh - 70px) !important;
+            }
+            .project-card {
+                width: 86% !important;
+                height: 460px !important;
+                background: #2a2635 !important;
+                border-radius: 24px !important;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.6) !important;
+            }
+            .project-image-wrapper {
+                height: 230px !important;
+            }
+            .project-image-wrapper img {
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+        }
+    </style>
 </head>
 <body class="projects-page hobi-page-theme">
 
@@ -28,7 +45,7 @@
         <ul class="nav-links">
             <li><a href="index.html">Ana Sayfa</a></li>
             <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="projelerim.html" class="active">Projelerim</a></li>
+            <li><a href="projelerim.html">Projelerim</a></li>
             <li><a href="iletisim.html">İletişim</a></li>
         </ul>
     </nav>
@@ -40,66 +57,226 @@
             <a href="hobi-projelerim.html" class="tab-link active">Hobi Projeleri</a>
         </div>
 
-        <div class="projects-content">
+        <div class="projects-content" id="scrollContainer">
             <h2>Kişisel <span class="highlight">Hobi Projelerim</span></h2>
-          <div class="projects-grid">
-    <div class="project-card">
-        <div class="project-image-wrapper"><img src="hobi1.png" alt="Hobi 1" class="project-img"></div>
-        <div class="project-info-wrapper">
-            <h3>Akvaryum TV</h3>
-            <ul class="project-details-list">
-                <li>200x200x200 mm ölçülerinde akvaryuma özel tasarım</li>
-                <li>3D baskı ile gövde üretimi</li>
-            </ul>
-            <a href="hobi-detay-1.html" class="project-link">Detayları İncele &rarr;</a>
+            
+            <div class="scroll-track">
+                <div class="viewport-3d">
+                    <div class="card-stage">
+                    
+                        <div class="project-card">
+                            <div class="project-image-wrapper"><img src="hobi1.png" alt="Akvaryum TV" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Akvaryum TV</h3>
+                                <ul class="project-details-list">
+                                    <li>200x200x200 mm ölçülerinde akvaryuma özel tasarım</li>
+                                    <li>3D baskı ile gövde üretimi</li>
+                                </ul>
+                                <a href="hobi-detay-1.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div> 
+
+                        <div class="project-card">
+                            <div class="project-image-wrapper"><img src="hobi2.png" alt="Dijital Oyunlar" class="project-img"></div>
+                            <div class="project-info-wrapper">
+                                <h3>Dijital Oyunlar</h3>
+                                <ul class="project-details-list">
+                                    <li>Python temelli algoritmaları tarayıcı tabanlı ve etkileşimli bir arayüzde birleştirme deneyimi</li>
+                                </ul>
+                                <a href="hobi-detay-2.html" class="project-link">Detayları İncele &rarr;</a>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> <div class="project-card">
-        <div class="project-image-wrapper"><img src="hobi2.png" alt="Hobi 1" class="project-img"></div>
-        <div class="project-info-wrapper">
-            <h3>Dijital Oyunlar</h3>
-            <ul class="project-details-list">
-                <li>Python temelli algoritmaları tarayıcı tabanlı ve etkileşimli bir arayüzde birleştirme deneyimi</li>
-                
-            </ul>
-            <a href="hobi-detay-2.html" class="project-link">Detayları İncele &rarr;</a>
-        </div>
-    </div> 
 
-    
-
-
-
-
-
-
-    </div>
-</div>
+        <div class="right-project-tracker" id="projectTracker"></div>
     </main>
 
     <footer>
         <p>&copy; 2026 - Eylül Sarıaslan. Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <script>
-        // Animasyon scriptini burada da kullanıyoruz
-        const cards = document.querySelectorAll('.project-card');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0) scale(1)';
-                } else {
-                    entry.target.style.opacity = '0.3';
-                    entry.target.style.transform = 'translateY(40px) scale(0.96)';
-                }
-            });
-        }, { threshold: 0.1 });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-        cards.forEach(card => {
-            card.style.opacity = '0.3';
-            card.style.transform = 'translateY(40px) scale(0.96)';
-            card.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
-            observer.observe(card);
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        
+        const scrollContainer = document.querySelector('.projects-content');
+        function forceTop() {
+            if (scrollContainer) scrollContainer.scrollTop = 0;
+            window.scrollTo(0, 0);
+        }
+        forceTop(); 
+
+        gsap.registerPlugin(ScrollTrigger);
+        if (typeof ScrollTrigger.clearScrollMemory === 'function') { ScrollTrigger.clearScrollMemory(); }
+
+        let mm = gsap.matchMedia();
+        const cards = gsap.utils.toArray('.project-card');
+        const scrollTrack = document.querySelector('.scroll-track');
+        const totalCards = cards.length;
+
+        // =====================================
+        // MASAÜSTÜ (BÜYÜK EKRAN) FİZİKLERİ
+        // =====================================
+        mm.add("(min-width: 951px)", () => {
+            // Güvenli dinamik pist boyu
+            scrollTrack.style.height = (totalCards * 100) + "vh"; 
+
+            const trackerContainer = document.getElementById('projectTracker');
+            let trackerItems = [];
+
+            if (trackerContainer && totalCards > 0) {
+                trackerContainer.innerHTML = ''; 
+                cards.forEach((card, index) => {
+                    const imgSrc = card.querySelector('img').src;
+                    const item = document.createElement('div');
+                    item.className = 'tracker-item';
+                    item.innerHTML = `
+                        <span class="tracker-number">${index + 1}-</span>
+                        <div class="tracker-img-box"><img src="${imgSrc}"></div>
+                    `;
+                    
+                    item.addEventListener('click', () => {
+                        const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+                        const targetScroll = maxScroll * (index / (totalCards - 1 || 1));
+                        gsap.to(scrollContainer, { scrollTop: targetScroll, duration: 0.8, ease: "power2.out" });
+                    });
+                    trackerContainer.appendChild(item);
+                    trackerItems.push(item);
+                });
+            }
+
+            function updateWheel(progress) {
+                const currentScroll = progress * (totalCards - 1 || 1);
+                const activeIndex = Math.round(currentScroll); 
+
+                cards.forEach((card, index) => {
+                    const distance = index - currentScroll;
+                    const absDist = Math.abs(distance);
+                    const isFullyVisible = (absDist <= 0.45);
+                    const angle = distance * 0.85; 
+                    
+                    const yPos = Math.sin(angle) * 560;        
+                    const zPos = (Math.cos(angle) - 1) * 700;  
+                    const scale = Math.max(0.4, 1 - absDist * 0.4);
+                    const opacity = Math.max(0, 1 - absDist * 2);
+
+                    gsap.set(card, {
+                        y: yPos, z: zPos, scale: scale, opacity: opacity, filter: "none", 
+                        zIndex: isFullyVisible ? 9999 : Math.round(opacity * 100) 
+                    });
+
+                    if (isFullyVisible) {
+                        card.style.borderColor = "var(--accent-lilac)";
+                        card.style.boxShadow = "0 15px 40px rgba(167, 139, 250, 0.25)";
+                        card.style.pointerEvents = "auto"; 
+                    } else {
+                        card.style.borderColor = "rgba(255,255,255,0.02)";
+                        card.style.boxShadow = "none";
+                        card.style.pointerEvents = "none"; 
+                    }
+                });
+
+                if (trackerItems.length > 0) {
+                    trackerItems.forEach((item, index) => {
+                        if (index === activeIndex) item.classList.add('active'); 
+                        else item.classList.remove('active');
+                    });
+                }
+            }
+
+            updateWheel(0);
+            gsap.to(scrollTrack, { 
+                scrollTrigger: { trigger: ".scroll-track", scroller: scrollContainer, start: "top top", end: "bottom bottom", scrub: 1, onUpdate: (self) => updateWheel(self.progress) } 
+            });
+        });
+
+        // =====================================
+        // MOBİL (TELEFON) FİZİKLERİ (100% ÇÖZÜM)
+        // =====================================
+        mm.add("(max-width: 950px)", () => {
+            // KRİTİK DÜZELTME: Kart sayısı az olsa bile parmak kaydırma mesafesi yaratıyoruz (Min: 220vh)
+            scrollTrack.style.height = "220vh"; 
+
+            const trackerContainer = document.getElementById('projectTracker');
+            let trackerItems = [];
+
+            // Mobilde de 1-2 seçici radar aktif olsun ve çalışsın
+            if (trackerContainer && totalCards > 0) {
+                trackerContainer.innerHTML = '';
+                cards.forEach((card, index) => {
+                    const imgSrc = card.querySelector('img').src;
+                    const item = document.createElement('div');
+                    item.className = 'tracker-item';
+                    item.innerHTML = `
+                        <span class="tracker-number">${index + 1}</span>
+                        <div class="tracker-img-box" style="width:28px; height:18px; border-radius:4px; overflow:hidden;"><img src="${imgSrc}" style="width:100%; height:100%; object-fit:cover;"></div>
+                    `;
+                    item.addEventListener('click', () => {
+                        const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+                        const targetScroll = maxScroll * (index / (totalCards - 1 || 1));
+                        gsap.to(scrollContainer, { scrollTop: targetScroll, duration: 0.6, ease: "power2.out" });
+                    });
+                    trackerContainer.appendChild(item);
+                    trackerItems.push(item);
+                });
+            }
+
+            function updateWheelMobile(progress) {
+                const currentScroll = progress * (totalCards - 1 || 1);
+                const activeIndex = Math.round(currentScroll);
+
+                cards.forEach((card, index) => {
+                    const distance = index - currentScroll;
+                    const absDist = Math.abs(distance);
+                    const isFullyVisible = (absDist <= 0.45);
+                    const angle = distance * 0.75; 
+                    
+                    // Ölçüleri sıkıştırdık, asla ekrandan dışarı taşmaz ve zoom yapmaz
+                    const yPos = Math.sin(angle) * 230;        
+                    const zPos = (Math.cos(angle) - 1) * 320;  
+                    const scale = Math.max(0.5, 1 - absDist * 0.3);
+                    const opacity = Math.max(0, 1 - absDist * 1.5);
+
+                    gsap.set(card, {
+                        y: yPos, z: zPos, scale: scale, opacity: opacity, 
+                        filter: "none", // BULANIKLIK İPTAL - CAM GİBİ NET
+                        zIndex: isFullyVisible ? 9999 : Math.round(opacity * 100) 
+                    });
+
+                    if (isFullyVisible) {
+                        card.style.borderColor = "var(--accent-lilac)";
+                        card.style.boxShadow = "0 10px 30px rgba(167, 139, 250, 0.25)";
+                        card.style.pointerEvents = "auto"; 
+                    } else {
+                        card.style.borderColor = "rgba(255,255,255,0.02)";
+                        card.style.boxShadow = "none";
+                        card.style.pointerEvents = "none"; 
+                    }
+                });
+
+                if (trackerItems.length > 0) {
+                    trackerItems.forEach((item, index) => {
+                        if (index === activeIndex) item.classList.add('active'); 
+                        else item.classList.remove('active');
+                    });
+                }
+            }
+
+            updateWheelMobile(0);
+            gsap.to(scrollTrack, { 
+                scrollTrigger: { trigger: ".scroll-track", scroller: scrollContainer, start: "top top", end: "bottom bottom", scrub: 1, onUpdate: (self) => updateWheelMobile(self.progress) } 
+            });
+        });
+
+        window.addEventListener("load", () => {
+            forceTop();
+            setTimeout(() => { forceTop(); ScrollTrigger.refresh(); }, 100);
         });
     </script>
 </body>
