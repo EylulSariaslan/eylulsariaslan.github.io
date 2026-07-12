@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="gorseller/favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="cursor.js" defer></script>
+    <script src="video-autoplay.js" defer></script>
 </head>
 <body> <!-- Body etiketini burada açıyoruz -->
 
@@ -43,7 +44,7 @@
             </div>
                 
             <div class="hero-video-container">
-                    <video src="videolar/Eylul_Sariaslan.mp4" autoplay loop muted playsinline class="hero-video"></video>
+                    <video src="videolar/Eylul_Sariaslan.mp4" autoplay loop muted playsinline preload="auto" class="hero-video"></video>
             </div>
             </div>
             <div class="scroll-indicator">
@@ -57,8 +58,7 @@
 
         <section class="video-pin-section" id="hakkimda">
             <div class="pinned-video-container">
-                <video src="videolar/Eylul_Sariaslan_Projeler_Video.mp4" class="bg-video desktop-video" autoplay loop muted playsinline></video>
-                <video src="videolar/Eylul_Sariaslan_Projeler_Mobil.mp4" class="bg-video mobile-video" autoplay loop muted playsinline></video>
+                <video src="videolar/Eylul_Sariaslan_Projeler_Video.mp4" class="bg-video" autoplay loop muted playsinline preload="auto"></video>
                 <div class="video-overlay"></div> </div>
             
             <div class="scroll-text-container">
