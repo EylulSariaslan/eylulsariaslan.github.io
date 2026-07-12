@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Malzeme, ışık ve kamera kompozisyonuyla hazırlanan ürün görselleştirme ve fotogerçekçi render çalışmalarından seçkiler.">
+    <title>Render Çalışmaları | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/render_calismalarim.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+    
+    <style>
+        /* --- SAYFA BAŞLIĞI (HERO) --- */
+        .render-hero {
+            padding: 180px 5% 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 80px;
+        }
+
+        .render-hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .render-hero p {
+            font-family: var(--font-mono, 'JetBrains Mono', monospace);
+            color: var(--accent-color, #888888);
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            letter-spacing: 1px;
+        }
+
+        /* --- DİKEY RENDER LİSTESİ --- */
+        .render-feed {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 150px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 120px; /* Fotoğraflar arasındaki ferah sinematik boşluk */
+        }
+
+        .render-item {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* Çerçevreli Görsel Kutusu */
+        .render-image-wrapper {
+            position: relative;
+            width: 100%;
+            background-color: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 16 / 9; /* Standart sinematik oran, istersen auto yapabilirsin */
+        }
+
+        .render-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .render-item:hover .render-image {
+            transform: scale(1.03); /* Üzerine gelince çok hafif ve zarif bir yakınlaşma */
+        }
+
+        /* --- PİKSEL MASKELEME KATMANI --- */
+        .pixel-grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 8 sütunlu piksel ağı */
+            grid-template-rows: repeat(6, 1fr);    /* 6 satırlı piksel ağı */
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .pixel-tile {
+            background-color: var(--bg-color, #0a0a0c);
+            width: 100%;
+            height: 100%;
+            opacity: 1; /* Başlangıçta fotoğrafı tamamen gizler */
+        }
+
+        /* --- GÖRSEL ALTI AÇIKLAMA ALANI --- */
+        .render-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 0 10px;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .render-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .render-desc {
+            font-family: var(--font-mono, 'JetBrains Mono', monospace);
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            max-width: 65%;
+            line-height: 1.5;
+        }
+
+        /* --- MOBİL UYUMLULUK (@MEDIA) --- */
+        @media (max-width: 768px) {
+            .render-hero {
+                padding: 130px 6% 50px 6%;
+                margin-bottom: 50px;
+            }
+
+            .render-feed {
+                padding: 0 6% 100px 6%;
+                gap: 70px; /* Mobilde boşluğu biraz sıkılaştırdık */
+            }
+
+            .render-image-wrapper {
+                border-radius: 8px;
+                aspect-ratio: 4 / 3; /* Mobilde dikey/kareye yakın kadraj daha dolu durur */
+            }
+
+            .render-meta {
+                flex-direction: column;
+                gap: 8px;
+                border-left: none;
+                padding: 0;
+            }
+
+            .render-title {
+                font-size: 1.2rem;
+            }
+
+            .render-desc {
+                max-width: 100%;
+                font-size: 0.88rem;
+            }
+
+            /* Mobilde piksel sayısını azaltıp performansı artırıyoruz */
+            .pixel-grid-overlay {
+                grid-template-columns: repeat(6, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar detail-nav">
+        <ul class="nav-links">
+            <li><a href="index.html#projeler" class="nav-link">&larr; Ana Sayfaya Dön</a></li>
+        </ul>
+    </nav>
+
+    <header class="render-hero">
+        <h1>Render Galerisi</h1>
+        <p>// 3D Görselleştirme, Işık ve Materyal Etütleri</p>
+    </header>
+
+    <main class="render-feed">
+        
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay1.png" alt="Otonom Ekipman Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">01 | Şubat 2025</h2>
+                <p class="render-desc"> Perspektif Görselleştirme</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay2.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">02 | Mart 2025</h2>
+                <p class="render-desc"> Dorse entegre sağ görünüm</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay3.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">03 | Mart 2025</h2>
+                <p class="render-desc">Dorse entegre sol görünüm</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay4.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">04 | Nisan 2025</h2>
+                <p class="render-desc">Montaj Sonrası Ürün Görünümü</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay5.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">05 | Nisan 2025</h2>
+                <p class="render-desc">RAL koduna göre renk belirleme</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay6.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">06 | Mayıs 2025</h2>
+                <p class="render-desc">Final detay önerilerini içeren konsept render</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay7.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">07 | Mayıs 2025</h2>
+                <p class="render-desc">Kullanım Ortamı Görselleştirmesi</p>
+            </div>
+        </article>
+
+        <article class="render-item">
+            <div class="render-image-wrapper">
+                <div class="pixel-grid-overlay"></div>
+                <img src="gorseller/proje11-detay8.png" alt="Render" class="render-image">
+            </div>
+            <div class="render-meta">
+                <h2 class="render-title">08 | Mayıs 2025</h2>
+                <p class="render-desc">Üst Açıdan Perspektif Görünüm</p>
+            </div>
+        </article>
+
+        </main>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+    window.addEventListener("DOMContentLoaded", () => {
+        
+        // 1. PÜRÜZSÜZ KAYDIRMA MOTORU (LENIS)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. OTOMATİK PİKSEL OLUŞTURUCU VE SCROLL ANİMASYONU
+        const renderItems = document.querySelectorAll(".render-item");
+
+        renderItems.forEach((item) => {
+            const overlay = item.querySelector(".pixel-grid-overlay");
+            
+            // Ekran boyutuna göre piksel sayısını hesaplar (PC'de 48, Mobilde 24 kare)
+            const isMobile = window.innerWidth <= 768;
+            const tileCount = isMobile ? 24 : 48; 
+
+            // İçeriye otomatik olarak div (piksel kareleri) dolduruyoruz
+            for (let i = 0; i < tileCount; i++) {
+                const tile = document.createElement("div");
+                tile.classList.add("pixel-tile");
+                overlay.appendChild(tile);
+            }
+
+            const tiles = overlay.querySelectorAll(".pixel-tile");
+
+            // GSAP ile aşağı kaydırdıkça pikselleri rastgele yok edip resmi açıyoruz!
+            gsap.to(tiles, {
+                opacity: 0,
+                duration: 0.6,
+                ease: "power2.inOut",
+                stagger: {
+                    amount: 0.8,      // Tüm piksellerin açılma süresi
+                    from: "random"    // Rastgele kareler halinde buharlaşır!
+                },
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%", // Görsel ekranın %80'ine girdiğinde başlar
+                    toggleActions: "play none none reverse" // Yukarı çıkınca tekrar kapanıp, inince tekrar açılır!
+                }
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>

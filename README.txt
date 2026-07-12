@@ -1,2 +1,0 @@
-#Eylül Sarıaslan
-This portfolio website was developed with the assistance of AI tools. You are free to adapt and use this code for your own projects. If you find it helpful, a small mention or link back to my profile would be greatly appreciated!

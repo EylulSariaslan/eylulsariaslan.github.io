@@ -3,150 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="iEazfSOl0cntycclALjLr6OOWsENFTW8iTDTkk7wHd4">
+    <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3B modelleme, mekanik tasarım, ürün geliştirme ve inovatif mühendislik projeleri portfolyosu.">
     <title>Eylül Sarıaslan | Endüstriyel Tasarım Mühendisi</title>
-    
-    <script>
-        // Kullanıcının cihaz bilgisini (User-Agent) kontrol ediyoruz
-        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        // Eğer cihaz mobilse, mobil HTML dosyasına yönlendir
-        if (isMobile) {
-            window.location.href = "mobil_index.html"; 
-        }
-    </script>
-
-    <meta name="google-site-verification" content="iEazfSOl0cntycclALjLr6OOWsENFTW8iTDTkk7wHd4" />
-    <meta name="description" content="Eylül Sarıaslan - Endüstriyel Tasarım Mühendisi. 3D Modelleme, mekanik tasarım ve inovatif projeler üzerine profesyonel portfolyo.">
-    <meta name="keywords" content="Eylül Sarıaslan, Industrial Design, Endüstriyel Tasarım, 3D Modeling, Portfolyo">
-    
-    <link rel="stylesheet" href="css-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <script>
-        if (sessionStorage.getItem('siteGirisYapildi')) {
-            document.documentElement.classList.add('intro-gec');
-        }
-    </script>
-    
-    <style>
-        /* ÇÖZÜM: Buradaki katı kilitleri SADECE geniş ekranlara (masaüstüne) özel yapıyoruz.
-           Böylece mobilde sayfa kilitlenmez ve profil fotoğrafı yukarı itilmez. */
-        @media (min-width: 1025px) {
-            body.home-page {
-                overflow: hidden !important; 
-                height: 100vh !important;    
-            }
-            .home-page .container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: calc(100vh - 150px); 
-                margin: 0 auto;
-            }
-        }
-    </style>    
+    <link rel="canonical" href="https://eylulsariaslan.github.io/">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
 </head>
-<body class="home-page">
+<body> <!-- Body etiketini burada açıyoruz -->
 
-    <div id="splash-ekrani">
-        <img src="Eylul_Sariaslan_imza.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisi / ES / Logo" class="splash-gorsel">
+    <!-- 1. Önce Yükleme Ekranı -->
+    <div class="preloader">
+        <span class="counter">0%</span>
     </div>
 
-    <nav class="navbar">
-        <div class="logo">Portfolyom<span class="highlight">.</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Ana Sayfa</a></li>
-            <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="projelerim.html">Projelerim</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
-        </ul>
-    </nav>
-
-    <main class="container">
+    <!-- 2. Sonra Ana İçerik -->
+    <main class="main-container" id="anasayfa">
+        <nav class="navbar">
+            <!--<div class="nav-logo">
+                <h2>ES.</h2> 
+            </div>-->
+            <ul class="nav-links">
+                <li><a href="#anasayfa" class="nav-link active">Ana Sayfa</a></li>
+                <li><a href="#hakkimda" class="nav-link">Hakkımda</a></li>
+                <li><a href="#projeler" class="nav-link">Projelerim</a></li>
+                <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="nav-branding" aria-label="Eylül Sarıaslan ve Türk bayrağı">
+                <img src="gorseller/Eylul_Sariaslan_monogram.png" alt="Eylül Sarıaslan monogramı" class="nav-monogram">
+                <img src="gorseller/Turk_Bayragi.png" alt="Türk bayrağı" class="nav-flag">
+            </div>
+        </nav>
         <section class="hero">
-            
-            <div class="hero-content"> 
-                <span class="hero-subtitle">ENDÜSTRİYEL TASARIM MÜHENDİSİ</span>
+            <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Eylül<br>Sarıaslan</h1>
+                <p class="hero-subtitle">Endüstriyel Tasarım Mühendisi</p>
+            </div>
                 
-                <h1>Merhaba,<br>Ben <span id="typing-text" class="highlight"></span><span class="typing-cursor">|</span></h1>
-                
-                <p>Eğitim hayatım boyunca mekanik tasarım ve ürün geliştirme alanlarında kendimi geliştirebilmek adına staj ve aday mühendislik programlarına katıldım ve freelance işler yaptım. Bu portfolyoda; estetik vizyonu, mühendislik disiplini ve üretilebilirliği bir araya getirerek hayata geçirdiğim dijital ve fiziksel projelerimi bulabilirsiniz.</p>
-                
-                <div class="hero-tags">
-                    <span class="tag-item"><i class="fa-solid fa-gear"></i> Mekanik Tasarım</span>
-                    <span class="tag-item"><i class="fa-solid fa-compass"></i> Ürün Geliştirme</span>
-                    <span class="tag-item"><i class="fa-solid fa-screwdriver-wrench"></i> Üretilebilirlik</span>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="projelerim.html" class="btn btn-primary">Projelerimi Gör</a>
-                    <a href="Eylul_Sariaslan_CV.pdf" target="_blank" class="btn btn-secondary">Özgeçmişimi İncele</a>
+            <div class="hero-video-container">
+                    <video src="videolar/Eylul_Sariaslan.mp4" autoplay loop muted playsinline class="hero-video"></video>
+            </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="arrows">
+                    <span>&darr;</span>
+                    <span>&darr;</span>
+                    <span>&darr;</span>
                 </div>
             </div>
-
-            <div class="hero-photo-wrapper">
-                <img src="anasayfa_fotograf.jpeg" alt="Eylül Sarıaslan - Profil Fotoğrafı - Endüstriyel Tasarım Mühendisi - Industrial Design Engineer" class="hero-photo">
-            </div>
-            
         </section>
+
+        <section class="video-pin-section" id="hakkimda">
+            <div class="pinned-video-container">
+                <video src="videolar/Eylul_Sariaslan_Projeler_Video.mp4" class="bg-video desktop-video" autoplay loop muted playsinline></video>
+                <video src="videolar/Eylul_Sariaslan_Projeler_Mobil.mp4" class="bg-video mobile-video" autoplay loop muted playsinline></video>
+                <div class="video-overlay"></div> </div>
+            
+            <div class="scroll-text-container">
+                <div class="scroll-text">Yaratıcı Fikirler</div>
+                <div class="scroll-text">Çalışan Mekanizmalar</div>
+                <div class="scroll-text">Kusursuz Mühendislik Dengesi</div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-grid">
+                
+                <div class="skills-column">
+                    <h2 class="section-title">Yazılım & Donanım</h2>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info"><span>SolidWorks</span><span>75%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Autocad</span><span>60%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Keyshot (Render)</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Catia V5</span><span>45%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 45%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>3DS Max</span><span>55%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 55%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Ansys Workbench</span><span>40%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Web Geliştirme (HTML, CSS, JS)</span><span>75%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Arduino</span><span>65%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Python</span><span>45%</span></div>
+                        <div class="progress-bar"><div class="progress" style="width: 45%;"></div></div>
+                    </div>
+
+                    <div class="about-actions" aria-label="Özgeçmiş ve sertifika bağlantıları">
+                        <a href="Eylul_Sariaslan_CV.pdf" class="about-action-btn" target="_blank" rel="noopener" aria-label="Öz geçmişimi PDF olarak yeni sekmede aç">Öz Geçmişim <span aria-hidden="true">&rarr;</span></a>
+                        <a href="sertifikalarim.html" class="about-action-btn about-action-btn-secondary">Sertifikalarım <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                    
+                </div>
+
+                <div class="career-column">
+                    <h2 class="section-title">Kariyer Yolculuğu</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025 Aralık - 2026 Temmuz</div>
+                            <h3 class="timeline-title">Endüstriyel Tasarım Mühendisi - Yarı Zamanlı</h3>
+                            <p class="timeline-desc">Alanında saygın bir teknoloji firmasında Tasarım Mühendisi olarak görev aldım. SolidWorks ile imalata uygun mekanik parçalar tasarladım ve firmanın ürün geliştirme projesinde aktif rol aldım.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2026 - Şubat</div>
+                            <h3 class="timeline-title">Gazi Üniversitesi - Endüstriyel Tasarım Mühendisliği🎓</h3>
+                            <p class="timeline-desc">Küçüklüğümden beri tasarım ve teknolojiye olan ilgim nedeniyle tercih ettiğim lisans eğitimimi tamamladım.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025 Eylül - 2025 Kasım</div>
+                            <h3 class="timeline-title">Aday Mühendis</h3>
+                            <p class="timeline-desc">Aday mühendislik sürecim boyunca AS9100 standartları doğrultusunda KYS dokümantasyonu hazırlayarak kalite yönetim süreçlerine destek oldum.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025 Haziran - 2025 Eylül</div>
+                            <h3 class="timeline-title">Aday Mühendis</h3>
+                            <p class="timeline-desc">Aday mühendislik sürecim boyunca ilgili standartlar doğrultusunda konsept ürün tasarımları geliştirdim; mobilya sektörünün tasarım süreçleri hakkında deneyim kazandım.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025 Şubat - 2025 Mayıs</div>
+                            <h3 class="timeline-title">İşyeri Eğitimi</h3>
+                            <p class="timeline-desc">Stajım boyunca AutoCAD ile teknik resim hazırlama, SolidWorks ile 3B parça modelleme, KeyShot ile ürün görselleştirme ve Excel tabanlı dokümantasyon çalışmalarını yürüttüm.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024 Temmuz - 2024 Ağustos</div>
+                            <h3 class="timeline-title">Tasarım Stajı</h3>
+                            <p class="timeline-desc">Bu stajım SolidWorks ile parça tasarımı yaparak kendimi geliştirmemi, medikal sektörünü yakından tanımamı sağladı.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2022 Temmuz - 2022 Ağustos</div>
+                            <h3 class="timeline-title">İmalat Stajı</h3>
+                            <p class="timeline-desc">Staj yaptığım firmada Saha Mühendisliği Stajyeri pozisyonunda görev alarak üretim tezgahlarında görev alma fırsatım oldu.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+    
+            
+
+           <section class="projects-section" id="projeler">
+            <p class="projects-eyebrow">Seçili çalışmalar ve proje arşivi</p>
+            <h2 class="section-title" id="projects-heading">Tüm Projeler</h2>
+
+            <div class="project-filters" role="group" aria-label="Projeleri kategoriye göre filtrele">
+                <button type="button" class="project-filter" data-filter="featured" aria-pressed="false">Öne Çıkanlar</button>
+                <button type="button" class="project-filter active" data-filter="all" aria-pressed="true">Tümü</button>
+                <button type="button" class="project-filter" data-filter="mekanik" aria-pressed="false">Mekanik Tasarım</button>
+                <button type="button" class="project-filter" data-filter="endustriyel" aria-pressed="false">Endüstriyel Tasarım</button>
+                <button type="button" class="project-filter" data-filter="yazilim-elektronik" aria-pressed="false">Yazılım &amp; Elektronik</button>
+                <button type="button" class="project-filter" data-filter="render" aria-pressed="false">Render</button>
+                <button type="button" class="project-filter" data-filter="oyun" aria-pressed="false">Oyun</button>
+            </div>
+            <p class="project-filter-status" aria-live="polite"></p>
+            
+            <!-- İŞTE BURASI KARTLARI YAN YANA TUTAN ANA KUTU -->
+            <div class="projects-grid">
+                
+                <!-- 1. KART -->
+                <article class="project-card" data-category="mekanik endustriyel" data-featured="true">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje1-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / ECO - 0 Spire Makinesi" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>ECO - 0 Spire Makinesi</h3>
+                            <p>Atık PET şişelerden geri dönüştürülmüş 3D yazıcı filamenti üreten masaüstü makine. Sürdürülebilirlik ve fonksiyonelliği bir araya getirir.</p>
+                            <a href="eco-0-spire.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. KART -->
+                <article class="project-card" data-category="mekanik" data-featured="true">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje2-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Granül Kurutma Makinesi" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Granül Kurutma Makinesi</h3>
+                            <p>Plastik granülleri işleme öncesinde kurutarak nem kaynaklı üretim hatalarını önler.</p>
+                            <a href="granul-kurutma-makinesi.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. KART -->
+                <article class="project-card" data-category="yazilim-elektronik oyun endustriyel">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje3-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Deprepoly - Eğitici Deprem Simülasyonu Oyunu" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Deprepoly / Eğitici Deprem Simülasyonu Oyunu</h3>
+                            <p>Deprem güvenliği eğitimini çocuklar için erişilebilir ve akılda kalıcı hâle getirmek amacıyla eğitsel bir oyun geliştirilmiştir.</p>
+                            <a href= "deprepoly.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. KART -->
+                <article class="project-card" data-category="mekanik">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje4-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Helixarm - Ev Tipi Spor İstasyonu" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Helixarm / Ev Tipi Spor İstasyonu</h3>
+                            <p>Portatif kullanıma uygun endüstriyel su ısıtıcı projesi. Ergonomik tasarımıyla yüksek ısıl verimlilik sağlar.</p>
+                            <a href="helixarm.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 5. KART -->
+                <article class="project-card" data-category="mekanik" data-featured="true">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje5-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Pellet Extruder" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Pellet Extruder</h3>
+                            <p>Granül hammaddenin doğrudan eritilip ekstrüde edilmesini sağlayarak üretim maliyetlerini azaltan bir sistem geliştirilmiştir.</p>
+                            <a href="pellet-extruder.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 6. KART -->
+                <article class="project-card" data-category="endustriyel">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje6-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Sevimli Canavar Bank" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Sevimli Canavar Bank</h3>
+                            <p>Karakter tasarımını kent mobilyasıyla buluşturarak kullanıcı etkileşimini artıran konsept bir bank geliştirilmiştir.</p>
+                            <a href="sevimli-canavar-bank.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 7. KART -->
+                <article class="project-card" data-category="endustriyel">
+                    <div class="project-image-container">
+                       <img src="gorseller/proje7-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Sevimli Canavar Salıncak" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Sevimli Canavar Salıncak</h3>
+                            <p>Dinamik formu ve karakter detaylarıyla oyun alanlarına eğlenceli bir kimlik kazandıran konsept bir salıncak oluşturulmuştur.</p>
+                            <a href="sevimli-canavar-salincak.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 8. KART -->
+                <article class="project-card" data-category="mekanik">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje8-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Hidrolik Asansör Tasarımı" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Hidrolik Asansör Tasarımı</h3>
+                            <p>Pascal prensibine dayalı hidrolik sistem ile mekanik hareketi birleştiren, çocuklara temel mühendislik prensiplerini deneyimleme fırsatı sunan bir asansör tasarlanmıştır.</p>
+                            <a href="hidrolik_asansor.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 9. KART -->
+                <article class="project-card" data-category="mekanik" data-featured="true">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje9-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Otonom Ripper - Mahsül Sonrası Aracı" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Otonom Ripper - Mahsül Sonrası Aracı</h3>
+                            <p>Hasat sonrası toprağı otonom olarak işleyerek havalandıran ve bir sonraki ekim sürecine hazırlayan bir ripper tasarlanmıştır.</p>
+                            <a href="otonom_ripper.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 10. KART -->
+                <article class="project-card" data-category="yazilim-elektronik mekanik" data-featured="true">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje10-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği / Simurg - Tehlike Tespit Drone'u" class="project-image">
+                        
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Simurg - Tehlike Tespit Drone'u</h3>
+                            <p>Otonom uçuş kabiliyetiyle geniş alanlarda keşif, tehlike tespiti ve hedef takibi yapabilen akıllı bir drone geliştirilmiştir.</p>
+                            <a href="simurg-tehlike-tespit-drone.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 11. KART -->
+                <article class="project-card" data-category="render endustriyel">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje11-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Render Çalışmalarım" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Render Çalışmalarım</h3>
+                            <p>Malzeme, ışık ve kamera kompozisyonu optimize edilerek ürünlerin gerçekçi sunum görselleri hazırlanmıştır.</p>
+                            <a href="render_calismalarim.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+
+                <!-- 12. KART -->
+                <article class="project-card" data-category="yazilim-elektronik mekanik">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje12-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Hexa-Flex Robotik El Sistemi" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Hexa-Flex Robotik El Sistemi</h3>
+                            <p>El fonksiyonunu kaybetmiş bireylerin temel kavrama ve tutma hareketlerini gerçekleştirebilmesi amacıyla koldan takılabilen robotik bir el sistemi tasarlanmıştır.</p>
+                            <a href="Hexa-Flex_Robotik_El.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+                                <!--TEKNOFEST yarı finaline yükselen koldan takılabilen robotik el projesinde, sensör verilerine bağlı servo motor kontrolünü ve parmak hareketlerini yöneten Arduino tabanlı gömülü yazılımı geliştirdim.-->
+
+
+                <!-- 13. KART -->
+                <article class="project-card" data-category="mekanik">
+                    <div class="project-image-container">
+                       <img src="gorseller/proje13-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Mobil Su Isıtıcı" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Mobil Su Isıtıcı</h3>
+                            <p>Sahada ve endüstriyel çalışma ortamlarında ihtiyaç duyulan sıcak suyu güvenli ve taşınabilir şekilde sağlayan monoblok yapıda bir su ısıtıcısı tasarlanmıştır.</p>
+                            <a href="Mobil_Su_İsitici.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- 14. KART -->
+                <article class="project-card" data-category="mekanik">
+                    <div class="project-image-container">
+                        <img src="gorseller/proje14-gorsel1.png" alt="Eylül Sarıaslan / Endüstriyel Tasarım Mühendisliği  / Endüstriyel Katkı Maddesi Dozajlama Ünitesi" class="project-image">
+                        
+                        <!-- Üzerine gelince çıkacak YARI SAYDAM BEYAZ katman -->
+                        <div class="project-info">
+                            <h3>Endüstriyel Katkı Maddesi Dozajlama Ünitesi</h3>
+                            <p>Üretim kalitesini ve proses tutarlılığını artırmak amacıyla katkı maddelerinin hassas dozajlanmasını sağlayan bir sistem tasarlanmıştır.</p>
+                            <a href="Katki_Maddesi_Dozajlama_Unitesi.html" class="project-link">Detayları İncele &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <p>&copy; 2026 - Eylül Sarıaslan. Tüm Hakları Saklıdır.</p>
+    <a href="hobi_projelerim.html" class="hobby-floating-card">
+            <div class="hobby-card-content">
+                <span class="hobby-icon">✨</span>
+                <p>Hobi Projelerim</p>
+            </div>
+        </a>
+
+  <section id="iletisim" class="contact-section">
+    <h2 class="contact-title">BENİMLE İLETİŞİME GEÇİN</h2>
+    
+    <div class="contact-content">
+        <div class="email-pill" onclick="copyEmail()">
+            <span class="email-text">eyllsrsln@gmail.com</span>
+            <span class="copy-badge" id="copyText">Kopyala</span>
+        </div>
+        
+        <div class="form-wrapper">
+            <form action="https://formsubmit.co/eyllsrsln@gmail.com" method="POST" class="contact-form">
+                <input type="hidden" name="_subject" value="Portfolyo sitesinden yeni mesaj">
+                <input type="hidden" name="_next" value="https://eylulsariaslan.github.io/#iletisim">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="input-row">
+                    <input type="text" name="İsim Soyisim" placeholder="Adınız" autocomplete="name" required>
+                    <input type="email" name="E-Posta" placeholder="Mail Adresiniz" autocomplete="email" required>
+                </div>
+                <textarea name="Mesaj" placeholder="Projenizden veya fikrinizden bahsedebilirsiniz..." rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Mesajı Gönder</button>
+            </form>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/eylül-sarıaslan-08856321a/" target="_blank" class="social-pill">LinkedIn</a>
+            <a href="https://github.com/EylulSariaslan" target="_blank" class="social-pill">GitHub</a>
+        </div>
+    </div>
+</section>
+
+    <footer class="site-footer">
+        <p>Eylül Sarıaslan, <span id="current-year">2026</span> · Tüm hakları saklıdır.</p>
     </footer>
 
-    <script>
-        const textElement = document.getElementById("typing-text");
-        const phrases = ["Eylül Sarıaslan."]; 
-        
-        let phraseIndex = 0;
-        let characterIndex = 0;
-        let isDeleting = false;
+    <!-- 3. EN SON: JavaScript Kütüphaneleri (Body kapanmadan hemen önce) -->
+    <!-- Pürüzsüz Kaydırma (Lenis) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    
+    <!-- Animasyon Motoru (GSAP ve ScrollTrigger) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Kendi yazacağımız JavaScript dosyamız -->
+    <script src="app.js"></script>
 
-        function typeEffect() {
-            const currentPhrase = phrases[phraseIndex];
-
-            if (isDeleting) {
-                textElement.textContent = currentPhrase.substring(0, characterIndex - 1);
-                characterIndex--;
-            } else {
-                textElement.textContent = currentPhrase.substring(0, characterIndex + 1);
-                characterIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 60 : 120;
-
-            if (!isDeleting && characterIndex === currentPhrase.length) {
-                typeSpeed = 2000; 
-                isDeleting = true;
-            } 
-            else if (isDeleting && characterIndex === 0) {
-                isDeleting = false;
-                typeSpeed = 500; 
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(typeEffect, 500); 
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const splash = document.getElementById('splash-ekrani');
-            
-            if (!sessionStorage.getItem('siteGirisYapildi')) {
-              sessionStorage.setItem('siteGirisYapildi', 'true');
-              
-              setTimeout(() => {
-                if (splash) splash.remove();
-              }, 2000);
-            }
-        });
-    </script>
-</body>
+</body> <!-- Body etiketini burada kapatıyoruz -->
 </html>

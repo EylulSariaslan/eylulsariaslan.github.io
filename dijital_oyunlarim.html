@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Oyunlarım | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/dijital_oyunlarim.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+    <style>
+        .game-hero { position: relative; display: grid; place-items: center; min-height: 100dvh; padding: 130px 5% 70px; overflow: hidden; }
+        .game-hero img { width: min(920px, 92vw); max-height: 70dvh; object-fit: contain; opacity: 0; transform: scale(.94); }
+        .game-title { position: absolute; bottom: 9%; left: 5%; z-index: 1; }
+        .game-title p { margin-bottom: 10px; color: var(--accent-color); font-family: var(--font-mono); font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; }
+        .game-title h1 { font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.07em; line-height: .9; text-transform: uppercase; }
+        .game-content { max-width: 1280px; margin: 0 auto; padding: 110px 5% 140px; }
+        .game-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 10%; margin-bottom: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.16); }
+        .game-intro h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.12; }
+        .game-intro p { color: var(--accent-color); font-size: 1.1rem; line-height: 1.75; }
+        .game-image { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: #111; }
+        .game-image img { display: block; width: 100%; height: auto; }
+        .game-mask { position: absolute; inset: 0; display: grid; grid-template: repeat(6,1fr) / repeat(8,1fr); pointer-events: none; }
+        .game-mask span { background: var(--bg-color); }
+        .wizard-feature { margin: 0 0 100px; padding: clamp(22px,4vw,48px); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: linear-gradient(135deg, rgba(113,55,157,.2), rgba(11,11,18,.65)); }
+        .wizard-feature-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(250px,.9fr); align-items: center; gap: clamp(28px,5vw,72px); }
+        .wizard-feature-image { width: 100%; min-height: 290px; overflow: hidden; border-radius: 9px; background: #171122; }
+        .wizard-feature-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+        .wizard-feature:hover .wizard-feature-image img { transform: scale(1.04); }
+        .wizard-feature-label { margin-bottom: 12px; color: #c89cff; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; }
+        .wizard-feature h2 { margin-bottom: 16px; font-size: clamp(2rem,4vw,4rem); letter-spacing: -.06em; line-height: .92; text-transform: uppercase; }
+        .wizard-feature p { max-width: 470px; margin-bottom: 26px; color: #b7b2c0; line-height: 1.7; }
+        .play-wizard-btn, .game-primary-btn, .game-secondary-btn { border: 0; border-radius: 999px; cursor: pointer; font-family: var(--font-main); font-weight: 600; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+        .play-wizard-btn, .game-primary-btn { padding: 13px 22px; background: #e8d7ff; color: #211130; box-shadow: 0 8px 30px rgba(196,133,255,.22); }
+        .play-wizard-btn:hover, .game-primary-btn:hover { transform: translateY(-2px); background: #fff; }
+        .game-modal { position: fixed; inset: 0; z-index: 5000; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(5,4,10,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        .game-modal.is-open { display: flex; }
+        .game-dialog { position: relative; width: min(100%, 980px); overflow: hidden; border: 1px solid rgba(232,215,255,.3); border-radius: 16px; background: #0e0b16; box-shadow: 0 30px 90px rgba(0,0,0,.6); }
+        .game-topbar { display: flex; align-items: center; justify-content: space-between; min-height: 54px; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .game-topbar p { color: #d9c9ef; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+        .game-close { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 1.25rem; line-height: 1; }
+        .game-stage { position: relative; height: min(62dvh, 570px); min-height: 360px; overflow: hidden; touch-action: manipulation; background: #171328; }
+        .game-stage canvas { display: block; width: 100%; height: 100%; }
+        .game-hud { position: absolute; top: 16px; right: 16px; left: 16px; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 12px; color: #fff; font-family: var(--font-mono); font-size: clamp(.72rem,2vw,.9rem); letter-spacing: .07em; text-shadow: 0 2px 8px #000; }
+        .game-screen { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(rgba(8,5,16,.35), rgba(8,5,16,.74)); text-align: center; }
+        .game-screen[hidden] { display: none; }
+        .game-message { width: min(100%, 440px); padding: 28px; border: 1px solid rgba(235,214,255,.32); border-radius: 14px; background: rgba(15,8,27,.85); box-shadow: 0 16px 45px rgba(0,0,0,.38); }
+        .game-message h3 { margin-bottom: 12px; font-size: clamp(1.7rem,4vw,2.5rem); line-height: 1; }
+        .game-message p { margin-bottom: 22px; color: #d3c9dd; line-height: 1.6; }
+        .game-secondary-btn { margin-top: 12px; padding: 9px 16px; background: transparent; color: #fff; }
+        body.game-open { overflow: hidden; }
+        .chess-feature { margin-top: 110px; padding: clamp(22px,4vw,48px); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: linear-gradient(135deg, rgba(108,71,23,.18), rgba(11,11,18,.65)); }
+        .chess-feature-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(250px,.9fr); align-items: center; gap: clamp(28px,5vw,72px); }
+        .chess-feature-cover { min-height: 290px; overflow: hidden; border-radius: 9px; background: #15100b; }
+        .chess-feature-cover img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+        .chess-feature:hover .chess-feature-cover img { transform: scale(1.04); }
+        .chess-feature-label { margin-bottom: 12px; color: #dfba7d; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; }
+        .chess-feature h2 { margin-bottom: 16px; font-size: clamp(2rem,4vw,4rem); letter-spacing: -.06em; line-height: .92; text-transform: uppercase; }
+        .chess-feature p { max-width: 470px; margin-bottom: 26px; color: #c6beb4; line-height: 1.7; }
+        .play-chess-btn { padding: 13px 22px; border: 0; border-radius: 999px; background: #f1d6a6; color: #2b190b; cursor: pointer; font-family: var(--font-main); font-weight: 600; box-shadow: 0 8px 30px rgba(213,157,74,.2); transition: transform .25s ease, background .25s ease; }
+        .play-chess-btn:hover { transform: translateY(-2px); background: #fff; }
+        .chess-modal { position: fixed; inset: 0; z-index: 5100; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(5,4,10,.84); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        .chess-modal.is-open { display: flex; }
+        .chess-dialog { position: relative; width: min(100%, 1120px); max-height: 94dvh; overflow: auto; border: 1px solid rgba(241,214,166,.34); border-radius: 16px; background: #100d0b; box-shadow: 0 30px 90px rgba(0,0,0,.65); }
+        .chess-topbar { display: flex; align-items: center; justify-content: space-between; min-height: 54px; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .chess-topbar p { color: #f1d6a6; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+        .chess-close { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 1.25rem; line-height: 1; }
+        .chess-layout { display: grid; grid-template-columns: minmax(0,1fr) 270px; gap: 22px; padding: 22px; }
+        .chess-board-wrap { position: relative; width: min(100%, 720px); margin: 0 auto; }
+        .chess-board { display: grid; grid-template-columns: repeat(8, 1fr); overflow: hidden; border: 6px solid #6b4122; border-radius: 5px; box-shadow: 0 12px 42px rgba(0,0,0,.45); aspect-ratio: 1; }
+        .chess-square { position: relative; display: grid; place-items: center; min-width: 0; border: 0; cursor: pointer; aspect-ratio: 1; }
+        .chess-square.light { background: #e6cfa4; } .chess-square.dark { background: #86603b; }
+        .chess-square.selected::after, .chess-square.legal::after, .chess-square.capture::after { position: absolute; content: ''; pointer-events: none; }
+        .chess-square.selected::after { inset: 6%; border: 3px solid #fff2ae; }
+        .chess-square.legal::after { width: 21%; height: 21%; border-radius: 50%; background: rgba(48,91,46,.8); }
+        .chess-square.capture::after { inset: 7%; border: 3px solid rgba(130,22,22,.9); border-radius: 50%; }
+        .chess-piece { position: relative; z-index: 1; display: block; width: 88%; height: 88%; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+        .chess-sidebar { display: flex; flex-direction: column; gap: 14px; }
+        .chess-status { padding: 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: #17120f; }
+        .chess-status-label { margin-bottom: 6px; color: #a99b8c; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+        .chess-status strong { display: block; font-size: 1.05rem; line-height: 1.25; }
+        .chess-score { color: #f1d6a6; font-family: var(--font-mono); font-size: 1.05rem; }
+        .chess-captures { padding: 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: #17120f; }
+        .chess-captures h4 { margin-bottom: 10px; font-size: .85rem; font-weight: 500; }
+        .capture-list { min-height: 30px; color: #bdb3a8; font-family: var(--font-mono); font-size: .78rem; line-height: 1.6; }
+        .chess-info-btn { align-self: flex-start; padding: 9px 13px; border: 1px solid rgba(241,214,166,.4); border-radius: 999px; background: transparent; color: #f1d6a6; cursor: pointer; font-family: var(--font-main); }
+        .chess-screen, .chess-info-panel { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(9,6,5,.64); text-align: center; }
+        .chess-screen[hidden], .chess-info-panel[hidden] { display: none; }
+        .chess-message { width: min(100%, 420px); padding: 27px; border: 1px solid rgba(241,214,166,.36); border-radius: 14px; background: rgba(23,16,12,.93); box-shadow: 0 16px 45px rgba(0,0,0,.42); }
+        .chess-message h3 { margin-bottom: 12px; font-size: clamp(1.7rem,4vw,2.5rem); line-height: 1; }
+        .chess-message p { margin-bottom: 20px; color: #d8cfc5; line-height: 1.6; }
+        .chess-primary-btn { padding: 12px 20px; border: 0; border-radius: 999px; background: #f1d6a6; color: #2b190b; cursor: pointer; font-family: var(--font-main); font-weight: 600; }
+        @media (max-width: 768px) { .chess-feature { margin-top: 70px; padding: 18px; } .chess-feature-grid { grid-template-columns: 1fr; gap: 24px; } .chess-feature-cover { min-height: 220px; } .chess-modal { padding: 8px; } .chess-dialog { border-radius: 12px; } .chess-topbar { min-height: 48px; padding: 8px 12px; } .chess-layout { grid-template-columns: 1fr; gap: 14px; padding: 12px; } .chess-sidebar { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; } .chess-status:first-child { grid-column: span 2; } .chess-info-btn { align-self: stretch; grid-column: span 2; } }
+        @media (max-width: 768px) { .game-hero { padding: 120px 6% 90px; } .game-title { bottom: 7%; left: 6%; } .game-content { padding: 75px 6% 100px; } .game-intro { grid-template-columns: 1fr; gap: 22px; margin-bottom: 55px; } }
+        @media (max-width: 768px) { .wizard-feature { margin-bottom: 70px; padding: 18px; } .wizard-feature-grid { grid-template-columns: 1fr; gap: 24px; } .wizard-feature-image { min-height: 220px; } .game-modal { padding: 10px; } .game-dialog { border-radius: 12px; } .game-topbar { min-height: 48px; padding: 8px 12px; } .game-stage { height: min(68dvh, 560px); min-height: 380px; } .game-message { padding: 22px 18px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar detail-nav" aria-label="Sayfa menüsü"><ul class="nav-links"><li><a href="hobi_projelerim.html" class="nav-link">&larr; Hobi Projelerime Dön</a></li></ul></nav>
+    <header class="game-hero">
+        <img src="gorseller/hobi2.png" alt="Dijital oyunlar için karakter tasarımı">
+        <div class="game-title"><p>Hobi Projesi 02</p><h1>Dijital<br>Oyunlarım</h1></div>
+    </header>
+    <main class="game-content">
+        <section class="game-intro"><h2>Hayal gücüyle kodun kesiştiği yer.</h2><p>Karakter tasarımı, oyun atmosferi ve dijital anlatımı bir araya getiren görsel çalışmalar. Her deneme, farklı bir evreni keşfetmek için bir başlangıç noktasıdır.</p></section>
+        <section class="wizard-feature" aria-labelledby="wizard-feature-title">
+            <div class="wizard-feature-grid">
+                <div class="wizard-feature-image"><img src="gorseller/buyucu-gorsel.png" alt="Büyücü Macerası oyunundan fantastik orman sahnesi"></div>
+                <div>
+                    <p class="wizard-feature-label">Oynanabilir mini oyun</p>
+                    <h2 id="wizard-feature-title">Büyücü<br>Macerası</h2>
+                    <p>Büyücüyü yönlendir, yaratıkları aş ve iksirleri topla. Yol uzadıkça oyun hızlanır; 500 puana ulaşarak macerayı tamamla.</p>
+                    <button type="button" class="play-wizard-btn" id="openWizardGame">Oynamak için tıklayın</button>
+                </div>
+            </div>
+        </section>
+        <section class="chess-feature" aria-labelledby="chess-feature-title">
+            <div class="chess-feature-grid">
+                <div class="chess-feature-cover"><img src="gorseller/satranc-gorsel.png" alt="Kedilerin Satrancı oyun kapağı"></div>
+                <div>
+                    <p class="chess-feature-label">Oynanabilir strateji oyunu</p>
+                    <h2 id="chess-feature-title">Kedilerin<br>Satrancı</h2>
+                    <p>Beyaz kedileri sen yönet; siyah tarafı ise orta-zor seviyede düşünen bilgisayar oynatır. Rakibin şahını sıkıştır, taşlarını koru ve matı bul.</p>
+                    <button type="button" class="play-chess-btn" id="openChessGame">Oynamak için tıklayın</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="game-modal" id="wizardGameModal" aria-hidden="true" aria-label="Büyücü Macerası oyun penceresi">
+        <div class="game-dialog" role="dialog" aria-modal="true" aria-labelledby="wizardGameTitle">
+            <div class="game-topbar"><p id="wizardGameTitle">Büyücü Macerası</p><button type="button" class="game-close" id="closeWizardGame" aria-label="Oyunu kapat">×</button></div>
+            <div class="game-stage" id="wizardGameStage">
+                <canvas id="wizardGameCanvas" aria-label="Büyücü Macerası oyun alanı"></canvas>
+                <div class="game-hud"><span id="gameScore">SKOR: 0 / 500</span><span id="gamePotions">İKSİR: 0</span><span id="gameLives">CAN: ♥♥♥</span><span id="gameShield">KALKAN: YOK</span></div>
+                <div class="game-screen" id="gameStartScreen"><div class="game-message"><h3>Macera Başlıyor</h3><p>Space tuşuna basın veya ekrana dokunun: büyücü zıplar. Havadayken ikinci kez basarak çift zıplama yapabilirsin; üçüncü zıplama için yere inmen gerekir. Üç canın var; her 10 iksir bir kalkan kazandırır ve bir çarpışmayı engeller. Yaratıklardan kaçın, iksirleri topla ve 500 puana ulaş.</p><button type="button" class="game-primary-btn" id="startWizardGame">Macarayı başlat</button></div></div>
+                <div class="game-screen" id="gameEndScreen" hidden><div class="game-message"><h3 id="gameEndTitle"></h3><p id="gameEndText"></p><button type="button" class="game-primary-btn" id="restartWizardGame">Tekrar oyna</button><br><button type="button" class="game-secondary-btn" id="endCloseWizardGame">Kapat</button></div></div>
+            </div>
+        </div>
+    </section>
+    <section class="chess-modal" id="chessGameModal" aria-hidden="true" aria-label="Kedilerin Satrancı oyun penceresi">
+        <div class="chess-dialog" role="dialog" aria-modal="true" aria-labelledby="chessGameTitle">
+            <div class="chess-topbar"><p id="chessGameTitle">Kedilerin Satrancı</p><button type="button" class="chess-close" id="closeChessGame" aria-label="Oyunu kapat">×</button></div>
+            <div class="chess-layout">
+                <div class="chess-board-wrap">
+                    <div class="chess-board" id="chessBoard" aria-label="Satranç tahtası"></div>
+                    <div class="chess-screen" id="chessStartScreen"><div class="chess-message"><h3>Oyun Başlıyor</h3><p>Beyaz taşları sen oynatacaksın. Bir taşı, ardından gideceği kareyi seç. Rakibin siyah taşları orta-zor seviyede oynar.</p><button type="button" class="chess-primary-btn" id="startChessGame">Oyuna başla</button></div></div>
+                    <div class="chess-screen" id="chessEndScreen" hidden><div class="chess-message"><h3 id="chessEndTitle"></h3><p id="chessEndText"></p><button type="button" class="chess-primary-btn" id="restartChessGame">Tekrar oyna</button></div></div>
+                    <div class="chess-info-panel" id="chessInfoPanel" hidden><div class="chess-message"><h3>Puan Sistemi</h3><p>Piyon 1, at 3, fil 3, kale 5 ve vezir 9 puandır. Siyah taşlardan aldığın her taş puanına eklenir. Şah puan taşımaz; oyunun hedefi şah mattır.</p><button type="button" class="chess-primary-btn" id="closeChessInfo">Anladım</button></div></div>
+                </div>
+                <aside class="chess-sidebar" aria-label="Oyun bilgileri">
+                    <div class="chess-status"><p class="chess-status-label">Durum</p><strong id="chessTurn">Sıra sizde</strong></div>
+                    <div class="chess-status"><p class="chess-status-label">Puan</p><strong class="chess-score" id="chessScore">0</strong></div>
+                    <div class="chess-captures"><h4>Sizin aldıklarınız</h4><div class="capture-list" id="whiteCaptures">Henüz taş alınmadı.</div></div>
+                    <div class="chess-captures"><h4>Rakibin aldıkları</h4><div class="capture-list" id="blackCaptures">Henüz taş alınmadı.</div></div>
+                    <button type="button" class="chess-info-btn" id="openChessInfo">Puan sistemi bilgisi</button>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to('.game-hero img',{opacity:1,scale:1,duration:1,ease:'power3.out',delay:.15});
+        gsap.from('.game-title',{opacity:0,y:30,duration:.8,ease:'power3.out',delay:.35});
+        const mask=document.querySelector('.game-mask');
+        for(let i=0;i<48;i+=1){const tile=document.createElement('span');mask.appendChild(tile)}
+        gsap.to(mask.children,{opacity:0,duration:.45,stagger:{amount:.9,from:'random'},scrollTrigger:{trigger:'.game-image',start:'top 82%',toggleActions:'play none none reverse'}});
+
+        (() => {
+            const modal = document.getElementById('wizardGameModal');
+            const stage = document.getElementById('wizardGameStage');
+            const canvas = document.getElementById('wizardGameCanvas');
+            const ctx = canvas.getContext('2d');
+            const startScreen = document.getElementById('gameStartScreen');
+            const endScreen = document.getElementById('gameEndScreen');
+            const scoreLabel = document.getElementById('gameScore');
+            const potionLabel = document.getElementById('gamePotions');
+            const endTitle = document.getElementById('gameEndTitle');
+            const endText = document.getElementById('gameEndText');
+            const livesLabel = document.getElementById('gameLives');
+            const shieldLabel = document.getElementById('gameShield');
+            const images = {
+                background: new Image(), wizard: new Image(),
+                blue: new Image(), green: new Image(), orange: new Image()
+            };
+            images.background.src = 'gorseller/arkaplan.png';
+            images.wizard.src = 'gorseller/buyucu.png';
+            images.blue.src = 'gorseller/mavi_yaratik.png';
+            images.green.src = 'gorseller/yesil_yaratik.png';
+            images.orange.src = 'gorseller/turuncu_yaratik.png';
+
+            let animationId, running = false, lastTime = 0, score = 0, potions = 0, speed = 4.4;
+            let player, obstacles, potionItems, obstacleTimer, potionTimer, lives, shield, invulnerability, jumpBuffer;
+            const creatureTypes = [
+                { image: images.orange, width: 82, height: 142 },
+                { image: images.blue, width: 72, height: 112 },
+                { image: images.green, width: 52, height: 72 }
+            ];
+
+            function resizeCanvas() {
+                const ratio = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = stage.getBoundingClientRect();
+                canvas.width = Math.round(rect.width * ratio);
+                canvas.height = Math.round(rect.height * ratio);
+                ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+                return { width: rect.width, height: rect.height };
+            }
+            function dimensions() { const rect = stage.getBoundingClientRect(); return { width: rect.width, height: rect.height, ground: rect.height - 45 }; }
+            function resetGame() {
+                resizeCanvas();
+                const d = dimensions();
+                player = { x: Math.max(36, d.width * .12), y: d.ground - 70, width: 62, height: 70, velocity: 0, grounded: true, jumps: 0 };
+                obstacles = []; potionItems = []; obstacleTimer = 1500; potionTimer = 1550;
+                score = 0; potions = 0; speed = 4.4; lives = 3; shield = false; invulnerability = 0; jumpBuffer = 0; lastTime = 0;
+                updateHud();
+            }
+            function updateHud() {
+                scoreLabel.textContent = `SKOR: ${Math.min(500, Math.floor(score))} / 500`;
+                potionLabel.textContent = `İKSİR: ${potions}`;
+                livesLabel.textContent = `CAN: ${'♥'.repeat(lives)}${'♡'.repeat(3 - lives)}`;
+                shieldLabel.textContent = shield ? 'KALKAN: HAZIR' : 'KALKAN: YOK';
+            }
+            function jump() {
+                if (!running) return;
+                if (player.jumps >= 2) { jumpBuffer = 120; return; }
+                const jumpForce = Math.max(22, dimensions().height * .043);
+                player.velocity = -(player.jumps === 1 ? jumpForce * 1.12 : jumpForce);
+                player.grounded = false;
+                player.jumps += 1;
+            }
+            function spawnObstacle() {
+                const type = creatureTypes[Math.floor(Math.random() * creatureTypes.length)];
+                const d = dimensions();
+                const scale = Math.max(.85, Math.min(1.2, d.height / 500));
+                let spawnX = d.width + 45;
+                potionItems.forEach((item) => {
+                    spawnX = Math.max(spawnX, item.x + item.size + 260);
+                });
+                obstacles.push({ x: spawnX, y: d.ground - type.height * scale, width: type.width * scale, height: type.height * scale, image: type.image });
+            }
+            function spawnPotion() {
+                const d = dimensions();
+                let spawnX = d.width + 35;
+                obstacles.forEach((obstacle) => {
+                    spawnX = Math.max(spawnX, obstacle.x + obstacle.width + 260);
+                });
+                const isJumpPotion = Math.random() > .65;
+                const potionY = isJumpPotion ? d.ground - 98 - Math.random() * 18 : d.ground - 56 - Math.random() * 8;
+                potionItems.push({ x: spawnX, y: potionY, size: 23, pulse: 0 });
+            }
+            function collide(a, b) { return a.x + 10 < b.x + b.width - 10 && a.x + a.width - 10 > b.x + 10 && a.y + 8 < b.y + b.height - 8 && a.y + a.height - 8 > b.y + 8; }
+            function endGame(won) {
+                running = false;
+                cancelAnimationFrame(animationId);
+                endTitle.textContent = won ? 'Tebrikler!' : 'Macera burada bitti';
+                endText.textContent = won ? 'Oyunu tamamladınız.' : 'Bir yaratığa yakalandın. Bir kez daha dene!';
+                endScreen.hidden = false;
+            }
+            function drawPotion(item) {
+                const glow = 12 + Math.sin(item.pulse) * 4;
+                ctx.save();
+                ctx.translate(item.x, item.y);
+                ctx.shadowColor = '#dc8dff'; ctx.shadowBlur = glow;
+                ctx.fillStyle = '#c978ff'; ctx.beginPath(); ctx.arc(item.size / 2, item.size / 2, item.size / 2, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = '#f4ddff'; ctx.fillRect(item.size * .35, -5, item.size * .3, 8);
+                ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(item.size * .4, item.size * .38, 2, 0, Math.PI * 2); ctx.fill();
+                ctx.restore();
+            }
+            function draw() {
+                const d = dimensions();
+                ctx.clearRect(0, 0, d.width, d.height);
+                if (images.background.complete) { ctx.globalAlpha = .46; ctx.drawImage(images.background, 0, 0, d.width, d.height); ctx.globalAlpha = 1; }
+                ctx.fillStyle = 'rgba(9,6,18,.32)'; ctx.fillRect(0, d.ground, d.width, d.height - d.ground);
+                ctx.fillStyle = 'rgba(218,181,255,.48)'; ctx.fillRect(0, d.ground, d.width, 2);
+                potionItems.forEach(drawPotion);
+                obstacles.forEach((obstacle) => { if (obstacle.image.complete) ctx.drawImage(obstacle.image, obstacle.x, obstacle.y, obstacle.width, obstacle.height); });
+                ctx.save();
+                if (invulnerability > 0) ctx.globalAlpha = .55 + Math.sin(Date.now() / 55) * .25;
+                if (images.wizard.complete) ctx.drawImage(images.wizard, player.x, player.y, player.width, player.height);
+                if (shield) { ctx.globalAlpha = .85; ctx.strokeStyle = '#e7b8ff'; ctx.lineWidth = 2; ctx.shadowColor = '#d76cff'; ctx.shadowBlur = 16; ctx.beginPath(); ctx.arc(player.x + player.width / 2, player.y + player.height / 2, player.height * .58, 0, Math.PI * 2); ctx.stroke(); }
+                ctx.restore();
+            }
+            function loop(time) {
+                if (!running) return;
+                const delta = Math.min(32, time - lastTime || 16.67);
+                lastTime = time;
+                const d = dimensions();
+                const difficultyStage = score < 150 ? 0 : score < 300 ? 1 : 2;
+                speed = difficultyStage === 0 ? 4.4 : difficultyStage === 1 ? 5.5 : Math.min(10.6, 6.3 + (score - 300) / 90);
+                invulnerability = Math.max(0, invulnerability - delta);
+                jumpBuffer = Math.max(0, jumpBuffer - delta);
+                player.velocity += 1.45 * (delta / 16.67);
+                player.y += player.velocity * (delta / 16.67);
+                if (player.y >= d.ground - player.height) {
+                    player.y = d.ground - player.height; player.velocity = 0; player.grounded = true; player.jumps = 0;
+                    if (jumpBuffer > 0) { jumpBuffer = 0; jump(); }
+                }
+                obstacleTimer -= delta;
+                potionTimer -= delta;
+                if (obstacleTimer <= 0) {
+                    spawnObstacle();
+                    obstacleTimer = difficultyStage === 0 ? 1200 + Math.random() * 850 : difficultyStage === 1 ? 900 + Math.random() * 700 : 680 + Math.random() * 580;
+                }
+                if (potionTimer <= 0) { spawnPotion(); potionTimer = 1200 + Math.random() * 1300; }
+                obstacles.forEach((obstacle) => obstacle.x -= speed * (delta / 16.67));
+                potionItems.forEach((item) => { item.x -= speed * (delta / 16.67); item.pulse += .18; });
+                obstacles = obstacles.filter((obstacle) => obstacle.x + obstacle.width > -30);
+                potionItems = potionItems.filter((item) => item.x + item.size > -30);
+                for (const obstacle of obstacles) {
+                    if (collide(player, obstacle) && invulnerability <= 0) {
+                        obstacles = obstacles.filter((item) => item !== obstacle);
+                        invulnerability = 950;
+                        if (shield) { shield = false; }
+                        else { lives -= 1; }
+                        updateHud();
+                        if (lives <= 0) { draw(); endGame(false); return; }
+                        break;
+                    }
+                }
+                potionItems = potionItems.filter((item) => {
+                    const potionBox = { x: item.x, y: item.y, width: item.size, height: item.size };
+                    if (collide(player, potionBox)) { potions += 1; score += 20; if (potions % 10 === 0) shield = true; return false; }
+                    return true;
+                });
+                score += .19 * (delta / 16.67);
+                updateHud(); draw();
+                if (score >= 500) { endGame(true); return; }
+                animationId = requestAnimationFrame(loop);
+            }
+            function startGame() { resetGame(); startScreen.hidden = true; endScreen.hidden = true; running = true; animationId = requestAnimationFrame(loop); }
+            function openGame() { modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('game-open'); resetGame(); draw(); document.getElementById('startWizardGame').focus(); }
+            function closeGame() { running = false; cancelAnimationFrame(animationId); modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('game-open'); }
+            document.getElementById('openWizardGame').addEventListener('click', openGame);
+            document.getElementById('closeWizardGame').addEventListener('click', closeGame);
+            document.getElementById('endCloseWizardGame').addEventListener('click', closeGame);
+            document.getElementById('startWizardGame').addEventListener('click', startGame);
+            document.getElementById('restartWizardGame').addEventListener('click', startGame);
+            stage.addEventListener('pointerdown', (event) => { if (running) { event.preventDefault(); jump(); } });
+            window.addEventListener('keydown', (event) => { if (!modal.classList.contains('is-open')) return; if (event.code === 'Space') { event.preventDefault(); jump(); } if (event.key === 'Escape') closeGame(); });
+            window.addEventListener('resize', () => { if (modal.classList.contains('is-open')) { const d = resizeCanvas(); if (player) { player.x = Math.max(36, d.width * .12); player.y = Math.min(player.y, d.ground - player.height); } draw(); } });
+        })();
+    </script>
+    <script src="chess_game.js"></script>
+</body>
+</html>

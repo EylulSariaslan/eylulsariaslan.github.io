@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Çocuklara deprem güvenliğini etkileşimli ve akılda kalıcı biçimde öğretmek amacıyla geliştirilen Deprepoly eğitim oyunu projesi.">
+    <title>Deprepoly | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/deprepoly.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+</head>
+<body>
+
+    <nav class="navbar detail-nav">
+        <ul class="nav-links">
+            <li><a href="index.html#projeler" class="nav-link">&larr; Projelere Dön</a></li>
+        </ul>
+    </nav>
+
+    <header class="project-hero">
+        <img src="gorseller/proje3-gorsel1.png" alt="Deprepoly" class="full-screen-image">
+        <div class="hero-overlay"></div>
+        
+        <div class="project-hero-title">
+            <h1>Deprepoly</h1>
+            <p>Çocuklar için interaktif deprem eğitim oyunu</p>
+        </div>
+    </header>
+
+    <main class="project-content-section">
+        <div class="project-container">
+            <div class="left-panel">
+                <div class="sticky-video-wrapper">
+                    <video src="videolar/proje3-video1.mp4" autoplay loop muted playsinline class="showcase-item"></video>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <!-- Mevcut project-meta kısmını bununla değiştir -->
+                <div class="project-meta-grid">
+                    <div class="meta-card">
+                        <span class="meta-label">Kullanılan Araçlar</span>
+                        <span class="meta-value">SolidWorks, KeyShot, Arduino</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Malzeme</span>
+                        <span class="meta-value">PLA, Pleksiglas</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Durum</span>
+                        <span class="meta-value">Nihai Ürün</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Hedef Kitle</span>
+                        <span class="meta-value">4-18 yaş aralığı</span>
+                    </div>
+                </div>
+
+                <article class="project-description">
+                    <h2>Proje Hakkında</h2>
+                    <p>Çocukların deprem sırasında ne yapmaları gerektiğini sadece dinleyerek değil, deneyimleyerek öğrenmelerini sağlamak amacıyla tasarlanmıştır. Oyun, ev şeklinde tasarlanmış bir kutu maket üzerinden oynanır. Kutunun içi, gerçek bir evde bulunabilecek mobilya ve eşyalar ile donatılmıştır. Bir mekanizma ile çocukların ilgili kolu çevirmesi ile depremdekine benzer bir sarsıntı hareketi oluşturulur. Dolaplar ve TV ünitesi gibi büyük eşyalar duvara sabitlenmiş şekilde tasarlanmıştır. Sehpa, abajur ve küçük objeler gibi düşebilecek parçalar hareket eder ve risk oluşturur. Oyunda bulunan kart sisteminde belirli senaryolar yazılmış olup, çocukların doğru davranışlarına göre belirlenen puan sistemiyle oyunun kazananı belirlenir.</p>
+                    
+                    <h2 style="margin-top: 50px;">Mühendislik ve Tasarım Süreci</h2>
+                    <p>SolidWorks ortamında tasarlanan cihazın mekanik bileşenleri ve mobilyaları 3d baskı ile, duvarları 1mm pleksi malzeme ile üretilecek şekilde tasarlanmış ve nihai ürün üretimi yapılmıştır. Arduino tabanlı yazılımı ile karakterin jostick kullanılarak hareketi sağlanır.</p>
+
+                    <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 50px 0 30px 0;">
+                    <p style="font-size: 1.05rem; color: #a1a1aa;">
+                        Gazi Üniversitesi Endüstriyel Tasarım Mühendisliği bölümü müfredatı kapsamında tasarlanmıştır. Eklenmiş olan video tasarlanan ürünün işlevini göstermek amacıyla yapay zeka ile oluşturulmuştur.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <div class="footer-gallery">
+            <div class="pixel-reveal-container project-image-container" id="footer-image-wrapper">
+                <img src="gorseller/proje3-detay1.png" alt="Proje Detay Görseli" class="footer-image showcase-item">
+            </div>
+        </div>
+
+    </main>
+    
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+// ================================================================
+// YENİ SİNEMATİK AÇILIŞ: Apple Tarzı Derinlik ve Odaklanma Efekti
+// ================================================================
+
+window.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. Aşama: Resim devasa başlar ve geriye doğru çekilerek ekrana oturur
+    gsap.fromTo(".full-screen-image", 
+        {
+            scale: 1.3,     // Yüzde 30 daha büyük başlar (yakın çekim hissi)
+            opacity: 0,     // Karanlıktan çıkar
+            filter: "blur(10px)" // Hafif bulanık başlar
+        },
+        {
+            scale: 1,       // Tam orijinal boyutuna geriler
+            opacity: 1,     // Tamamen aydınlanır
+            filter: "blur(0px)", // Jilet gibi netleşir
+            duration: 2,    // 2 saniyelik ağır ve şık bir geçiş
+            ease: "power3.out", // İvmeli yavaşlama
+            onComplete: () => {
+                
+                // 2. Aşama: Resim oturduktan sonra proje başlığı usulca belirir
+                gsap.to(".project-hero-title", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+
+                // 3. Aşama: Alt taraftaki detay yazıları yukarı doğru süzülerek gelir
+                gsap.to(".project-content-section", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            }
+        }
+    );
+});
+
+// ================================================================
+// MEDYA VİTRİNİ SCROLL ANİMASYONU
+// ================================================================
+gsap.utils.toArray('.media-showcase').forEach(showcase => {
+    gsap.to(showcase, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: showcase,
+            start: "top 85%", // Medya kutusu ekranın %85'ine ulaştığında süzülmeye başlar
+            toggleActions: "play none none reverse" // Yukarı çıkınca tekrar gizlenir, inince tekrar çıkar
+        }
+    });
+});
+
+// ================================================================
+// PÜRÜZSÜZ KAYDIRMA MOTORU (LENIS) - Sadece Bir Kere Yazıldı
+// ================================================================
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+    </script>
+</body>
+</html>

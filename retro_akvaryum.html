@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Akvaryum | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/retro_akvaryum.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+    <style>
+        .hobby-detail-hero { position: relative; display: grid; place-items: center; min-height: 100dvh; padding: 130px 5% 70px; overflow: hidden; }
+        .hobby-detail-hero img { width: min(740px, 88vw); max-height: 70dvh; object-fit: contain; opacity: 0; transform: translateY(25px) scale(.96); }
+        .hobby-detail-title { position: absolute; right: 5%; bottom: 9%; z-index: 1; max-width: 620px; text-align: right; }
+        .hobby-detail-title p { margin-bottom: 10px; color: var(--accent-color); font-family: var(--font-mono); font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; }
+        .hobby-detail-title h1 { font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.07em; line-height: .9; text-transform: uppercase; }
+        .hobby-detail-content { max-width: 1280px; margin: 0 auto; padding: 110px 5% 140px; }
+        .hobby-detail-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 10%; margin-bottom: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.16); }
+        .hobby-detail-intro h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.12; }
+        .hobby-detail-intro p { color: var(--accent-color); font-size: 1.1rem; line-height: 1.75; }
+        .hobby-detail-image { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: #111; }
+        .hobby-detail-image img { display: block; width: 100%; height: auto; }
+        .hobby-detail-mask { position: absolute; inset: 0; display: grid; grid-template: repeat(6,1fr) / repeat(8,1fr); pointer-events: none; }
+        .hobby-detail-mask span { background: var(--bg-color); }
+        @media (max-width: 768px) { .hobby-detail-hero { padding: 120px 6% 90px; } .hobby-detail-title { right: 6%; bottom: 7%; } .hobby-detail-content { padding: 75px 6% 100px; } .hobby-detail-intro { grid-template-columns: 1fr; gap: 22px; margin-bottom: 55px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar detail-nav" aria-label="Sayfa menüsü"><ul class="nav-links"><li><a href="hobi_projelerim.html" class="nav-link">&larr; Hobi Projelerime Dön</a></li></ul></nav>
+    <header class="hobby-detail-hero">
+        <img src="gorseller/hobi1.png" alt="Retro televizyon formunda akvaryum tasarımı">
+        <div class="hobby-detail-title"><p>Hobi Projesi 01</p><h1>Retro<br>Akvaryum</h1></div>
+    </header>
+    <main class="hobby-detail-content">
+        <section class="hobby-detail-intro"><h2>Retro form, yaşayan bir detay.</h2><p>Televizyonun tanıdık siluetini bir akvaryumla buluşturan bu kişisel çalışma, nostaljik bir objeyi işlevsel ve canlı bir deneyime dönüştürüyor.</p></section>
+        <figure class="hobby-detail-image"><img src="gorseller/hobi-detay1.png" alt="Tamamlanmış retro akvaryum"><div class="hobby-detail-mask" aria-hidden="true"></div></figure>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>gsap.registerPlugin(ScrollTrigger); gsap.to('.hobby-detail-hero img',{opacity:1,y:0,scale:1,duration:1,ease:'power3.out',delay:.15}); gsap.from('.hobby-detail-title',{opacity:0,y:30,duration:.8,ease:'power3.out',delay:.35}); const mask=document.querySelector('.hobby-detail-mask'); for(let i=0;i<48;i+=1){const tile=document.createElement('span');mask.appendChild(tile)} gsap.to(mask.children,{opacity:0,duration:.45,stagger:{amount:.9,from:'random'},scrollTrigger:{trigger:'.hobby-detail-image',start:'top 82%',toggleActions:'play none none reverse'}});</script>
+</body>
+</html>

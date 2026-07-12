@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Granül hammaddenin doğrudan eritilip ekstrüde edilmesini sağlayan, üretim maliyetini azaltmaya yönelik Pellet Extruder sistemi tasarımı.">
+    <title>Pellet Extruder | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/pellet-extruder.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+    
+    <style>
+        /* =================================================================
+           3'LÜ YAN YANA GALERİ VE DIŞA TAŞAN (POP-OUT) BÜYÜME EFEKTİ
+           ================================================================= */
+        .custom-triple-gallery {
+            margin-top: 100px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-sizing: border-box;
+            /* DİKKAT: overflow: hidden kullanmıyoruz. Büyüyen resim çerçevenin dışına taşabilmeli */
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Yan yana 3 eşit sütun */
+            gap: 25px; /* Görseller arası boşluk */
+        }
+
+        .image-box {
+            position: relative;
+            /* Kutuya sabit bir boyut veya kırpma (aspect-ratio) vermiyoruz, tamamen doğal halinde (eski halinde) */
+        }
+
+        .image-box img {
+            width: 100%;
+            height: auto; /* Kırpma veya ezme yok, tam orijinal oran */
+            display: block;
+            border-radius: 6px;
+            position: relative;
+            z-index: 1; /* Normal durumda diğerleriyle aynı hizada */
+            /* Pürüzsüz bir animasyon geçişi */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+            cursor: zoom-in; /* Fare ikonu büyüteç olur */
+        }
+
+        /* MOUSE ÜZERİNE GELDİĞİNDE (E-Ticaret Tarzı Büyüme) */
+        .image-box img:hover {
+            transform: scale(1.4); /* Resim %40 oranında dışa doğru büyür */
+            z-index: 10; /* Büyüyen resim sayfanın en önüne, diğer resimlerin üstüne çıkar */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9); /* Altına derin bir gölge eklenir, havaya kalkmış hissi verir */
+        }
+
+        /* =================================================================
+           MOBİL VE TABLET UYUMU (RESPONSIVE)
+           ================================================================= */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-triple-gallery {
+                margin-top: 60px;
+                padding: 15px; 
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Mobilde hepsi alt alta dizilir */
+                gap: 25px;
+            }
+            
+            /* Mobilde %40 büyüme ekran dışına taşabileceği için, büyüme oranını hafifletiyoruz */
+            .image-box img:hover {
+                transform: scale(1.05); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar detail-nav">
+        <ul class="nav-links">
+            <li><a href="index.html#projeler" class="nav-link">&larr; Projelere Dön</a></li>
+        </ul>
+    </nav>
+
+    <header class="project-hero">
+        <img src="gorseller/proje5-gorsel1.png" alt="Pellet Extruder" class="full-screen-image">
+        <div class="hero-overlay"></div>
+        
+        <div class="project-hero-title">
+            <h1>Pellet Extruder</h1>
+            <p>Kontrollü granül eritme sistemi</p>
+        </div>
+    </header>
+
+    <main class="project-content-section">
+        <div class="project-container">
+            <div class="left-panel">
+                <div class="sticky-video-wrapper">
+                    <video src="videolar/proje5-video1.mp4" autoplay loop muted playsinline class="showcase-item"></video>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="project-meta-grid">
+                    <div class="meta-card">
+                        <span class="meta-label">Kullanılan Araçlar</span>
+                        <span class="meta-value">SolidWorks</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Malzeme</span>
+                        <span class="meta-value"> AL6061 Sac Levha / AISI 304 Paslanmaz Çelik Malzeme</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">İmalat Yöntemi</span>
+                        <span class="meta-value">Lazer Kesim - Talaşlı Üretim</span>
+                    </div>
+                      <div class="meta-card">
+                        <span class="meta-label">Kapasite</span>
+                        <span class="meta-value">15gr/dak malzeme üretimi</span>
+                    </div>
+                      <div class="meta-card">
+                        <span class="meta-label">Dokümantasyon</span>
+                        <span class="meta-value">DXF & Teknik Resim</span>
+                    </div>
+                </div>
+
+                <article class="project-description">
+                    <h2>Proje Hakkında</h2>
+                    <p>Bu proje, endüstriyel büyük formatlı üç boyutlu yazıcı platformlarında kullanılmak üzere geliştirilmiş, doğrudan termoplastik hammadde işleme kabiliyetine sahip yüksek verimli bir tek vidalı granül ekstrüzyon sistemidir.</p>
+                    
+                    <h2 style="margin-top: 50px;">Mühendislik ve Tasarım Süreci</h2>
+                    <p>Sistem, geleneksel filament formundaki malzemeler yerine doğrudan pelet/granül formundaki endüstriyel hammaddeleri eritip şekillendirerek doğrudan üretim yapma işlevi görmektedir. Teknik hesaplamaları mildeki en dar boğaz hacmi ve nozzle direnç katsayıları baz alınarak yapılan bu sistem, yüksek debili katmanlı imalat süreçlerinde kararlı bir akış kontrolü sağlamaktadır. Modüler yapısı sayesinde farklı parça geometrilerine ve hassasiyet gereksinimlerine göre dinamik olarak adapte edilebilen esnek bir donanım mimarisine sahiptir.</p>
+
+                    <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 50px 0 30px 0;">
+                    <p style="font-size: 1.05rem; color: #a1a1aa;">
+                        3 boyutlu yazıcı tasarımı ve üretimi yapan bir firma için, yarı zamanlı çalışma sürecimde tasarlanmıştır. Eklenmiş olan video tasarlanan ürünün işlevini göstermek amacıyla yapay zeka ile oluşturulmuştur, üretimi tamamlanmış ürüne ait değildir.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <div class="custom-triple-gallery">
+            <div class="gallery-grid">
+                <div class="image-box">
+                    <img src="gorseller/proje5-detay1.png" alt="Proje Detay Görseli 1">
+                </div>
+                <div class="image-box">
+                    <img src="gorseller/proje5-detay2.png" alt="Proje Detay Görseli 2">
+                </div>
+                 <div class="image-box">
+                    <img src="gorseller/proje5-detay3.png" alt="Proje Detay Görseli 2">
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+    
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+// ================================================================
+// SİNEMATİK AÇILIŞ
+// ================================================================
+
+window.addEventListener("DOMContentLoaded", () => {
+    
+    gsap.fromTo(".full-screen-image", 
+        {
+            scale: 1.3,    
+            opacity: 0,    
+            filter: "blur(10px)" 
+        },
+        {
+            scale: 1,      
+            opacity: 1,    
+            filter: "blur(0px)", 
+            duration: 2,    
+            ease: "power3.out", 
+            onComplete: () => {
+                
+                gsap.to(".project-hero-title", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+
+                gsap.to(".project-content-section", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            }
+        }
+    );
+});
+
+// ================================================================
+// MEDYA VİTRİNİ SCROLL ANİMASYONU
+// ================================================================
+gsap.utils.toArray('.media-showcase').forEach(showcase => {
+    gsap.to(showcase, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: showcase,
+            start: "top 85%", 
+            toggleActions: "play none none reverse" 
+        }
+    });
+});
+
+// ================================================================
+// PÜRÜZSÜZ KAYDIRMA MOTORU (LENIS)
+// ================================================================
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+    </script>
+</body>
+</html>

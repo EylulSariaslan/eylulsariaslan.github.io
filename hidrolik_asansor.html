@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pascal prensibini mekanik hareketle birleştirerek çocuklara temel mühendislik kavramlarını deneyimleten hidrolik asansör tasarımı.">
+    <title>Hidrolik Asansör Tasarımı | Eylül Sarıaslan</title>
+    <link rel="canonical" href="https://eylulsariaslan.github.io/hidrolik_asansor.html">
+    <link rel="icon" type="image/png" href="gorseller/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="cursor.js" defer></script>
+    
+    <!-- SADECE BU SAYFAYA ÖZEL: YUKARI DOĞRU HAVALANARAK BÜYÜYECEK ŞEKİLDE GÜNCELLENDİ -->
+    <style>
+        #footer-image-wrapper {
+            max-width: 700px !important; /* Görselin normaldeki maksimum genişliği */
+            margin: 0 auto 80px auto !important; /* Alt taraftan taşmaması için ekstra boşluk payı bırakıldı */
+            width: 85%;                  
+            position: relative !important;
+            z-index: 10 !important;      
+            cursor: pointer;
+        }
+
+        #footer-image-wrapper .footer-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            /* Büyüme ve yukarı kayma hareketinin pürüzsüzce gerçekleşmesini sağlar */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+        }
+
+        /* MOUSE İLE ÜZERİNE GELİNDİĞİNDE YUKARI DOĞRU HAVALANAN BÜYÜME EFEKTİ */
+        #footer-image-wrapper:hover {
+            z-index: 9999 !important; /* Diğer tüm elementlerin üstüne çıkar */
+        }
+
+        #footer-image-wrapper:hover .footer-image {
+            /* translateY(-40px): Görselin alt taraftan taşmasını engellemek için onu büyürken 40 piksel YUKARI çeker! */
+            /* scale(1.35): %35 oranında şık ve devasa bir büyüme sağlar */
+            transform: scale(1.35) translateY(-40px) !important; 
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9) !important; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar detail-nav">
+        <ul class="nav-links">
+            <li><a href="index.html#projeler" class="nav-link">&larr; Projelere Dön</a></li>
+        </ul>
+    </nav>
+
+    <header class="project-hero">
+        <img src="gorseller/proje8-gorsel1.png" alt="Hidrolik Asansör" class="full-screen-image">
+        <div class="hero-overlay"></div>
+        
+        <div class="project-hero-title">
+            <h1>Granül Kurutma Makinesi</h1>
+            <p>Üretim öncesi granül nem giderme sistemi</p>
+        </div>
+    </header>
+
+    <main class="project-content-section">
+        <div class="project-container">
+            <div class="left-panel">
+                <div class="sticky-video-wrapper">
+                    <video src="videolar/proje8-video1.mp4" autoplay loop muted playsinline class="showcase-item"></video>
+                </div>
+                <div class="sticky-video-wrapper">
+                    <video src="videolar/proje8-video2.mp4" autoplay loop muted playsinline class="showcase-item"></video>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="project-meta-grid">
+                    <div class="meta-card">
+                        <span class="meta-label">Kullanılan Araçlar</span>
+                        <span class="meta-value">SolidWorks, Autocad</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Malzeme</span>
+                        <span class="meta-value">AISI 304, S235JR</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">İmalat Yöntemi</span>
+                        <span class="meta-value">Sheet Metal / Lazer Kesim</span>
+                    </div>
+                      <div class="meta-card">
+                        <span class="meta-label">Kapasite</span>
+                        <span class="meta-value">50 Kg Malzeme</span>
+                    </div>
+                      <div class="meta-card">
+                        <span class="meta-label">Dokümantasyon</span>
+                        <span class="meta-value">DXF & Teknik Resim</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Durum</span>
+                        <span class="meta-value">CAD Modeli</span>
+                    </div>
+                </div>
+
+                <article class="project-description">
+                    <h2>Proje Hakkında</h2>
+                    <p>Oyun alanlarında kullanılmak üzere tasarlanan bu asansör, çocukların mekanik sistemleri keşfetmelerine ve çalışma prensiplerini deneyimleyerek anlamalarına olanak tanır.</p>
+                    
+                    <h2 style="margin-top: 50px;">Mühendislik ve Tasarım Süreci</h2>
+                    <p>Asansörün dış gövdesinde dayanıklı ve şeffaf bir tasarım olması için 10mm kalınlığa sahip polikarbonat levha kullanılmıştır.
+                        Çift makaslı kaldıraç, 2mm et kalınlığına sahip 20x20 kutu profiller ile tasarlanmıştır.
+                        Sistemi çalıştıracak pistonlar için 5 litfe hidrolik yağ kullanılacaktır, asansörün 150cm yüksekliğe ulaşması hedeflenmektedir.</p>
+
+                    <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 50px 0 30px 0;">
+                    <p style="font-size: 1.05rem; color: #a1a1aa;">
+                        Kent ve park ekipmanları tasarımı ve üretimi yapan bir firmadaki aday mühendislik sürecimde tasarlanmıştır. Eklenmiş olan videolar tasarlanan ürünün işlevini göstermek amacıyla yapay zeka ile oluşturulmuştur, üretimi tamamlanmış ürüne ait değildir.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <div class="footer-gallery">
+            <div class="pixel-reveal-container project-image-container" id="footer-image-wrapper">
+                <img src="gorseller/proje8-detay1.png" alt="Proje Detay Görseli" class="footer-image showcase-item">
+            </div>
+
+    </main>
+    
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+// ================================================================
+// SİNEMATİK AÇILIŞ
+// ================================================================
+
+window.addEventListener("DOMContentLoaded", () => {
+    
+    gsap.fromTo(".full-screen-image", 
+        {
+            scale: 1.3,    
+            opacity: 0,    
+            filter: "blur(10px)" 
+        },
+        {
+            scale: 1,      
+            opacity: 1,    
+            filter: "blur(0px)", 
+            duration: 2,    
+            ease: "power3.out", 
+            onComplete: () => {
+                
+                gsap.to(".project-hero-title", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+
+                gsap.to(".project-content-section", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            }
+        }
+    );
+});
+
+// ================================================================
+// MEDYA VİTRİNİ SCROLL ANİMASYONU
+// ================================================================
+gsap.utils.toArray('.media-showcase').forEach(showcase => {
+    gsap.to(showcase, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: showcase,
+            start: "top 85%", 
+            toggleActions: "play none none reverse" 
+        }
+    });
+});
+
+// ================================================================
+// PÜRÜZSÜZ KAYDIRMA MOTORU (LENIS)
+// ================================================================
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+    </script>
+</body>
+</html>
