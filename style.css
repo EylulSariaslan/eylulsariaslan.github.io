@@ -111,6 +111,9 @@ html.lenis, html.lenis body { height: auto !important; }
 .pinned-video-container { position: sticky; top: 0; z-index: 1; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; }
 .bg-video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.6); }
+.video-scroll-progress { position: absolute; bottom: clamp(28px, 7vh, 72px); left: 50%; z-index: 3; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(54vw, 420px); gap: clamp(14px, 3vw, 30px); transform: translateX(-50%); }
+.video-progress-segment { position: relative; height: 4px; overflow: hidden; background: rgba(255,255,255,.16); }
+.video-progress-fill { display: block; width: 100%; height: 100%; background: #fff; transform: scaleX(var(--segment-progress, 0)); transform-origin: left center; will-change: transform; }
 .scroll-text-container { position: relative; z-index: 2; margin-top: -100vh; margin-top: -100dvh; padding-bottom: 100vh; padding-bottom: 100dvh; }
 .scroll-text { display: flex; align-items: center; justify-content: center; height: 100vh; height: 100dvh; padding: 0 5%; color: #fff; font-size: 4vw; font-weight: 700; text-align: center; text-transform: uppercase; opacity: 0; }
 

@@ -191,6 +191,35 @@ gsap.utils.toArray('.scroll-text').forEach(text => {
     });
 });
 
+const videoProgress = document.querySelector('.video-scroll-progress');
+const videoProgressSegments = videoProgress
+    ? Array.from(videoProgress.querySelectorAll('.video-progress-fill'))
+    : [];
+
+if (videoProgress && videoProgressSegments.length) {
+    const updateVideoProgress = progress => {
+        const scaledProgress = progress * videoProgressSegments.length;
+
+        videoProgressSegments.forEach((segment, index) => {
+            const segmentProgress = Math.min(Math.max(scaledProgress - index, 0), 1);
+            segment.style.setProperty('--segment-progress', segmentProgress.toFixed(4));
+        });
+
+        videoProgress.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+    };
+
+    updateVideoProgress(0);
+
+    ScrollTrigger.create({
+        trigger: '.video-pin-section',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        onUpdate: self => updateVideoProgress(self.progress),
+        onRefresh: self => updateVideoProgress(self.progress)
+    });
+}
+
 
 // ================================================================
 // 5. Yetenek Çubukları (Progress Bars) Animasyonu
